@@ -1,0 +1,25 @@
+mapp/fil-struktur
+
+dir src
+    index.js (hette app.js, startfilen)
+    server.js (middlewares osv)
+    auth.js (authentiserar)
+    db.json (en tabell med user-objekt, en tabell med channel-objekt)
+    dir routes
+        private (routes för folk som är inloggade)
+        public (routes för folk som inte är inloggade)
+
+
+dir static
+    index.html
+    script.js
+    css.style
+
+fil database.js objekt(users, channels) (gör sedan om med lowdb till db.json)
+
+fil package-lock.json
+fil package.json
+fil .env
+fil .git-ignore
+fil no_modules
+

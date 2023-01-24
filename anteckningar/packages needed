@@ -1,0 +1,15 @@
+node paket
+
+Grund:
+express
+
+JWT-token:
+jsonwebtoken
+dotenv
+
+Kryptering:
+bcryptjs
+readline-sync
+
+database:
+lowdb

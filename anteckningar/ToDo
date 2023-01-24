@@ -1,0 +1,33 @@
+- I server.js:
+DONE: importera det som behövs
+DONE: declarera app = express()
+
+DONE: skapa middleware express.json(), logger,      staticPath
+
+DONE: exportera app
+
+- I .env-filen:
+DONE: Gör port och secret i .env-filen
+
+- I index.js:
+DONE: importera det som behövs - kom ihåg dotenv
+
+DONE: dotenv.config()
+
+DONE: declarera port
+
+DONE: gör app.listen (starta servern)
+
+- I routes/public.js:
+DONE: importera data från database.js
+
+DONE: declarera router express.Router()
+
+DONE: GET-anrop som skickar tillbaka channel-objekt
+
+DONE: GET-anrop :channel-name som skickar tillbaka allt i det objektet - utan validering
+
+DONE: POST-anrop som skapar en ny message i en specifik channel - utan validering
+
+
+

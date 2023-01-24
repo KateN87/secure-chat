@@ -1,0 +1,26 @@
+En databas som sparar:
+    användare: Namn och lösen
+    medddelande: text, kanal, tid, användare
+    Kanaler: namn
+
+const user = [
+    {
+        userName: "Kate",
+        password: "hejhopp"
+    }
+]
+
+const channels = [{
+     name: "name"
+     messages: [{
+        id: 1,
+        message: "lite text", (if(!isDeleted) sätt detta till null),
+        timeCreated: 20230124,
+        userName: "Kate" (if(!isDeleted) sätt detta till null),
+        isChanged: true,
+        timeChanged: 2023,
+        isDeleted: true,
+        timeDeleted: 2022
+    }]
+    status: "locked"
+}]

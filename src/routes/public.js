@@ -6,37 +6,32 @@ const router = express.Router();
 let idCount = 2;
 
 router.get('/channels', (req, res) => {
-    let channelsArray = []
-    channelData.forEach(elementName => {
-       let eachChannel = {
-        name: elementName.name,
-        private: elementName.private,
-        }
+    let channelsArray = [];
+    channelData.forEach((elementName) => {
+        let eachChannel = {
+            name: elementName.name,
+            private: elementName.private,
+        };
 
-        channelsArray.push(eachChannel)
-    })
+        channelsArray.push(eachChannel);
+    });
 
     res.send(channelsArray);
 });
 
-router.get('/channels/:name', (req, res) => {
+router.get('/channels/:name/messages', (req, res) => {
+    //Ska jag ha channels/:name bara istälÖET?
     const channelName = req.params.name;
-    let messageArray=[]
+    let messageArray = [];
     const maybeChannel = channelData.find(
         (channel) => channelName === channel.name
     );
-    if(maybeChannel){
-        console.log('This is maybeChannel.messages', maybeChannel.messages)
-/*         maybeChannel.forEach(elementName => {
-            let eachMessage = {
-             message: elementName.message
-             }
-     
-             messageArray.push(eachMessage)
-         }) */
+    if (maybeChannel) {
+        console.log('This is maybeChannel.messages', maybeChannel.messages);
+        maybeChannel.messages.forEach((message) => {
+            messageArray.push(message);
+        });
     }
-
-    messageArray.push(maybeChannel)
 
     console.log('This is messageArray', messageArray);
     res.send(messageArray);

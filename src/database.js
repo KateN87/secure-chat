@@ -12,7 +12,7 @@ const channelData = [
             {
                 id: 1,
                 message: 'Cats are what they are', //(if(!isDeleted) sätt detta till null),
-                timeCreated: '', //Lägger till datum
+                timeCreated: '2023-01-25T17:57:34.488Z', //Lägger till datum
                 userName: 'Kate', //(if(!isDeleted) sätt detta till null)
                 isChanged: false, //ändra till true vid ändring
                 timeChanged: '', //lägger in datum vid ändring
@@ -22,8 +22,8 @@ const channelData = [
             {
                 id: 2,
                 message: 'You are correct!', //(if(!isDeleted) sätt detta till null),
-                timeCreated: '', //Lägger till datum
-                userName: 'Kate', //(if(!isDeleted) sätt detta till null)
+                timeCreated: '2023-01-25T17:57:34.488Z', //Lägger till datum
+                userName: 'Richard', //(if(!isDeleted) sätt detta till null)
                 isChanged: false, //ändra till true vid ändring
                 timeChanged: '', //lägger in datum vid ändring
                 isDeleted: false, //ändrar till true
@@ -32,8 +32,8 @@ const channelData = [
             {
                 id: 3,
                 message: 'Everything is true', //(if(!isDeleted) sätt detta till null),
-                timeCreated: '', //Lägger till datum
-                userName: 'Kate', //(if(!isDeleted) sätt detta till null)
+                timeCreated: '2023-01-25T17:57:34.488Z', //Lägger till datum
+                userName: 'Rut', //(if(!isDeleted) sätt detta till null)
                 isChanged: false, //ändra till true vid ändring
                 timeChanged: '', //lägger in datum vid ändring
                 isDeleted: false, //ändrar till true
@@ -48,7 +48,7 @@ const channelData = [
             {
                 id: 1,
                 message: 'Dogs are awesome', //(if(!isDeleted) sätt detta till null),
-                timeCreated: '', //Lägger till datum
+                timeCreated: '2023-01-25T17:57:34.488Z', //Lägger till datum
                 userName: 'Kate', //(if(!isDeleted) sätt detta till null)
                 isChanged: false, //ändra till true vid ändring
                 timeChanged: '', //lägger in datum vid ändring
@@ -64,7 +64,7 @@ const channelData = [
             {
                 id: 1,
                 message: 'Dogs are awesome', //(if(!isDeleted) sätt detta till null),
-                timeCreated: '', //Lägger till datum
+                timeCreated: '2023-01-25T17:57:34.488Z', //Lägger till datum
                 userName: 'Kate', //(if(!isDeleted) sätt detta till null)
                 isChanged: false, //ändra till true vid ändring
                 timeChanged: '', //lägger in datum vid ändring
@@ -80,7 +80,7 @@ const channelData = [
             {
                 id: 1,
                 message: 'Dogs are awesome', //(if(!isDeleted) sätt detta till null),
-                timeCreated: '', //Lägger till datum
+                timeCreated: '2023-01-25T17:57:34.488Z', //Lägger till datum
                 userName: 'Kate', //(if(!isDeleted) sätt detta till null)
                 isChanged: false, //ändra till true vid ändring
                 timeChanged: '', //lägger in datum vid ändring
@@ -89,7 +89,7 @@ const channelData = [
             },
         ],
         private: true, //Kan även vara false
-    }
+    },
 ];
 
 export { userData, channelData };

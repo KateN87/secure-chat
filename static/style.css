@@ -11,7 +11,8 @@ body {
 }
 main {
     display: inline-flex;
-    width: 80%;
+    width: 800px;
+    justify-content: center;
 }
 
 header {
@@ -49,13 +50,22 @@ img {
     border: 3px solid rgb(31, 89, 112);
     display: flex;
     flex-direction: column;
-    width: 30em;
+    width: 55em;
     height: 70vh;
     margin: 15px;
     padding: 15px;
     overflow: auto;
 }
-
+.login-form,
+.logout-form {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: aliceblue;
+    padding: 1em;
+    font-size: 20px;
+}
 .messageContainer {
     display: flex;
     flex-direction: column;
@@ -69,8 +79,8 @@ img {
 }
 
 button {
-    background-color: rgb(161, 137, 215);
-    color: rgb(235, 205, 247);
+    background-color: rgb(31, 89, 112);
+    color: rgb(240, 168, 30);
     font-size: 20px;
     width: max-content;
     padding: 10px;
@@ -81,14 +91,48 @@ button {
 }
 
 button:hover {
-    background-color: rgb(145, 114, 218);
+    background-color: rgba(31, 89, 112, 0.491);
 }
 
 button:active {
     color: rgba(235, 205, 247, 0.32);
 }
 
-i{
+i {
     color: rgb(240, 168, 30);
     margin-right: 6px;
+    cursor: pointer;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.login-form,
+.logout-form {
+    min-width: 11em;
+    height: 50vh;
+    margin-top: 64vh;
+    right: 20px;
+    border-radius: 0px 0px 8px 8px;
+}
+
+.login-form > input {
+    height: 5vh;
+    border-radius: 5px;
+}
+
+.invisible {
+    display: none;
+}
+
+#error-login {
+    font-size: 15px;
+    color: red;
+}
+
+#btnPost {
+    margin-left: 60vw;
 }

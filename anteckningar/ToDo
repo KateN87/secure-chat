@@ -1,16 +1,16 @@
-- I server.js:
-DONE: importera det som behövs
-DONE: declarera app = express()
+-   I server.js:
+    DONE: importera det som behövs
+    DONE: declarera app = express()
 
-DONE: skapa middleware express.json(), logger,      staticPath
+DONE: skapa middleware express.json(), logger, staticPath
 
 DONE: exportera app
 
-- I .env-filen:
-DONE: Gör port och secret i .env-filen
+-   I .env-filen:
+    DONE: Gör port och secret i .env-filen
 
-- I index.js:
-DONE: importera det som behövs - kom ihåg dotenv
+-   I index.js:
+    DONE: importera det som behövs - kom ihåg dotenv
 
 DONE: dotenv.config()
 
@@ -18,8 +18,8 @@ DONE: declarera port
 
 DONE: gör app.listen (starta servern)
 
-- I routes/public.js:
-DONE: importera data från database.js
+-   I routes/public.js:
+    DONE: importera data från database.js
 
 DONE: declarera router express.Router()
 
@@ -34,6 +34,7 @@ DONE: POST-anrop som skapar en ny message i en specifik channel - utan validerin
 I frontend:
 DONE: Skapa så alla channel-names skrivs ut i vänstra section en lista
 DONE: Lägga till hänglås på låsta
-skapa så alla meddelanden i en channel skrivs ut i högra diven
+DONE: skapa så alla meddelanden i en channel skrivs ut i högra diven
 
-
+fixa i createMessageElements() så iconerna endast skapas på de meddelanden där user stämmer överens med inloggad
+fixa checkfortoken-biten när man laddar om sidan

@@ -1,11 +1,150 @@
 //ToDo:
-//fixa i createMessageElements() så iconerna endast skapar på de meddelanden där user stämmer överens med inloggad
+//fixa i createMessageElements() så iconerna endast skapas på de meddelanden där user stämmer överens med inloggad
+//fixa checkfortoken-biten när man laddar om sidan
+import {
+    createChannelElements,
+    createInfoElements,
+    createMessageElements,
+} from './create-elements.js';
 
 const channelsContainer = document.querySelector('#channelsContainer');
 const chatContainer = document.querySelector('#chatContainer');
-const main = document.querySelector('main');
+const userImg = document.querySelector('#userImg');
+const loginForm = document.querySelector('.login-form');
+const logoutForm = document.querySelector('.logout-form');
+const btnLogin = document.querySelector('#btnLogin');
+const btnLogout = document.querySelector('#btnLogout');
+const errorLogin = document.querySelector('#error-login');
+const nameOutput = document.querySelectorAll('.name-output');
 
+const JWT_KEY = 'secureChat-jwt';
+
+let isLoggedIn = false;
+
+let loggedInUser = { userName: '' };
+
+checkForLoggedin();
 getChannelNames();
+
+async function checkForLoggedin() {
+    let maybeLoggedIn = await checkAuth();
+    if (maybeLoggedIn) {
+        test = localStorage.getItem(JWT_KEY);
+        loggedInUser = `${loggedInUser.userName}`;
+        loginForm.classList.remove('invisible');
+        isLoggedIn = true;
+        updateLoggedUI();
+        return;
+    }
+}
+
+function updateLoggedUI() {
+    console.log('updateLoggedIn-function, isLoggedIn', isLoggedIn);
+    if (isLoggedIn) {
+        for (const names of nameOutput) {
+            console.log(
+                'updateLoggedIn-function Update login inside for',
+                loggedInUser,
+                typeof loggedInUser
+            );
+            names.innerText = `${loggedInUser.userName}`;
+            loginForm.classList.toggle('invisible');
+        }
+        userImg.src = '/img/userPhoto.png';
+    } else {
+        for (const names of nameOutput) {
+            names.innerText = 'Guest';
+            logoutForm.classList.toggle('invisible');
+        }
+        userImg.src = '/img/51-TrKw+YtL.jpg';
+    }
+}
+
+userImg.addEventListener('click', () => {
+    if (isLoggedIn) {
+        logoutForm.classList.toggle('invisible');
+    } else {
+        loginForm.classList.toggle('invisible');
+    }
+});
+
+btnLogin.addEventListener('click', loginUser);
+
+btnLogout.addEventListener('click', () => {
+    isLoggedIn = false;
+    errorLogin.classList.add('invisible');
+    localStorage.removeItem(JWT_KEY);
+    updateLoggedUI();
+});
+
+async function loginUser() {
+    const user = {
+        userName: inputUserName.value,
+        password: inputPassword.value,
+    };
+
+    const options = {
+        method: 'POST',
+        body: JSON.stringify(user),
+        headers: {
+            'Content-type': 'application/json',
+        },
+    };
+
+    try {
+        const response = await fetch('/login/', options);
+        if (response.status === 200) {
+            console.log('Login successful!');
+            loggedInUser = await response.json();
+            console.log('UserToken: ', loggedInUser);
+
+            localStorage.setItem(JWT_KEY, loggedInUser.token);
+
+            isLoggedIn = true;
+            /* loggedInUserName = userToken.userName; */
+
+            updateLoggedUI();
+        } else {
+            isLoggedIn = false;
+            errorLogin.classList.remove('invisible');
+            console.log('Login failed : ' + response.status);
+        }
+    } catch (error) {
+        console.log(
+            'Could not POST to server. Error Messagge: ' + error.message
+        );
+        return;
+    }
+    inputUserName.value = '';
+    inputPassword.value = '';
+}
+
+async function checkAuth() {
+    const jwt = localStorage.getItem(JWT_KEY);
+
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + jwt,
+        },
+        //headers behövs om man använder JWT
+    };
+
+    const response = await fetch('/api/private/', options);
+    console.log('FRONT checkAuth Response.status: ', response.status);
+
+    if (response.status === 200) {
+        const user = await response.json();
+        console.log('func checkAuth: server responded with user: ', user);
+        loggedInUser = user;
+        console.log('allt gick bra', user);
+        return true;
+    }
+    console.log('Oops, no valid token');
+    return false;
+}
+
 async function getChannelNames() {
     channelsContainer.innerHTML = '';
     let nameArray = [];
@@ -34,34 +173,9 @@ async function getChannelNames() {
     }
 }
 
-function createChannelElements(name) {
-    const messageContainer = document.createElement('section');
-    const spanChannel = document.createElement('span');
-    const spanName = document.createElement('span');
-
-    messageContainer.classList.add('messageContainer');
-
-    messageContainer.addEventListener('click', () => {
-        getMessages(name);
-    });
-
-    spanName.innerText = name.name;
-
-    if (name.private) {
-        const lockIcon = document.createElement('i');
-        /* console.log('createElements() name.private: ', name.private); */
-        lockIcon.className = 'fa-solid fa-lock';
-        spanChannel.appendChild(lockIcon);
-    }
-
-    spanChannel.appendChild(spanName);
-    messageContainer.appendChild(spanChannel);
-    channelsContainer.appendChild(messageContainer);
-}
-
 async function getMessages(name) {
     chatContainer.innerHTML = '';
-    mesageArray = [];
+    let messageArray = [];
     console.log('FRONT getMessage() name.name: ', name.name);
     try {
         const response = await fetch(
@@ -97,66 +211,4 @@ async function getMessages(name) {
     }
 }
 
-function createInfoElements(element) {
-    const divInfo = document.createElement('div');
-    const spanUserName = document.createElement('span');
-    const spanDate = document.createElement('span');
-    const spanIcons = document.createElement('span');
-    const iconEdit = document.createElement('i');
-    const iconTrash = document.createElement('i');
-
-    divInfo.classList.add('infoContainer');
-
-    spanUserName.classList.add('userName');
-    spanUserName.innerText = element.userName;
-
-    spanDate.classList.add('date');
-    spanDate.innerText = element.timeCreated;
-
-    spanIcons.classList.add('icons');
-
-    iconEdit.className = 'fa-solid fa-pen-to-square';
-    iconTrash.className = 'fa-solid fa-trash';
-
-    spanIcons.appendChild(iconEdit);
-    spanIcons.appendChild(iconTrash);
-
-    divInfo.appendChild(spanUserName);
-    divInfo.appendChild(spanDate);
-    divInfo.appendChild(spanIcons);
-
-    return divInfo;
-    /* chatContainer.appendChild(divMain); */
-}
-
-function createMessageElements(element) {
-    const messageContainer = document.createElement('section');
-    const spanMessage = document.createElement('span');
-
-    messageContainer.classList.add('messageContainer');
-    spanMessage.classList.add('message');
-    spanMessage.innerText = element.message;
-
-    console.log(
-        'FRONT createMessageElements element.message: ',
-        element.message
-    );
-    messageContainer.appendChild(spanMessage);
-    return messageContainer;
-    /* chatContainer.appendChild(divMain); */
-}
-
-/* <div>
-    <div class='infoContainer'>
-        <span class='userName'>Kate</span>
-        <span class='date'>Date</span>
-        <span class='icons'>
-            <i class='fa-solid fa-pen-to-square'></i>
-            <i class='fa-solid fa-trash'></i>
-        </span>
-    </div>
-
-    <section class='messageContainer'>
-        <span class='message'>Hej hej</span>
-    </section>
-</div>; */
+export { getMessages };

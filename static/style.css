@@ -4,11 +4,16 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     background-color: rgb(141, 191, 240);
+    align-items: center;
 }
 main {
     display: inline-flex;
+    width: 80%;
 }
+
 header {
     display: flex;
     flex-direction: row;
@@ -46,7 +51,7 @@ img {
     flex-direction: column;
     width: 30em;
     height: 70vh;
-    margin: 15px auto;
+    margin: 15px;
     padding: 15px;
     overflow: auto;
 }
@@ -81,4 +86,9 @@ button:hover {
 
 button:active {
     color: rgba(235, 205, 247, 0.32);
+}
+
+i{
+    color: rgb(240, 168, 30);
+    margin-right: 6px;
 }

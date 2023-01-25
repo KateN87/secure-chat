@@ -6,18 +6,40 @@ const router = express.Router();
 let idCount = 2;
 
 router.get('/channels', (req, res) => {
-    res.send(channelData);
+    let channelsArray = []
+    channelData.forEach(elementName => {
+       let eachChannel = {
+        name: elementName.name,
+        private: elementName.private,
+        }
+
+        channelsArray.push(eachChannel)
+    })
+
+    res.send(channelsArray);
 });
 
 router.get('/channels/:name', (req, res) => {
     const channelName = req.params.name;
-
+    let messageArray=[]
     const maybeChannel = channelData.find(
         (channel) => channelName === channel.name
     );
+    if(maybeChannel){
+        console.log('This is maybeChannel.messages', maybeChannel.messages)
+/*         maybeChannel.forEach(elementName => {
+            let eachMessage = {
+             message: elementName.message
+             }
+     
+             messageArray.push(eachMessage)
+         }) */
+    }
 
-    console.log('This is maybeChannel', maybeChannel);
-    res.send(maybeChannel);
+    messageArray.push(maybeChannel)
+
+    console.log('This is messageArray', messageArray);
+    res.send(messageArray);
 });
 
 router.post('/channels/:name', (req, res) => {

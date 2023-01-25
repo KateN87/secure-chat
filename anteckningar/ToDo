@@ -27,7 +27,13 @@ DONE: GET-anrop som skickar tillbaka channel-objekt
 
 DONE: GET-anrop :channel-name som skickar tillbaka allt i det objektet - utan validering
 
+DONE: GET-anrop som bara skickar tillbaka alla channel-names i en lista
+
 DONE: POST-anrop som skapar en ny message i en specifik channel - utan validering
 
+I frontend:
+DONE: Skapa så alla channel-names skrivs ut i vänstra section en lista
+DONE: Lägga till hänglås på låsta
+skapa så alla meddelanden i en channel skrivs ut i högra diven
 
 

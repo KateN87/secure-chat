@@ -1,7 +1,7 @@
 mapp/fil-struktur
 
 dir src
-    index.js (hette app.js, startfilen)
+    index.js (hette app.js, startfilen, start server)
     server.js (middlewares osv)
     auth.js (authentiserar)
     db.json (en tabell med user-objekt, en tabell med channel-objekt)

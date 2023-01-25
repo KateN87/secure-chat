@@ -14,7 +14,9 @@ const logger = (req, res, next) => {
 app.use(express.json());
 app.use(logger);
 app.use(express.static(staticPath));
-app.use('/api/public', publicRoutes);
+app.use('/api/public/', publicRoutes);
 /* app.use('api/private', privateRoutes); */
+
+
 
 export { app };

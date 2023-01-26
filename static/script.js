@@ -15,6 +15,8 @@ const btnLogin = document.querySelector('#btnLogin');
 const btnLogout = document.querySelector('#btnLogout');
 const errorLogin = document.querySelector('#error-login');
 const nameOutput = document.querySelectorAll('.name-output');
+const inputMessage = document.querySelector('#input-message')
+const btnSendMessage = document.querySelector('#send-message')
 
 const JWT_KEY = 'secureChat-jwt';
 
@@ -22,13 +24,22 @@ let isLoggedIn = false;
 
 let loggedInUser = { userName: '' };
 
+let activeChannel = ""
+
 checkForLoggedin();
 getChannelNames();
+
+btnSendMessage.addEventListener('click', () => {
+    sendNewMessage(activeChannel)
+})
+
+async function sendNewMessage(channelName){
+    console.log('this is the channelName', channelName)
+}
 
 async function checkForLoggedin() {
     let maybeLoggedIn = await checkAuth();
     if (maybeLoggedIn) {
-        /* localStorage.getItem(JWT_KEY); */
         /* console.log('FRONT checkforLoggedIn() loggedinUser', loggedInUser) */
         loginForm.classList.remove('invisible');
         isLoggedIn = true;
@@ -48,14 +59,16 @@ function updateLoggedUI() {
                 typeof loggedInUser
             ); */
             names.innerText = `${loggedInUser.userName}`;
-            loginForm.classList.toggle('invisible');
+
         }
+        loginForm.classList.toggle('invisible');
         userImg.src = '/img/userPhoto.png';
     } else {
         for (const names of nameOutput) {
             names.innerText = 'Guest';
-            logoutForm.classList.toggle('invisible');
+            
         }
+        logoutForm.classList.toggle('invisible');
         userImg.src = '/img/51-TrKw+YtL.jpg';
     }
 }
@@ -82,7 +95,7 @@ async function loginUser() {
         userName: inputUserName.value,
         password: inputPassword.value,
     };
-
+    console.log('FRONT loginUser user: ', user)
     const options = {
         method: 'POST',
         body: JSON.stringify(user),
@@ -92,7 +105,7 @@ async function loginUser() {
     };
 
     try {
-        const response = await fetch('/login/', options);
+        const response = await fetch('/api/login/', options);
         if (response.status === 200) {
             console.log('Login successful!');
             loggedInUser = await response.json();
@@ -132,11 +145,11 @@ async function checkAuth() {
     };
 
     const response = await fetch('/api/private/', options);
-    console.log('FRONT checkAuth Response.status: ', response.status);
+    /* console.log('FRONT checkAuth Response.status: ', response.status); */
 
     if (response.status === 200) {
         const user = await response.json();
-        console.log('func checkAuth: server responded with user: ', user);
+       /*  console.log('func checkAuth: server responded with user: ', user); */
         loggedInUser = user;
         console.log('allt gick bra', user);
         return true;
@@ -174,9 +187,11 @@ async function getChannelNames() {
 }
 
 async function getMessages(name) {
+    activeChannel = name.name
+    console.log(activeChannel)
     chatContainer.innerHTML = '';
     let messageArray = [];
-    console.log('FRONT getMessage() name.name: ', name.name);
+/*     console.log('FRONT getMessage() name.name: ', name.name); */
     try {
         const response = await fetch(
             `/api/public/channels/${name.name}/messages`,

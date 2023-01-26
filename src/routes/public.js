@@ -52,11 +52,7 @@ router.post('/channels/:name', (req, res) => {
             id,
             message,
             timeCreated: createTimeStamp(),
-            userName,
-            isChanged: '',
-            timeChanged: '',
-            isDeleted: '',
-            timeDeleted: '',
+            userName
         };
 
         maybeChannel.messages.push(newMessage);
@@ -69,7 +65,7 @@ router.post('/channels/:name', (req, res) => {
 
 function createTimeStamp() {
     let now = new Date();
-    return now.toISOString();
+    return now.toDateString();
 }
 
 export default router;

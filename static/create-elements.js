@@ -17,7 +17,7 @@ function createChannelElements(name) {
 
     if (name.private) {
         const lockIcon = document.createElement('i');
-        /* console.log('createElements() name.private: ', name.private); */
+       /*  console.log('FRONT createElements() name.private: ', name.name, name.private); */
         lockIcon.className = 'fa-solid fa-lock';
         spanChannel.appendChild(lockIcon);
     }
@@ -66,10 +66,10 @@ function createMessageElements(element) {
     spanMessage.classList.add('message');
     spanMessage.innerText = element.message;
 
-    console.log(
+/*     console.log(
         'FRONT createMessageElements element.message: ',
         element.message
-    );
+    ); */
     messageContainer.appendChild(spanMessage);
     return messageContainer;
     /* chatContainer.appendChild(divMain); */

@@ -2,7 +2,7 @@ import express from 'express';
 import * as url from 'url';
 import privateRoutes from './routes/private.js';
 import publicRoutes from './routes/public.js';
-import { authenticateUser, createToken } from './auth.js';
+import loginRoutes from './routes/login.js';
 
 const app = express();
 const staticPath = url.fileURLToPath(new URL('../static', import.meta.url));
@@ -17,17 +17,7 @@ app.use(logger);
 app.use(express.static(staticPath));
 app.use('/api/public/', publicRoutes);
 app.use('/api/private/', privateRoutes);
+app.use('/api/login/', loginRoutes);
 
-app.post('/login', (req, res) => {
-    const { userName, password } = req.body;
-
-    if (authenticateUser(userName, password)) {
-        const userToken = createToken(userName);
-        res.status(200).send(userToken);
-    } else {
-        console.log('Unauthorized user, req.body: ', req.body);
-        res.sendStatus(401);
-    }
-});
 
 export { app };

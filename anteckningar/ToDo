@@ -37,11 +37,13 @@ DONE: Skapa så alla channel-names skrivs ut i vänstra section en lista
 DONE: Lägga till hänglås på låsta
 DONE: skapa så alla meddelanden i en channel skrivs ut i högra diven
 
-skapa databas
+DONE: skapa databas
 
 fixa i createMessageElements() så iconerna endast skapas på de meddelanden där user stämmer överens med inloggad
-fixa checkfortoken-biten när man laddar om sidan
+DONE: fixa checkfortoken-biten när man laddar om sidan
 
 DONE: Login: kunna logga in
 DONE: Login: laddar om sidan, komma ihåg 
+
+Göra om datan så isEdited och isDeleted endast läggs till när de är relevant
 

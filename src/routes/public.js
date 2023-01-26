@@ -1,5 +1,6 @@
 import express from 'express';
-import { channelData } from '../database.js';
+import { db } from '../database.js';
+
 
 const router = express.Router();
 
@@ -7,7 +8,7 @@ let idCount = 2;
 
 router.get('/channels', (req, res) => {
     let channelsArray = [];
-    channelData.forEach((elementName) => {
+    db.data.channelData.forEach((elementName) => {
         let eachChannel = {
             name: elementName.name,
             private: elementName.private,
@@ -23,7 +24,7 @@ router.get('/channels/:name/messages', (req, res) => {
     //Ska jag ha channels/:name bara istället?
     const channelName = req.params.name;
     let messageArray = [];
-    const maybeChannel = channelData.find(
+    const maybeChannel = db.data.channelData.find(
         (channel) => channelName === channel.name
     );
     if (maybeChannel) {
@@ -42,24 +43,28 @@ router.post('/channels/:name', (req, res) => {
     const { message, userName } = req.body;
     const id = idCount++;
 
-/*     const maybeChannel = channelData.find(
+    const maybeChannel = db.data.channelData.find(
         (channel) => channelName === channel.name
-    ); */
-    let newMessage = {
-        id,
-        message,
-        timeCreated: createTimeStamp(),
-        userName,
-        isChanged: '',
-        timeChanged: '',
-        isDeleted: '',
-        timeDeleted: '',
-    };
+    );
+    // channel: { name, messages, private }
+    if(maybeChannel){
+        let newMessage = {
+            id,
+            message,
+            timeCreated: createTimeStamp(),
+            userName,
+            isChanged: '',
+            timeChanged: '',
+            isDeleted: '',
+            timeDeleted: '',
+        };
 
-    maybeChannel.messages.push(newMessage);
-/*     console.log(maybeChannel); */
+        maybeChannel.messages.push(newMessage);
+        db.write()
+    /*     console.log(maybeChannel); */
 
-    res.send('test');
+        res.send('test');
+    }
 });
 
 function createTimeStamp() {

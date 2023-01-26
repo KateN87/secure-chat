@@ -1,99 +1,19 @@
-const userData = [
-    {
-        userName: 'Kate',
-        password: 'hej123',
-    },
-    {
-        userName: 'Rut',
-        password: 'sjögrässallad'
-    }
-];
+import { join, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-const channelData = [
-    {
-        name: 'Cats',
-        messages: [
-            {
-                id: 1,
-                message: 'Cats are what they are', //(if(!isDeleted) sätt detta till null),
-                timeCreated: '2023-01-25T17:57:34.488Z', //Lägger till datum
-                userName: 'Kate', //(if(!isDeleted) sätt detta till null)
-                isChanged: false, //ändra till true vid ändring
-                timeChanged: '', //lägger in datum vid ändring
-                isDeleted: false, //ändrar till true
-                timeDeleted: '', //lägger till datum
-            },
-            {
-                id: 2,
-                message: 'You are correct!', //(if(!isDeleted) sätt detta till null),
-                timeCreated: '2023-01-25T17:57:34.488Z', //Lägger till datum
-                userName: 'Richard', //(if(!isDeleted) sätt detta till null)
-                isChanged: false, //ändra till true vid ändring
-                timeChanged: '', //lägger in datum vid ändring
-                isDeleted: false, //ändrar till true
-                timeDeleted: '', //lägger till datum
-            },
-            {
-                id: 3,
-                message: 'Everything is true', //(if(!isDeleted) sätt detta till null),
-                timeCreated: '2023-01-25T17:57:34.488Z', //Lägger till datum
-                userName: 'Rut', //(if(!isDeleted) sätt detta till null)
-                isChanged: false, //ändra till true vid ändring
-                timeChanged: '', //lägger in datum vid ändring
-                isDeleted: false, //ändrar till true
-                timeDeleted: '', //lägger till datum
-            },
-        ],
-        private: false, //Kan även vara false
-    },
-    {
-        name: 'Dogs',
-        messages: [
-            {
-                id: 1,
-                message: 'Dogs are awesome', //(if(!isDeleted) sätt detta till null),
-                timeCreated: '2023-01-25T17:57:34.488Z', //Lägger till datum
-                userName: 'Kate', //(if(!isDeleted) sätt detta till null)
-                isChanged: false, //ändra till true vid ändring
-                timeChanged: '', //lägger in datum vid ändring
-                isDeleted: false, //ändrar till true
-                timeDeleted: '', //lägger till datum
-            },
-        ],
-        private: true, //Kan även vara false
-    },
-    {
-        name: 'Public',
-        messages: [
-            {
-                id: 1,
-                message: 'This is a public channel', //(if(!isDeleted) sätt detta till null),
-                timeCreated: '2023-01-25T17:57:34.488Z', //Lägger till datum
-                userName: 'Kate', //(if(!isDeleted) sätt detta till null)
-                isChanged: false, //ändra till true vid ändring
-                timeChanged: '', //lägger in datum vid ändring
-                isDeleted: false, //ändrar till true
-                timeDeleted: '', //lägger till datum
-            },
-        ],
-        private: false, //Kan även vara false
-    },
-    {
-        name: 'Private',
-        messages: [
-            {
-                id: 1,
-                message: 'This is a private channel', //(if(!isDeleted) sätt detta till null),
-                timeCreated: '2023-01-25T17:57:34.488Z', //Lägger till datum
-                userName: 'Kate', //(if(!isDeleted) sätt detta till null)
-                isChanged: false, //ändra till true vid ändring
-                timeChanged: '', //lägger in datum vid ändring
-                isDeleted: false, //ändrar till true
-                timeDeleted: '', //lägger till datum
-            },
-        ],
-        private: true, //Kan även vara false
-    },
-];
+import { Low } from 'lowdb'
+import { JSONFile } from 'lowdb/node'
 
-export { userData, channelData };
+// File path
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const file = join(__dirname, 'db.json')
+
+// Configure lowdb to write to JSONFile
+const adapter = new JSONFile(file)
+const db = new Low(adapter)
+
+await db.read()
+
+console.log('The database contains :', db.data)
+
+export { db }

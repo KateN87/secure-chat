@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken';
-import { userData } from './database.js';
+import { db } from './database.js';
 
 function authenticateUser(userName, password) {
-    console.log('BACK authenticateUser() userData', userData);
+    console.log('BACK authenticateUser() userData', db.data.userData);
 
-    const found = userData.find(
+    const found = db.data.userData.find(
         (user) => user.userName === userName && user.password === password
     );
 

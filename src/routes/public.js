@@ -20,7 +20,7 @@ router.get('/channels', (req, res) => {
 });
 
 router.get('/channels/:name/messages', (req, res) => {
-    //Ska jag ha channels/:name bara istälÖET?
+    //Ska jag ha channels/:name bara istället?
     const channelName = req.params.name;
     let messageArray = [];
     const maybeChannel = channelData.find(
@@ -42,9 +42,9 @@ router.post('/channels/:name', (req, res) => {
     const { message, userName } = req.body;
     const id = idCount++;
 
-    const maybeChannel = channelData.find(
+/*     const maybeChannel = channelData.find(
         (channel) => channelName === channel.name
-    );
+    ); */
     let newMessage = {
         id,
         message,
@@ -57,7 +57,7 @@ router.post('/channels/:name', (req, res) => {
     };
 
     maybeChannel.messages.push(newMessage);
-    console.log(maybeChannel);
+/*     console.log(maybeChannel); */
 
     res.send('test');
 });

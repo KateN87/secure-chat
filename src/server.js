@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(logger);
 app.use(express.static(staticPath));
 app.use('/api/public/', publicRoutes);
-app.use('api/private', privateRoutes);
+app.use('/api/private/', privateRoutes);
 
 app.post('/login', (req, res) => {
     const { userName, password } = req.body;

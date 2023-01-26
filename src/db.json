@@ -1,0 +1,99 @@
+{
+    "userData": [
+        {
+            "userName": "Kate",
+            "password": "hej123"
+        },
+        {
+            "userName": "Rut",
+           " password": "sjögrässallad"
+        }
+    ],
+    
+    "channelData": [
+        {
+            "name": "Cats",
+            "messages": [
+                {
+                    "id": 1,
+                    "message": "Cats are what they are", 
+                    "timeCreated": "2023-01-25T17:57:34.488Z", 
+                    "userName": "Kate",
+                    "isChanged": "false",
+                    "timeChanged": "",
+                    "isDeleted": "false",
+                    "timeDeleted": ""
+                },
+                {
+                    "id": 2,
+                    "message": "So true", 
+                    "timeCreated": "2023-01-25T17:57:34.488Z", 
+                    "userName": "Richard", 
+                    "isChanged": "false", 
+                    "timeChanged": "", 
+                    "isDeleted": "false",
+                    "timeDeleted": ""
+                },
+                {
+                    "id": 3,
+                    "message": "Fooood", 
+                    "timeCreated": "2023-01-25T17:57:34.488Z", 
+                    "userName": "Rut", 
+                    "isChanged": "false", 
+                    "timeChanged": "", 
+                    "isDeleted": "false", 
+                    "timeDeleted": ""
+                }
+            ],
+            "private": "false"
+        },
+        {
+            "name": "Dogs",
+            "messages": [
+                {
+                    "id": 1,
+                    "message": "Cats are what they are", 
+                    "timeCreated": "2023-01-25T17:57:34.488Z", 
+                    "userName": "Kate",
+                    "isChanged": "false",
+                    "timeChanged": "",
+                    "isDeleted": "false",
+                    "timeDeleted": ""
+                }
+            ],
+            "Private": "true"
+        },
+        {
+            "name": "Watussi",
+            "messages": [
+                {
+                    "id": 1,
+                    "message": "Watussis are cool", 
+                    "timeCreated": "2023-01-25T17:57:34.488Z", 
+                    "userName": "Rut",
+                    "isChanged": "false",
+                    "timeChanged": "",
+                    "isDeleted": "false",
+                    "timeDeleted": ""
+                }
+            ],
+            "Private": "true"
+        },
+        {
+            "name": "Echidna",
+            "messages": [
+                {
+                    "id": 1,
+                    "message": "I know something special about echidnas", 
+                    "timeCreated": "2023-01-25T17:57:34.488Z", 
+                    "userName": "Kate",
+                    "isChanged": "false",
+                    "timeChanged": "",
+                    "isDeleted": "false",
+                    "timeDeleted": ""
+                }
+            ],
+            "Private": "true"
+        }
+    ]
+}

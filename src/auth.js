@@ -3,6 +3,7 @@ import { userData } from './database.js';
 
 function authenticateUser(userName, password) {
     console.log('BACK authenticateUser() userData', userData);
+
     const found = userData.find(
         (user) => user.userName === userName && user.password === password
     );
@@ -18,8 +19,5 @@ function createToken(userName) {
     return user;
 }
 
-function checkForToken(req) {
-    console.log(req);
-}
 
-export { createToken, authenticateUser, checkForToken };
+export { createToken, authenticateUser};

@@ -1,6 +1,5 @@
 //ToDo:
 //fixa i createMessageElements() så iconerna endast skapas på de meddelanden där user stämmer överens med inloggad
-//fixa checkfortoken-biten när man laddar om sidan
 import {
     createChannelElements,
     createInfoElements,
@@ -29,8 +28,8 @@ getChannelNames();
 async function checkForLoggedin() {
     let maybeLoggedIn = await checkAuth();
     if (maybeLoggedIn) {
-        test = localStorage.getItem(JWT_KEY);
-        loggedInUser = `${loggedInUser.userName}`;
+        /* localStorage.getItem(JWT_KEY); */
+        /* console.log('FRONT checkforLoggedIn() loggedinUser', loggedInUser) */
         loginForm.classList.remove('invisible');
         isLoggedIn = true;
         updateLoggedUI();
@@ -39,14 +38,15 @@ async function checkForLoggedin() {
 }
 
 function updateLoggedUI() {
-    console.log('updateLoggedIn-function, isLoggedIn', isLoggedIn);
+/*     console.log('updateLoggedIn-function, isLoggedIn', isLoggedIn);
+    console.log('FRONT updateLogged() loggedInUser.userName:', loggedInUser.userName) */
     if (isLoggedIn) {
         for (const names of nameOutput) {
-            console.log(
+/*             console.log(
                 'updateLoggedIn-function Update login inside for',
                 loggedInUser,
                 typeof loggedInUser
-            );
+            ); */
             names.innerText = `${loggedInUser.userName}`;
             loginForm.classList.toggle('invisible');
         }
@@ -96,12 +96,12 @@ async function loginUser() {
         if (response.status === 200) {
             console.log('Login successful!');
             loggedInUser = await response.json();
-            console.log('UserToken: ', loggedInUser);
+            console.log('FRONT loginUser() loggedInUser.userName: ', loggedInUser.userName);
 
             localStorage.setItem(JWT_KEY, loggedInUser.token);
 
             isLoggedIn = true;
-            /* loggedInUserName = userToken.userName; */
+            loggedInUser.userName = loggedInUser.userName;
 
             updateLoggedUI();
         } else {

@@ -6,7 +6,7 @@
 body {
     display: flex;
     flex-direction: column;
-    background-color: rgb(141, 191, 240);
+    background-color: rgb(175, 199, 221);
     align-items: center;
 }
 main {
@@ -19,7 +19,7 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: rgb(31, 89, 112);
+    background-color: rgb(18, 61, 78);
     height: 14vh;
     width: 100%;
     padding: 5px;
@@ -47,7 +47,7 @@ img {
 
 #chatContainer,
 #channelsContainer {
-    border: 3px solid rgb(31, 89, 112);
+    border: 3px solid rgb(18, 61, 78);
     display: flex;
     flex-direction: column;
     width: 55em;
@@ -69,7 +69,7 @@ img {
 .messageContainer {
     display: flex;
     flex-direction: column;
-    border: 3px solid rgb(31, 89, 112);
+    border: 3px solid rgb(18, 61, 78);
     border-radius: 8px;
     margin-bottom: 15px;
     height: min-content;

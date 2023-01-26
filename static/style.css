@@ -3,6 +3,7 @@
     margin: 0;
 }
 
+/* EVERYTHING IN BODY */
 body {
     display: flex;
     flex-direction: column;
@@ -14,75 +15,12 @@ main {
     width: 800px;
     justify-content: center;
 }
-
-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: rgb(18, 61, 78);
-    height: 14vh;
-    width: 100%;
-    padding: 5px;
-}
-
-header > span {
-    margin-right: 10px;
-    font-size: 25px;
-    font-weight: 900;
-    color: rgb(235, 205, 247);
-}
-
-h1 {
-    color: rgb(240, 168, 30);
-    margin: auto;
-    font-size: 50px;
-}
-img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 30px;
-    cursor: pointer;
-}
-
-#chatContainer,
-#channelsContainer {
-    border: 3px solid rgb(18, 61, 78);
-    display: flex;
-    flex-direction: column;
-    width: 55em;
-    height: 70vh;
-    margin: 15px;
-    padding: 15px;
-    overflow: auto;
-}
-.login-form,
-.logout-form {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: aliceblue;
-    padding: 1em;
-    font-size: 20px;
-}
-.messageContainer {
-    display: flex;
-    flex-direction: column;
-    border: 3px solid rgb(18, 61, 78);
-    border-radius: 8px;
-    margin-bottom: 15px;
-    height: min-content;
-    padding: 8px 1em 8px 1em;
-    font-size: 25px;
-    justify-content: space-around;
-}
-
 button {
     background-color: rgb(31, 89, 112);
     color: rgb(240, 168, 30);
     font-size: 20px;
-    width: max-content;
+    width: 100px;
+    height: 40px;
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -104,35 +42,99 @@ i {
     cursor: pointer;
 }
 
+/* EVERYTHING IN HEADER */
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(18, 61, 78);
+    height: 14vh;
+    min-height: 90px;
+    width: 100%;
+    padding: 5px;
+}
+
+header > span {
+    margin-right: 10px;
+    font-size: 25px;
+    font-weight: 900;
+    color: rgb(235, 205, 247);
+}
+
+h1 {
+    color: rgb(240, 168, 30);
+    margin: auto;
+    font-size: 50px;
+}
+
+/* FORMS FOR LOGIN/SIGNUP */
+.user-form {
+    background-color: aliceblue;
+    padding: 2px;
+    font-size: 20px;
+    min-width: 11em;
+    height: 70px;
+    right: 20px;
+    border-radius: 8px;
+}
+.formDiv,
+.user-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.namepassword-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.namepassword-form > button {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+.formDiv > input {
+    height: 25px;
+    border-radius: 5px;
+}
+
+#error-login,
+#error-signup {
+    font-size: 15px;
+    color: rgb(244, 7, 7);
+}
+
+/* CHAT/CHANNELS-containers */
+#chatContainer,
+#channelsContainer {
+    border: 3px solid rgb(18, 61, 78);
+    display: flex;
+    flex-direction: column;
+    width: 55em;
+    height: 70vh;
+    margin: 15px;
+    padding: 15px;
+    overflow: auto;
+}
+
+.messageContainer {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid rgb(18, 61, 78);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    height: min-content;
+    padding: 8px 1em 8px 1em;
+    font-size: 25px;
+    justify-content: space-around;
+}
+
 .infoContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.login-form,
-.logout-form {
-    min-width: 11em;
-    height: 50vh;
-    margin-top: 64vh;
-    right: 20px;
-    border-radius: 0px 0px 8px 8px;
-}
-
-.login-form > input {
-    height: 5vh;
-    border-radius: 5px;
-}
-
 .invisible {
     display: none;
-}
-
-#error-login {
-    font-size: 15px;
-    color: red;
-}
-
-#btnPost {
-    margin-left: 60vw;
 }

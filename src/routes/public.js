@@ -1,7 +1,6 @@
 import express from 'express';
 import { db } from '../database.js';
 
-
 const router = express.Router();
 
 let idCount = 2;
@@ -21,21 +20,15 @@ router.get('/channels', (req, res) => {
 });
 
 router.get('/channels/:name/messages', (req, res) => {
-    //Ska jag ha channels/:name bara istället?
     const channelName = req.params.name;
-    let messageArray = [];
     const maybeChannel = db.data.channelData.find(
         (channel) => channelName === channel.name
     );
     if (maybeChannel) {
-        console.log('This is maybeChannel.messages', maybeChannel.messages);
-        maybeChannel.messages.forEach((message) => {
-            messageArray.push(message);
-        });
+        res.send(maybeChannel.messages);
+    } else {
+        res.sendStatus(404);
     }
-
-    console.log('This is messageArray', messageArray);
-    res.send(messageArray);
 });
 
 router.post('/channels/:name', (req, res) => {
@@ -47,17 +40,17 @@ router.post('/channels/:name', (req, res) => {
         (channel) => channelName === channel.name
     );
     // channel: { name, messages, private }
-    if(maybeChannel){
+    if (maybeChannel) {
         let newMessage = {
             id,
             message,
             timeCreated: createTimeStamp(),
-            userName
+            userName,
         };
 
         maybeChannel.messages.push(newMessage);
-        db.write()
-    /*     console.log(maybeChannel); */
+        db.write();
+        /*     console.log(maybeChannel); */
 
         res.send('test');
     }
@@ -65,7 +58,9 @@ router.post('/channels/:name', (req, res) => {
 
 function createTimeStamp() {
     let now = new Date();
-    return now.toDateString();
+    let plainText = now.toDateString();
+    let timeDate = `${plainText} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+    return timeDate;
 }
 
 export default router;

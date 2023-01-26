@@ -8,15 +8,16 @@ import {
 
 const channelsContainer = document.querySelector('#channelsContainer');
 const chatContainer = document.querySelector('#chatContainer');
-const userImg = document.querySelector('#userImg');
-const loginForm = document.querySelector('.login-form');
-const logoutForm = document.querySelector('.logout-form');
+const btnShowLogin = document.querySelector('#btnshowLogin');
+const btnShowSignUp = document.querySelector('#btnshowSignUp');
+const userForm = document.querySelector('.user-form');
 const btnLogin = document.querySelector('#btnLogin');
+const btnSignUp = document.querySelector('#btnSignUp');
 const btnLogout = document.querySelector('#btnLogout');
 const errorLogin = document.querySelector('#error-login');
 const nameOutput = document.querySelectorAll('.name-output');
-const inputMessage = document.querySelector('#input-message')
-const btnSendMessage = document.querySelector('#send-message')
+const inputMessage = document.querySelector('#input-message');
+const btnSendMessage = document.querySelector('#send-message');
 
 const JWT_KEY = 'secureChat-jwt';
 
@@ -24,24 +25,23 @@ let isLoggedIn = false;
 
 let loggedInUser = { userName: '' };
 
-let activeChannel = ""
+let activeChannel = '';
 
 checkForLoggedin();
 getChannelNames();
 
 btnSendMessage.addEventListener('click', () => {
-    sendNewMessage(activeChannel)
-})
+    sendNewMessage(activeChannel);
+});
 
-async function sendNewMessage(channelName){
-    console.log('this is the channelName', channelName)
+async function sendNewMessage(channelName) {
+    console.log('this is the channelName', channelName);
 }
 
 async function checkForLoggedin() {
     let maybeLoggedIn = await checkAuth();
+
     if (maybeLoggedIn) {
-        /* console.log('FRONT checkforLoggedIn() loggedinUser', loggedInUser) */
-        loginForm.classList.remove('invisible');
         isLoggedIn = true;
         updateLoggedUI();
         return;
@@ -49,35 +49,47 @@ async function checkForLoggedin() {
 }
 
 function updateLoggedUI() {
-/*     console.log('updateLoggedIn-function, isLoggedIn', isLoggedIn);
-    console.log('FRONT updateLogged() loggedInUser.userName:', loggedInUser.userName) */
     if (isLoggedIn) {
         for (const names of nameOutput) {
-/*             console.log(
-                'updateLoggedIn-function Update login inside for',
-                loggedInUser,
-                typeof loggedInUser
-            ); */
             names.innerText = `${loggedInUser.userName}`;
-
         }
-        loginForm.classList.toggle('invisible');
-        userImg.src = '/img/userPhoto.png';
+        userForm.classList.add('invisible');
+        btnShowLogin.classList.toggle('invisible');
+        btnShowSignUp.classList.add('invisible');
+        btnLogout.classList.remove('invisible');
     } else {
         for (const names of nameOutput) {
-            names.innerText = 'Guest';
-            
+            names.innerText = '';
         }
-        logoutForm.classList.toggle('invisible');
-        userImg.src = '/img/51-TrKw+YtL.jpg';
+        btnLogout.classList.add('invisible');
+        btnShowLogin.classList.remove('invisible');
+        btnShowSignUp.classList.remove('invisible');
+        userForm.classList.add('invisible');
+
+        btnShowLogin.innerText = 'Log in';
+        btnShowSignUp.innerText = 'Sign Up';
     }
 }
 
-userImg.addEventListener('click', () => {
-    if (isLoggedIn) {
-        logoutForm.classList.toggle('invisible');
+btnShowLogin.addEventListener('click', () => {
+    userForm.classList.toggle('invisible');
+    btnLogin.classList.toggle('invisible');
+    btnShowSignUp.classList.toggle('invisible');
+    if (userForm.classList.contains('invisible')) {
+        btnShowLogin.innerText = 'Log in';
     } else {
-        loginForm.classList.toggle('invisible');
+        btnShowLogin.innerText = 'Close';
+    }
+});
+
+btnShowSignUp.addEventListener('click', () => {
+    userForm.classList.toggle('invisible');
+    btnSignUp.classList.toggle('invisible');
+    btnShowLogin.classList.toggle('invisible');
+    if (userForm.classList.contains('invisible')) {
+        btnShowSignUp.innerText = 'Sign Up';
+    } else {
+        btnShowSignUp.innerText = 'Close';
     }
 });
 
@@ -95,7 +107,7 @@ async function loginUser() {
         userName: inputUserName.value,
         password: inputPassword.value,
     };
-    console.log('FRONT loginUser user: ', user)
+    console.log('FRONT loginUser user: ', user);
     const options = {
         method: 'POST',
         body: JSON.stringify(user),
@@ -109,7 +121,10 @@ async function loginUser() {
         if (response.status === 200) {
             console.log('Login successful!');
             loggedInUser = await response.json();
-            console.log('FRONT loginUser() loggedInUser.userName: ', loggedInUser.userName);
+            console.log(
+                'FRONT loginUser() loggedInUser.userName: ',
+                loggedInUser.userName
+            );
 
             localStorage.setItem(JWT_KEY, loggedInUser.token);
 
@@ -141,15 +156,12 @@ async function checkAuth() {
             'Content-Type': 'application/json',
             Authorization: 'Bearer ' + jwt,
         },
-        //headers behövs om man använder JWT
     };
 
     const response = await fetch('/api/private/', options);
-    /* console.log('FRONT checkAuth Response.status: ', response.status); */
 
     if (response.status === 200) {
         const user = await response.json();
-       /*  console.log('func checkAuth: server responded with user: ', user); */
         loggedInUser = user;
         console.log('allt gick bra', user);
         return true;
@@ -187,42 +199,52 @@ async function getChannelNames() {
 }
 
 async function getMessages(name) {
-    activeChannel = name.name
-    console.log(activeChannel)
-    chatContainer.innerHTML = '';
-    let messageArray = [];
-/*     console.log('FRONT getMessage() name.name: ', name.name); */
-    try {
-        const response = await fetch(
-            `/api/public/channels/${name.name}/messages`,
-            {
-                method: 'GET',
-            }
-        );
-        messageArray = await response.json();
-        if (response.status !== 200) {
-            console.log(
-                'Could not connect to server. Status: ' + response.status
+    activeChannel = name.name;
+    if (name.private) {
+        const isAuthorized = await checkAuth();
+        if (isAuthorized) {
+            console.log('Allowed!');
+        } else {
+            console.log('Not allowed');
+        }
+        /* } else {
+        chatContainer.innerHTML = '';
+        let messageArray = [];
+        try {
+            const response = await fetch(
+                `/api/public/channels/${name.name}/messages`,
+                {
+                    method: 'GET',
+                }
             );
+            messageArray = await response.json();
+            if (response.status !== 200) {
+                console.log(
+                    'Could not connect to server. Status: ' + response.status
+                );
 
+                return;
+            }
+        } catch (error) {
+            console.log(
+                'Could not GET data from the server. Error message: ' +
+                    error.message
+            );
             return;
         }
-    } catch (error) {
-        console.log(
-            'Could not GET data from the server. Error message: ' +
-                error.message
-        );
-        return;
-    }
 
-    for (const message of messageArray) {
-        const divMain = document.createElement('div');
-        let divInfo = createInfoElements(message);
-        let messageContainer = createMessageElements(message);
+        for (const message of messageArray) {
+            const divMain = document.createElement('div');
+            let divInfo = createInfoElements(message);
+            let messageContainer = createMessageElements(message);
 
-        divMain.appendChild(divInfo);
-        divMain.appendChild(messageContainer);
-        chatContainer.appendChild(divMain);
+            divMain.appendChild(divInfo);
+            divMain.appendChild(messageContainer);
+            chatContainer.appendChild(divMain);
+        }
+    } */
+    } else {
+        console.log('private=false');
     }
 }
 

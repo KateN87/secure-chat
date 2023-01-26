@@ -17,12 +17,12 @@
             <h1>Secure Chat</h1>
             <span class="name-output">Guest</span>
             <img id="userImg" src="/img/51-TrKw+YtL.jpg" alt="" />
-            <div class="login-logout login-form ">
+            <div class="login-logout login-form invisible">
                 <p>
                     Browsing as
                     <span class="name-output">Guest</span>
                 </p>
-                <button id="createUser">create User</button>
+
                 <label>Username</label>
                 <input id="inputUserName" type="text" />
                 <label>Password</label>
@@ -32,18 +32,7 @@
                 </p>
                 <button id="btnLogin">Log in</button>
             </div>
-            <div class="login-logout login-form invisible">
-                <p>
-                    Choose a user name and password
-                </p>
 
-                <label>Username</label>
-                <input id="inputUserName" type="text" />
-                <label>Password</label>
-                <input id="inputPassword" type="password" />
-
-                <button id="createUser">Save</button>
-            </div>
 
             <div class="login-logout logout-form invisible">
                 <p>
@@ -135,6 +124,19 @@
                     </section>
                 </div> -->
             </div>
+
         </main>
+                 <div id="new-message">
+                <span class="name-output"></span>
+                <textarea
+                  id="input-message"
+                  name="type-message"
+                  cols="30"
+                  rows="5"
+                  placeholder="Type your message..."
+                ></textarea>
+                <button id="send-message">Send</button>
+            </div> 
+
     </body>
 </html>

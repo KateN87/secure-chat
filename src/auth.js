@@ -22,7 +22,7 @@ function authenticateUser(userName, password) {
 }
 
 function createToken(userName) {
-    const user = { userName: userName };
+    let user = { userName: userName };
     const token = jwt.sign(user, process.env.SECRET, { expiresIn: '1h' });
     user.token = token;
     console.log('createToken', user);

@@ -23,7 +23,7 @@
     ],
     "channelData": [
         {
-            "name": "Cats",
+            "name": "Public",
             "messages": [
                 {
                     "id": 1,
@@ -47,7 +47,7 @@
             "private": false
         },
         {
-            "name": "Dogs",
+            "name": "Private",
             "messages": [
                 {
                     "id": 1,

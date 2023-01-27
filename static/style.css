@@ -117,7 +117,7 @@ h1 {
     overflow: auto;
 }
 
-.messageContainer {
+.messagesChannels {
     display: flex;
     flex-direction: column;
     border: 3px solid rgb(18, 61, 78);

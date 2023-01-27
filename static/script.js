@@ -5,6 +5,7 @@ import {
     createInfoElements,
     createMessageElements,
 } from './create-elements.js';
+import { checkAuth } from './auth.js';
 
 const channelsContainer = document.querySelector('#channelsContainer');
 const chatContainer = document.querySelector('#chatContainer');
@@ -30,6 +31,10 @@ let activeChannel = '';
 
 checkForLoggedin();
 getChannelNames();
+
+function changeUserName(name) {
+    loggedInUser = name;
+}
 
 btnSendMessage.addEventListener('click', () => {
     sendNewMessage(activeChannel);
@@ -193,29 +198,6 @@ async function loginUser(userName, password) {
     inputPassword.value = '';
 }
 
-async function checkAuth() {
-    const jwt = localStorage.getItem(JWT_KEY);
-
-    const options = {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + jwt,
-        },
-    };
-
-    const response = await fetch('/api/private/', options);
-
-    if (response.status === 200) {
-        const user = await response.json();
-        loggedInUser = user;
-        console.log('allt gick bra', user);
-        return true;
-    }
-
-    return false;
-}
-
 async function getChannelNames() {
     channelsContainer.innerHTML = '';
     let nameArray = [];
@@ -246,52 +228,40 @@ async function getChannelNames() {
 
 async function getMessages(name) {
     activeChannel = name.name;
-    if (name.private) {
-        const isAuthorized = await checkAuth();
-        if (isAuthorized) {
-            console.log('Allowed!');
-        } else {
-            console.log('Not allowed');
-        }
-        /* } else {
-        chatContainer.innerHTML = '';
-        let messageArray = [];
-        try {
-            const response = await fetch(
-                `/api/public/channels/${name.name}/messages`,
-                {
-                    method: 'GET',
-                }
-            );
-            messageArray = await response.json();
-            if (response.status !== 200) {
-                console.log(
-                    'Could not connect to server. Status: ' + response.status
-                );
-
-                return;
+    chatContainer.innerHTML = '';
+    let messageArray = [];
+    try {
+        const response = await fetch(
+            `/api/public/channels/${name.name}/messages`,
+            {
+                method: 'GET',
             }
-        } catch (error) {
+        );
+        messageArray = await response.json();
+        if (response.status !== 200) {
             console.log(
-                'Could not GET data from the server. Error message: ' +
-                    error.message
+                'Could not connect to server. Status: ' + response.status
             );
+
             return;
         }
+    } catch (error) {
+        console.log(
+            'Could not GET data from the server. Error message: ' +
+                error.message
+        );
+        return;
+    }
 
-        for (const message of messageArray) {
-            const divMain = document.createElement('div');
-            let divInfo = createInfoElements(message);
-            let messageContainer = createMessageElements(message);
+    for (const message of messageArray) {
+        const divMain = document.createElement('div');
+        let divInfo = createInfoElements(message);
+        let messagesChannels = createMessageElements(message);
 
-            divMain.appendChild(divInfo);
-            divMain.appendChild(messageContainer);
-            chatContainer.appendChild(divMain);
-        }
-    } */
-    } else {
-        console.log('private=false');
+        divMain.appendChild(divInfo);
+        divMain.appendChild(messagesChannels);
+        chatContainer.appendChild(divMain);
     }
 }
 
-export { getMessages };
+export { getMessages, isLoggedIn, changeUserName, JWT_KEY };

@@ -39,7 +39,7 @@ router.post('/channels/:name', (req, res) => {
     const maybeChannel = db.data.channelData.find(
         (channel) => channelName === channel.name
     );
-    // channel: { name, messages, private }
+
     if (maybeChannel) {
         let newMessage = {
             id,
@@ -49,8 +49,6 @@ router.post('/channels/:name', (req, res) => {
         };
 
         maybeChannel.messages.push(newMessage);
-        db.write();
-        /*     console.log(maybeChannel); */
 
         res.send('test');
     }
@@ -64,14 +62,3 @@ function createTimeStamp() {
 }
 
 export default router;
-
-/* date.getDate() + ':' date.getDay() + ':'
-
-Date.prototype.getDate()
-Returns the day of the month (1 – 31) for the specified date according to local time.
-
-Date.prototype.getDay()
-Returns the day of the week (0 – 6) for the specified date according to local time.
-
-Date.prototype.getFullYear()
- */

@@ -15,6 +15,7 @@ const btnLogin = document.querySelector('#btnLogin');
 const btnSignUp = document.querySelector('#btnSignUp');
 const btnLogout = document.querySelector('#btnLogout');
 const errorLogin = document.querySelector('#error-login');
+const errorSignUp = document.querySelector('#error-signup');
 const nameOutput = document.querySelectorAll('.name-output');
 const inputMessage = document.querySelector('#input-message');
 const btnSendMessage = document.querySelector('#send-message');
@@ -40,7 +41,6 @@ async function sendNewMessage(channelName) {
 
 async function checkForLoggedin() {
     let maybeLoggedIn = await checkAuth();
-
     if (maybeLoggedIn) {
         isLoggedIn = true;
         updateLoggedUI();
@@ -54,7 +54,7 @@ function updateLoggedUI() {
             names.innerText = `${loggedInUser.userName}`;
         }
         userForm.classList.add('invisible');
-        btnShowLogin.classList.toggle('invisible');
+        btnShowLogin.classList.add('invisible');
         btnShowSignUp.classList.add('invisible');
         btnLogout.classList.remove('invisible');
     } else {
@@ -65,9 +65,11 @@ function updateLoggedUI() {
         btnShowLogin.classList.remove('invisible');
         btnShowSignUp.classList.remove('invisible');
         userForm.classList.add('invisible');
+        errorLogin.classList.add('invisible');
+        errorSignUp.classList.add('invisible');
 
         btnShowLogin.innerText = 'Log in';
-        btnShowSignUp.innerText = 'Sign Up';
+        btnShowSignUp.innerText = 'Sign up';
     }
 }
 
@@ -75,6 +77,7 @@ btnShowLogin.addEventListener('click', () => {
     userForm.classList.toggle('invisible');
     btnLogin.classList.toggle('invisible');
     btnShowSignUp.classList.toggle('invisible');
+    errorLogin.classList.add('invisible');
     if (userForm.classList.contains('invisible')) {
         btnShowLogin.innerText = 'Log in';
     } else {
@@ -84,30 +87,68 @@ btnShowLogin.addEventListener('click', () => {
 
 btnShowSignUp.addEventListener('click', () => {
     userForm.classList.toggle('invisible');
-    btnSignUp.classList.toggle('invisible');
+    btnSignUp.classList.remove('invisible');
     btnShowLogin.classList.toggle('invisible');
     if (userForm.classList.contains('invisible')) {
-        btnShowSignUp.innerText = 'Sign Up';
+        btnShowSignUp.innerText = 'Sign up';
     } else {
         btnShowSignUp.innerText = 'Close';
     }
 });
 
-btnLogin.addEventListener('click', loginUser);
+btnLogin.addEventListener('click', () => {
+    let userName = inputUserName.value;
+    let password = inputPassword.value;
+
+    loginUser(userName, password);
+});
 
 btnLogout.addEventListener('click', () => {
     isLoggedIn = false;
-    errorLogin.classList.add('invisible');
     localStorage.removeItem(JWT_KEY);
     updateLoggedUI();
 });
 
-async function loginUser() {
+btnSignUp.addEventListener('click', signUpUser);
+
+async function signUpUser() {
+    console.log('Sign up!');
     const user = {
         userName: inputUserName.value,
         password: inputPassword.value,
     };
-    console.log('FRONT loginUser user: ', user);
+    const options = {
+        method: 'POST',
+        body: JSON.stringify(user),
+        headers: {
+            'Content-type': 'application/json',
+        },
+    };
+
+    try {
+        const response = await fetch('/api/login/create', options);
+        if (response.status === 200) {
+            console.log('New User successful!');
+            loggedInUser = await response.json();
+
+            loginUser(loggedInUser.userName, inputPassword.value);
+        } else {
+            //classList på errorsignup
+        }
+    } catch (error) {
+        console.log(
+            'Could not POST to server. Error Message: ' + error.message
+        );
+        return;
+    }
+    inputPassword.value = '';
+}
+
+async function loginUser(userName, password) {
+    const user = {
+        userName: userName,
+        password: password,
+    };
     const options = {
         method: 'POST',
         body: JSON.stringify(user),
@@ -166,7 +207,7 @@ async function checkAuth() {
         console.log('allt gick bra', user);
         return true;
     }
-    console.log('Oops, no valid token');
+
     return false;
 }
 

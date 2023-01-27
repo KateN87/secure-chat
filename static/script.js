@@ -17,7 +17,7 @@ const btnLogout = document.querySelector('#btnLogout');
 const errorLogin = document.querySelector('#error-login');
 const errorSignUp = document.querySelector('#error-signup');
 const nameOutput = document.querySelectorAll('.name-output');
-const inputMessage = document.querySelector('#input-message');
+const inputMessage = document.querySelector('#inputMessage');
 const btnSendMessage = document.querySelector('#send-message');
 /* const inputUserName = document.querySelector('#inputUserName');
 const inputPassword = document.querySelector('#inputPassword'); */
@@ -43,6 +43,37 @@ btnSendMessage.addEventListener('click', () => {
 
 async function sendNewMessage(channelName) {
     console.log('this is the channelName', channelName);
+    const newMessage = {
+        message: inputMessage.value,
+        userName: loggedInUser.userName,
+    };
+    const options = {
+        method: 'POST',
+        body: JSON.stringify(newMessage),
+        headers: {
+            'Content-type': 'application/json',
+        },
+    };
+
+    try {
+        const response = await fetch(
+            '/api/public/channels/' + `${channelName}`,
+            options
+        );
+        if (response.status === 200) {
+            let channel = await response.json();
+            console.log('This is channel', channel);
+            await getMessages(channel.name);
+            return true;
+        } else {
+            return false;
+        }
+    } catch (error) {
+        console.log(
+            'Could not POST to server. Error Message: ' + error.message
+        );
+        return;
+    }
 }
 
 async function checkForLoggedin() {
@@ -52,6 +83,8 @@ async function checkForLoggedin() {
         updateLoggedUI();
         return;
     }
+    updateLoggedUI();
+    loggedInUser = { userName: 'Guest' };
 }
 
 function updateLoggedUI() {
@@ -65,7 +98,7 @@ function updateLoggedUI() {
         btnLogout.classList.remove('invisible');
     } else {
         for (const names of nameOutput) {
-            names.innerText = '';
+            names.innerText = 'Guest';
         }
         btnLogout.classList.add('invisible');
         btnShowLogin.classList.remove('invisible');
@@ -123,7 +156,7 @@ btnLogin.addEventListener('click', async () => {
 
 btnLogout.addEventListener('click', () => {
     isLoggedIn = false;
-    loggedInUser = { userName: '' };
+    loggedInUser = { userName: 'Guest' };
     localStorage.removeItem(JWT_KEY);
     updateLoggedUI();
 });

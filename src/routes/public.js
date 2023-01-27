@@ -49,8 +49,8 @@ router.post('/channels/:name', (req, res) => {
         };
 
         maybeChannel.messages.push(newMessage);
-
-        res.sendStatus('200');
+        db.write();
+        res.status('200').send(maybeChannel);
     } else {
         res.sendStatus(400);
     }

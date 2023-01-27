@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        />
+        <link rel="stylesheet" href="style.css" />
+        <script type="module" src="script.js" defer></script>
+        <script type="module" src="loginetc.js" defer></script>
+        <title>Secure chat</title>
+    </head>
+    <body>
+        <header>
+            <h1>Secure Chat</h1>
+            <span class="name-output"></span>
+            <button id="btnshowLogin" class="">Log in</button>
+            <button id="btnshowSignUp" class="">Sign up</button>
+            <button id="btnLogout" class="invisible">Log out</button>
+
+            <section class="user-form invisible">
+                <div class="namepassword-form">
+                    <form class="formDiv">
+                        <label>Username:</label>
+                        <input id="inputUserName" type="text" />
+                    </form>
+                    <form class="formDiv">
+                        <label>Password:</label>
+                        <input id="inputPassword" type="password" />
+                    </form>
+                    <button id="btnLogin" class="invisible">Log in</button>
+                    <button id="btnSignUp" class="invisible">Sign up</button>
+                </div>
+                <p id="error-login" class="invisible">
+                    Wrong username or password
+                </p>
+                <p id="error-signup" class="invisible">
+                    User name already taken
+                </p>
+            </section>
+        </header>
+
+        <main>
+            <div id="channelsContainer">
+                <!--                 <section class="messagesChannels">
+                    <span>
+                        <i class="fa-solid fa-lock"></i>
+                        <span>Channel-Name</span>
+                    </span>
+                </section>
+                <section class="messagesChannels">
+                    <span>
+                        <span>Channel-Name2</span>
+                    </span>
+                </section>
+                <section class="messagesChannels">
+                    <span>
+                        <i class="fa-solid fa-lock"></i>
+                        <span>Channel-Name3</span>
+                    </span>
+                </section> -->
+            </div>
+
+            <div id="chatContainer">
+                <!-- <div>
+                    <div class="infoContainer">
+                        <span class="userName">Kate</span>
+                        <span class="date">Date</span>
+                        <span class="icons">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <i class="fa-solid fa-trash"></i>
+                        </span>
+                    </div>
+
+                    <section class="messagesChannels">
+                        <span class="message">Hej hej</span>
+                    </section>
+                </div> -->
+                <!--                 <div>
+                    <div class="infoContainer">
+                        <span class="userName">Kate</span>
+                        <span class="date">Date</span>
+                        <span class="icons">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <i class="fa-solid fa-trash"></i>
+                        </span>
+                    </div>
+
+                    <section class="messagesChannels">
+                        <span class="message">Hej hej</span>
+                    </section>
+                </div>
+
+                <div>
+                    <div class="infoContainer">
+                        <span class="userName">Richard</span>
+                        <span class="date">Date</span>
+                        <span class="icons">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <i class="fa-solid fa-trash"></i>
+                        </span>
+                    </div>
+
+                    <section class="messagesChannels">
+                        <span class="message">Hello</span>
+                    </section>
+                </div>
+
+                <div>
+                    <div class="infoContainer">
+                        <span class="userName">Rut</span>
+                        <span class="date">Date</span>
+                        <span class="icons">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <i class="fa-solid fa-trash"></i>
+                        </span>
+                    </div>
+
+                    <section class="messagesChannels">
+                        <span class="message">Maaaat</span>
+                    </section>
+                </div> -->
+            </div>
+        </main>
+        <div id="new-message">
+            <span class="name-output"></span>
+            <textarea
+                id="input-message"
+                name="type-message"
+                cols="30"
+                rows="5"
+                placeholder="Type your message..."
+            ></textarea>
+            <button id="send-message">Send</button>
+        </div>
+        <button id="#test">tesssssssssssst</button>
+    </body>
+</html>

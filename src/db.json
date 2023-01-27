@@ -1,118 +1,86 @@
 {
-  "userData": [
-    {
-      "userName": "Tomten",
-      "password": "$2a$08$nbXJWPvVxzPqanhJxmvUGex4VEOQBvPYGCtPzQIyIDAEhmpvrR/Wa"
-    },
-    {
-      "userName": "Richard",
-      "password": "$2a$08$aRsHYPVy9MFkBcbAIqlZz.gj5bqGsSVbIje/OMUCVFOaFBXGutn9m"
-    },
-    {
-      "userName": "Kate",
-      "password": "$2a$08$dVnUxRYOoiJaqLsHSglg8OnQcDrgUKchEGuxTlvK2NEnVg47LnuiO"
-    },
-    {
-      "userName": "Rut",
-      "password": "$2a$08$dVnUxRYOoiJaqLsHSglg8Of8Ak3BQTvoMK5mPiWs2vFJbc3QZKxcq"
-    },
-    {
-      "userName": "Reuben",
-      "password": "$2a$08$dVnUxRYOoiJaqLsHSglg8OvNUTMTey.58RgeAfG9PTkaQINAp.ln6"
-    },
-    {
-      "userName": "Äpple",
-      "password": "$2a$08$uPvkTphEjLoTgAok.AWh8OFDU3zvVa/FqL1kLZys2apgY83G9nHwS"
-    },
-    {
-      "userName": "Testarnu",
-      "password": "$2a$08$5cZWrAQTsbLq/r7QHlHu8eGyQKBnt/upqq8mWPChjdMrU4geGSRO2"
-    }
-  ],
-  "channelData": [
-    {
-      "name": "Public",
-      "messages": [
+    "userData": [
         {
-          "id": 1,
-          "message": "Cats are what they are",
-          "timeCreated": "Thu Jan 26 2023 21:51:8",
-          "userName": "Kate"
+            "userName": "Tomten",
+            "password": "$2a$08$nbXJWPvVxzPqanhJxmvUGex4VEOQBvPYGCtPzQIyIDAEhmpvrR/Wa"
         },
         {
-          "id": 2,
-          "message": "So true",
-          "timeCreated": "Thu Jan 26 2023 21:51:8",
-          "userName": "Richard"
+            "userName": "Richard",
+            "password": "$2a$08$aRsHYPVy9MFkBcbAIqlZz.gj5bqGsSVbIje/OMUCVFOaFBXGutn9m"
         },
         {
-          "id": 3,
-          "message": "Fooood",
-          "timeCreated": "Thu Jan 26 2023 21:51:8",
-          "userName": "Rut"
+            "userName": "Kate",
+            "password": "$2a$08$dVnUxRYOoiJaqLsHSglg8OnQcDrgUKchEGuxTlvK2NEnVg47LnuiO"
+        },
+        {
+            "userName": "Rut",
+            "password": "$2a$08$dVnUxRYOoiJaqLsHSglg8Of8Ak3BQTvoMK5mPiWs2vFJbc3QZKxcq"
+        },
+        {
+            "userName": "Reuben",
+            "password": "$2a$08$dVnUxRYOoiJaqLsHSglg8OvNUTMTey.58RgeAfG9PTkaQINAp.ln6"
         }
-      ],
-      "private": false
-    },
-    {
-      "name": "Private",
-      "messages": [
+    ],
+    "channelData": [
         {
-          "id": 1,
-          "message": "Cats are what they are",
-          "timeCreated": "Thu Jan 26 2023 21:51:8",
-          "userName": "Kate"
+            "name": "Public",
+            "messages": [
+                {
+                    "id": 1,
+                    "message": "Cats are what they are",
+                    "timeCreated": "Thu Jan 26 2023 21:51:8",
+                    "userName": "Kate"
+                },
+                {
+                    "id": 2,
+                    "message": "So true",
+                    "timeCreated": "Thu Jan 26 2023 21:51:8",
+                    "userName": "Richard"
+                },
+                {
+                    "id": 3,
+                    "message": "Fooood",
+                    "timeCreated": "Thu Jan 26 2023 21:51:8",
+                    "userName": "Rut"
+                }
+            ],
+            "private": false
         },
         {
-          "id": 2,
-          "message": "Woot",
-          "timeCreated": "Thu Jan 26 2023 21:51:8",
-          "userName": "Kate"
+            "name": "Private",
+            "messages": [
+                {
+                    "id": 1,
+                    "message": "Cats are what they are",
+                    "timeCreated": "Thu Jan 26 2023 21:51:8",
+                    "userName": "Kate"
+                }
+            ],
+            "private": "true"
         },
         {
-          "id": 2,
-          "message": "Woot",
-          "timeCreated": "Thu Jan 26 2023 21:51:8",
-          "userName": "Kate"
+            "name": "Watussi",
+            "messages": [
+                {
+                    "id": 1,
+                    "message": "Watussis are cool",
+                    "timeCreated": "2023-01-25T17:57:34.488Z",
+                    "userName": "Rut"
+                }
+            ],
+            "private": "true"
         },
         {
-          "id": 2,
-          "message": "I totally agree",
-          "timeCreated": "Thu Jan 26 2023 21:51:8",
-          "userName": "Kate"
-        },
-        {
-          "id": 2,
-          "message": "I totally agree",
-          "timeCreated": "Thu Jan 26 2023 21:51:8",
-          "userName": "Kate"
+            "name": "Echidna",
+            "messages": [
+                {
+                    "id": 1,
+                    "message": "I know something special about echidnas",
+                    "timeCreated": "2023-01-25T17:57:34.488Z",
+                    "userName": "Kate"
+                }
+            ],
+            "private": "true"
         }
-      ],
-      "private": "true"
-    },
-    {
-      "name": "Watussi",
-      "messages": [
-        {
-          "id": 1,
-          "message": "Watussis are cool",
-          "timeCreated": "2023-01-25T17:57:34.488Z",
-          "userName": "Rut"
-        }
-      ],
-      "private": "true"
-    },
-    {
-      "name": "Echidna",
-      "messages": [
-        {
-          "id": 1,
-          "message": "I know something special about echidnas",
-          "timeCreated": "2023-01-25T17:57:34.488Z",
-          "userName": "Kate"
-        }
-      ],
-      "private": "true"
-    }
-  ]
+    ]
 }

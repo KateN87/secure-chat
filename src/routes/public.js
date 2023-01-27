@@ -39,7 +39,7 @@ router.post('/channels/:name', (req, res) => {
     const maybeChannel = db.data.channelData.find(
         (channel) => channelName === channel.name
     );
-
+    console.log(maybeChannel);
     if (maybeChannel) {
         let newMessage = {
             id,
@@ -50,7 +50,9 @@ router.post('/channels/:name', (req, res) => {
 
         maybeChannel.messages.push(newMessage);
 
-        res.send('test');
+        res.sendStatus('200');
+    } else {
+        res.sendStatus(400);
     }
 });
 

@@ -75,22 +75,28 @@ function updateLoggedUI() {
 
 btnShowLogin.addEventListener('click', () => {
     userForm.classList.toggle('invisible');
-    btnLogin.classList.toggle('invisible');
+    btnLogin.classList.remove('invisible');
     btnShowSignUp.classList.toggle('invisible');
     errorLogin.classList.add('invisible');
     if (userForm.classList.contains('invisible')) {
         btnShowLogin.innerText = 'Log in';
     } else {
+        inputPassword.value = '';
+        inputUserName.value = '';
         btnShowLogin.innerText = 'Close';
     }
 });
 
 btnShowSignUp.addEventListener('click', () => {
     userForm.classList.toggle('invisible');
-    btnSignUp.classList.remove('invisible');
+    btnLogin.classList.add('invisible');
+    btnSignUp.classList.toggle('invisible');
     btnShowLogin.classList.toggle('invisible');
+    errorSignUp.classList.add('invisible');
     if (userForm.classList.contains('invisible')) {
         btnShowSignUp.innerText = 'Sign up';
+        inputPassword.innerText = '';
+        inputUserName.innerText = '';
     } else {
         btnShowSignUp.innerText = 'Close';
     }
@@ -112,7 +118,6 @@ btnLogout.addEventListener('click', () => {
 btnSignUp.addEventListener('click', signUpUser);
 
 async function signUpUser() {
-    console.log('Sign up!');
     const user = {
         userName: inputUserName.value,
         password: inputPassword.value,
@@ -128,12 +133,11 @@ async function signUpUser() {
     try {
         const response = await fetch('/api/login/create', options);
         if (response.status === 200) {
-            console.log('New User successful!');
             loggedInUser = await response.json();
 
             loginUser(loggedInUser.userName, inputPassword.value);
         } else {
-            //classList på errorsignup
+            errorSignUp.classList.remove('invisible');
         }
     } catch (error) {
         console.log(
@@ -141,6 +145,7 @@ async function signUpUser() {
         );
         return;
     }
+    inputUserName.value = '';
     inputPassword.value = '';
 }
 

@@ -13,7 +13,6 @@ function createChannelElements(name) {
 
     messagesChannels.addEventListener('click', async () => {
         let maybeAllowed = await checkChannelAuth(name);
-        console.log(maybeAllowed);
         if (maybeAllowed) {
             getMessages(name);
         } else {
@@ -34,7 +33,7 @@ function createChannelElements(name) {
     channelsContainer.appendChild(messagesChannels);
 }
 
-function createInfoElements(element) {
+function createInfoElements(loggedInUser, element) {
     const divInfo = document.createElement('div');
     const spanUserName = document.createElement('span');
     const spanDate = document.createElement('span');
@@ -51,16 +50,18 @@ function createInfoElements(element) {
     divInfo.appendChild(spanDate);
 
     if (isLoggedIn) {
-        const spanIcons = document.createElement('span');
-        const iconEdit = document.createElement('i');
-        const iconTrash = document.createElement('i');
+        if (element.userName === loggedInUser.userName) {
+            const spanIcons = document.createElement('span');
+            const iconEdit = document.createElement('i');
+            const iconTrash = document.createElement('i');
 
-        iconEdit.className = 'fa-solid fa-pen-to-square';
-        iconTrash.className = 'fa-solid fa-trash';
-        spanIcons.classList.add('icons');
-        spanIcons.appendChild(iconEdit);
-        spanIcons.appendChild(iconTrash);
-        divInfo.appendChild(spanIcons);
+            iconEdit.className = 'fa-solid fa-pen-to-square';
+            iconTrash.className = 'fa-solid fa-trash';
+            spanIcons.classList.add('icons');
+            spanIcons.appendChild(iconEdit);
+            spanIcons.appendChild(iconTrash);
+            divInfo.appendChild(spanIcons);
+        }
     }
 
     return divInfo;

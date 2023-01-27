@@ -28,8 +28,7 @@ async function checkAuth() {
 
     if (response.status === 200) {
         let user = await response.json();
-        changeUserName(user);
-        /* console.log('allt gick bra', user); */
+        changeUserName(user.userName);
         return true;
     } else {
         return false;

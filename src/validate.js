@@ -6,10 +6,8 @@ function validateSignUp(name, password) {
     }
 
     const maybeName = db.data.userData.find((user) => name === user.userName);
-    console.log('maybeName', maybeName);
 
     if (maybeName) {
-        console.log(maybeName);
         return false;
     }
 

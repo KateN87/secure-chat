@@ -1,3 +1,9 @@
+FRÅGOR:
+Hur skickar jag med variabler mellan filer? Se min signUp och Log in
+Kan jag nå DOM-element från loginetc?
+är input speciellt? Ser värdet utan att specificera DOM
+Är det bättre att göra två olika inlogg formulär? Mer i HTML och DOM-variabler, men min i js-koden
+
 BACKEND
 -   I server.js:
     DONE: importera det som behövs
@@ -43,7 +49,7 @@ fixa i createMessageElements() så iconerna endast skapas på de meddelanden dä
 DONE: fixa checkfortoken-biten när man laddar om sidan
 
 DONE: Login: kunna logga in
-DONE: Login: laddar om sidan, komma ihåg 
+DONE: Login: laddar om sidan, komma ihåg
 
 Göra om datan så isEdited och isDeleted endast läggs till när de är relevant
 

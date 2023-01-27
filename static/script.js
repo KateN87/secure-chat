@@ -1,11 +1,10 @@
-//ToDo:
-//fixa i createMessageElements() så iconerna endast skapas på de meddelanden där user stämmer överens med inloggad
 import {
     createChannelElements,
     createInfoElements,
     createMessageElements,
 } from './create-elements.js';
 import { checkAuth } from './auth.js';
+import { signUpUser, loginUser } from './loginetc.js';
 
 const channelsContainer = document.querySelector('#channelsContainer');
 const chatContainer = document.querySelector('#chatContainer');
@@ -20,6 +19,8 @@ const errorSignUp = document.querySelector('#error-signup');
 const nameOutput = document.querySelectorAll('.name-output');
 const inputMessage = document.querySelector('#input-message');
 const btnSendMessage = document.querySelector('#send-message');
+/* const inputUserName = document.querySelector('#inputUserName');
+const inputPassword = document.querySelector('#inputPassword'); */
 
 const JWT_KEY = 'secureChat-jwt';
 
@@ -32,8 +33,8 @@ let activeChannel = '';
 checkForLoggedin();
 getChannelNames();
 
-function changeUserName(name) {
-    loggedInUser = name;
+async function changeUserName(name) {
+    loggedInUser = { userName: `${name}` };
 }
 
 btnSendMessage.addEventListener('click', () => {
@@ -100,103 +101,45 @@ btnShowSignUp.addEventListener('click', () => {
     errorSignUp.classList.add('invisible');
     if (userForm.classList.contains('invisible')) {
         btnShowSignUp.innerText = 'Sign up';
-        inputPassword.innerText = '';
-        inputUserName.innerText = '';
     } else {
         btnShowSignUp.innerText = 'Close';
+        inputPassword.value = '';
+        inputUserName.value = '';
     }
 });
 
-btnLogin.addEventListener('click', () => {
+btnLogin.addEventListener('click', async () => {
     let userName = inputUserName.value;
     let password = inputPassword.value;
-
-    loginUser(userName, password);
+    let maybeLoggedIn = await loginUser(loggedInUser, userName, password);
+    if (maybeLoggedIn) {
+        isLoggedIn = true;
+        updateLoggedUI();
+    } else {
+        isLoggedIn = false;
+        errorLogin.classList.remove('invisible');
+    }
 });
 
 btnLogout.addEventListener('click', () => {
     isLoggedIn = false;
+    loggedInUser = { userName: '' };
     localStorage.removeItem(JWT_KEY);
     updateLoggedUI();
 });
 
-btnSignUp.addEventListener('click', signUpUser);
-
-async function signUpUser() {
-    const user = {
-        userName: inputUserName.value,
-        password: inputPassword.value,
-    };
-    const options = {
-        method: 'POST',
-        body: JSON.stringify(user),
-        headers: {
-            'Content-type': 'application/json',
-        },
-    };
-
-    try {
-        const response = await fetch('/api/login/create', options);
-        if (response.status === 200) {
-            loggedInUser = await response.json();
-
-            loginUser(loggedInUser.userName, inputPassword.value);
-        } else {
-            errorSignUp.classList.remove('invisible');
-        }
-    } catch (error) {
-        console.log(
-            'Could not POST to server. Error Message: ' + error.message
-        );
-        return;
+btnSignUp.addEventListener('click', async () => {
+    let userName = inputUserName.value;
+    let password = inputPassword.value;
+    let maybeSignedUp = await signUpUser(loggedInUser, userName, password);
+    if (maybeSignedUp) {
+        checkForLoggedin();
+    } else {
+        inputPassword.value = '';
+        inputUserName.value = '';
+        errorSignUp.classList.remove('invisible');
     }
-    inputUserName.value = '';
-    inputPassword.value = '';
-}
-
-async function loginUser(userName, password) {
-    const user = {
-        userName: userName,
-        password: password,
-    };
-    const options = {
-        method: 'POST',
-        body: JSON.stringify(user),
-        headers: {
-            'Content-type': 'application/json',
-        },
-    };
-
-    try {
-        const response = await fetch('/api/login/', options);
-        if (response.status === 200) {
-            console.log('Login successful!');
-            loggedInUser = await response.json();
-            console.log(
-                'FRONT loginUser() loggedInUser.userName: ',
-                loggedInUser.userName
-            );
-
-            localStorage.setItem(JWT_KEY, loggedInUser.token);
-
-            isLoggedIn = true;
-            loggedInUser.userName = loggedInUser.userName;
-
-            updateLoggedUI();
-        } else {
-            isLoggedIn = false;
-            errorLogin.classList.remove('invisible');
-            console.log('Login failed : ' + response.status);
-        }
-    } catch (error) {
-        console.log(
-            'Could not POST to server. Error Messagge: ' + error.message
-        );
-        return;
-    }
-    inputUserName.value = '';
-    inputPassword.value = '';
-}
+});
 
 async function getChannelNames() {
     channelsContainer.innerHTML = '';
@@ -255,7 +198,7 @@ async function getMessages(name) {
 
     for (const message of messageArray) {
         const divMain = document.createElement('div');
-        let divInfo = createInfoElements(message);
+        let divInfo = createInfoElements(loggedInUser, message);
         let messagesChannels = createMessageElements(message);
 
         divMain.appendChild(divInfo);

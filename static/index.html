@@ -46,7 +46,7 @@
         <main>
             <div id="channelsContainer"></div>
 
-            <div id="readWrite">
+            <div class="readWrite">
                 <div id="chatContainer"></div>
                 <div id="new-message">
                     <span class="name-output"></span>
@@ -58,6 +58,20 @@
                         placeholder="Type your message..."
                     ></textarea>
                     <button id="send-message">Send</button>
+                </div>
+            </div>
+
+            <div class="editContainer invisible">
+                <textarea
+                    id="inputEdit"
+                    name="type-message"
+                    cols="30"
+                    rows="5"
+                    placeholder="Type your message..."
+                ></textarea>
+                <div>
+                    <button id="sendEdit">Send</button>
+                    <button id="closeEdit">Close</button>
                 </div>
             </div>
         </main>

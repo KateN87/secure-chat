@@ -50,8 +50,7 @@ DONE: fixa checkfortoken-biten när man laddar om sidan
 
 DONE: Login: kunna logga in
 DONE: Login: laddar om sidan, komma ihåg
+DONE: Fortsätta fixa så det går att skicka meddelande, fastnar på att kanalnamnet inte stämmer
 
-Fortsätta fixa så det går att skicka meddelande, fastnar på att kanalnamnet inte stämmer
-
-Göra om datan så isEdited och isDeleted endast läggs till när de är relevant
+DONE: Göra om datan så isEdited och isDeleted endast läggs till när de är relevant
 

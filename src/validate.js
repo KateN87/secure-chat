@@ -14,4 +14,20 @@ function validateSignUp(name, password) {
     return true;
 }
 
-export { validateSignUp };
+function validateNewChannel(name) {
+    if (name === '') {
+        return false;
+    }
+
+    const maybeChannel = db.data.channelData.find(
+        (channel) => channel === channel.name
+    );
+
+    if (maybeChannel) {
+        return false;
+    }
+
+    return true;
+}
+
+export { validateSignUp, validateNewChannel };

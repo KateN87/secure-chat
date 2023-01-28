@@ -72,7 +72,7 @@ function validateMessage(maybeMessage) {
 }
 */
 
-function createTimeStamp() {
+export function createTimeStamp() {
     let now = new Date();
     let plainText = now.toDateString();
     let timeDate = `${plainText} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;

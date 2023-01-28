@@ -1,0 +1,15 @@
+export const channelsContainer = document.querySelector('#channelsContainer');
+export const chatContainer = document.querySelector('#chatContainer');
+export const btnShowLogin = document.querySelector('#btnshowLogin');
+export const btnShowSignUp = document.querySelector('#btnshowSignUp');
+export const userForm = document.querySelector('.user-form');
+export const btnLogin = document.querySelector('#btnLogin');
+export const btnSignUp = document.querySelector('#btnSignUp');
+export const btnLogout = document.querySelector('#btnLogout');
+export const errorLogin = document.querySelector('#error-login');
+export const errorSignUp = document.querySelector('#error-signup');
+export const nameOutput = document.querySelectorAll('.name-output');
+export const inputMessage = document.querySelector('#inputMessage');
+export const btnSendMessage = document.querySelector('#send-message');
+export const inputUserName = document.querySelector('#inputUserName');
+export const inputPassword = document.querySelector('#inputPassword');

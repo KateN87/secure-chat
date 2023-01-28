@@ -5,30 +5,16 @@ import {
 } from './create-elements.js';
 import { checkAuth } from './auth.js';
 import { signUpUser, loginUser } from './loginetc.js';
+import * as elementName from './getDOM.js';
+import * as globalVar from './globalVar.js';
 
-const channelsContainer = document.querySelector('#channelsContainer');
-const chatContainer = document.querySelector('#chatContainer');
-const btnShowLogin = document.querySelector('#btnshowLogin');
-const btnShowSignUp = document.querySelector('#btnshowSignUp');
-const userForm = document.querySelector('.user-form');
-const btnLogin = document.querySelector('#btnLogin');
-const btnSignUp = document.querySelector('#btnSignUp');
-const btnLogout = document.querySelector('#btnLogout');
-const errorLogin = document.querySelector('#error-login');
-const errorSignUp = document.querySelector('#error-signup');
-const nameOutput = document.querySelectorAll('.name-output');
-const inputMessage = document.querySelector('#inputMessage');
-const btnSendMessage = document.querySelector('#send-message');
-/* const inputUserName = document.querySelector('#inputUserName');
-const inputPassword = document.querySelector('#inputPassword'); */
+const JWT_KEY = globalVar.JWT_KEY;
 
-const JWT_KEY = 'secureChat-jwt';
+let isLoggedIn = globalVar.isLoggedIn;
 
-let isLoggedIn = false;
+let loggedInUser = globalVar.loggedInUser;
 
-let loggedInUser = { userName: '' };
-
-let activeChannel = '';
+let activeChannel = globalVar.activeChannel;
 
 checkForLoggedin();
 getChannelNames();
@@ -37,14 +23,14 @@ async function changeUserName(name) {
     loggedInUser = { userName: `${name}` };
 }
 
-btnSendMessage.addEventListener('click', () => {
+elementName.btnSendMessage.addEventListener('click', () => {
     sendNewMessage(activeChannel);
 });
 
 async function sendNewMessage(channelName) {
     console.log('this is the channelName', channelName);
     const newMessage = {
-        message: inputMessage.value,
+        message: elementName.inputMessage.value,
         userName: loggedInUser.userName,
     };
     const options = {
@@ -89,93 +75,95 @@ async function checkForLoggedin() {
 
 function updateLoggedUI() {
     if (isLoggedIn) {
-        for (const names of nameOutput) {
+        for (const names of elementName.nameOutput) {
             names.innerText = `${loggedInUser.userName}`;
         }
-        userForm.classList.add('invisible');
-        btnShowLogin.classList.add('invisible');
-        btnShowSignUp.classList.add('invisible');
-        btnLogout.classList.remove('invisible');
+        elementName.userForm.classList.add('invisible');
+        elementName.btnShowLogin.classList.add('invisible');
+        elementName.btnShowSignUp.classList.add('invisible');
+        elementName.btnLogout.classList.remove('invisible');
     } else {
-        for (const names of nameOutput) {
+        for (const names of elementName.nameOutput) {
             names.innerText = 'Guest';
         }
-        btnLogout.classList.add('invisible');
-        btnShowLogin.classList.remove('invisible');
-        btnShowSignUp.classList.remove('invisible');
-        userForm.classList.add('invisible');
-        errorLogin.classList.add('invisible');
-        errorSignUp.classList.add('invisible');
+        activeChannel = '';
+        elementName.chatContainer.innerHTML = '';
+        elementName.btnLogout.classList.add('invisible');
+        elementName.btnShowLogin.classList.remove('invisible');
+        elementName.btnShowSignUp.classList.remove('invisible');
+        elementName.userForm.classList.add('invisible');
+        elementName.errorLogin.classList.add('invisible');
+        elementName.errorSignUp.classList.add('invisible');
 
-        btnShowLogin.innerText = 'Log in';
-        btnShowSignUp.innerText = 'Sign up';
+        elementName.btnShowLogin.innerText = 'Log in';
+        elementName.btnShowSignUp.innerText = 'Sign up';
     }
 }
 
-btnShowLogin.addEventListener('click', () => {
-    userForm.classList.toggle('invisible');
-    btnLogin.classList.remove('invisible');
-    btnShowSignUp.classList.toggle('invisible');
-    errorLogin.classList.add('invisible');
-    if (userForm.classList.contains('invisible')) {
-        btnShowLogin.innerText = 'Log in';
+elementName.btnShowLogin.addEventListener('click', () => {
+    elementName.userForm.classList.toggle('invisible');
+    elementName.btnLogin.classList.remove('invisible');
+    elementName.btnShowSignUp.classList.toggle('invisible');
+    elementName.errorLogin.classList.add('invisible');
+    if (elementName.userForm.classList.contains('invisible')) {
+        elementName.btnShowLogin.innerText = 'Log in';
     } else {
-        inputPassword.value = '';
-        inputUserName.value = '';
-        btnShowLogin.innerText = 'Close';
+        elementName.inputPassword.value = '';
+        elementName.inputUserName.value = '';
+        elementName.btnShowLogin.innerText = 'Close';
     }
 });
 
-btnShowSignUp.addEventListener('click', () => {
-    userForm.classList.toggle('invisible');
-    btnLogin.classList.add('invisible');
-    btnSignUp.classList.toggle('invisible');
-    btnShowLogin.classList.toggle('invisible');
-    errorSignUp.classList.add('invisible');
-    if (userForm.classList.contains('invisible')) {
-        btnShowSignUp.innerText = 'Sign up';
+elementName.btnShowSignUp.addEventListener('click', () => {
+    elementName.userForm.classList.toggle('invisible');
+    elementName.btnLogin.classList.add('invisible');
+    elementName.btnSignUp.classList.toggle('invisible');
+    elementName.btnShowLogin.classList.toggle('invisible');
+    elementName.errorSignUp.classList.add('invisible');
+    if (elementName.userForm.classList.contains('invisible')) {
+        elementName.btnShowSignUp.innerText = 'Sign up';
     } else {
-        btnShowSignUp.innerText = 'Close';
-        inputPassword.value = '';
-        inputUserName.value = '';
+        elementName.btnShowSignUp.innerText = 'Close';
+        elementName.inputPassword.value = '';
+        elementName.inputUserName.value = '';
     }
 });
 
-btnLogin.addEventListener('click', async () => {
-    let userName = inputUserName.value;
-    let password = inputPassword.value;
+elementName.btnLogin.addEventListener('click', async () => {
+    let userName = elementName.inputUserName.value;
+    let password = elementName.inputPassword.value;
     let maybeLoggedIn = await loginUser(loggedInUser, userName, password);
     if (maybeLoggedIn) {
         isLoggedIn = true;
         updateLoggedUI();
     } else {
         isLoggedIn = false;
-        errorLogin.classList.remove('invisible');
+        elementName.errorLogin.classList.remove('invisible');
     }
 });
 
-btnLogout.addEventListener('click', () => {
+elementName.btnLogout.addEventListener('click', () => {
     isLoggedIn = false;
     loggedInUser = { userName: 'Guest' };
     localStorage.removeItem(JWT_KEY);
     updateLoggedUI();
 });
 
-btnSignUp.addEventListener('click', async () => {
+elementName.btnSignUp.addEventListener('click', async () => {
     let userName = inputUserName.value;
     let password = inputPassword.value;
     let maybeSignedUp = await signUpUser(loggedInUser, userName, password);
     if (maybeSignedUp) {
         checkForLoggedin();
     } else {
-        inputPassword.value = '';
-        inputUserName.value = '';
-        errorSignUp.classList.remove('invisible');
+        elementName.inputPassword.value = '';
+        elementName.inputUserName.value = '';
+        elementName.errorSignUp.classList.remove('invisible');
     }
 });
 
 async function getChannelNames() {
-    channelsContainer.innerHTML = '';
+    elementName.channelsContainer.innerHTML = '';
     let nameArray = [];
     try {
         const response = await fetch('/api/public/channels', {
@@ -203,9 +191,8 @@ async function getChannelNames() {
 }
 
 async function getMessages(name) {
-    console.log('FRONT getMessages: ', name);
     activeChannel = name.name;
-    chatContainer.innerHTML = '';
+    elementName.chatContainer.innerHTML = '';
     let messageArray = [];
     try {
         const response = await fetch(
@@ -232,12 +219,15 @@ async function getMessages(name) {
 
     for (const message of messageArray) {
         const divMain = document.createElement('div');
-        let divInfo = createInfoElements(loggedInUser, message);
+        if (!message.deleted) {
+            let divInfo = createInfoElements(name, loggedInUser, message);
+            divMain.appendChild(divInfo);
+        }
+
         let messagesChannels = createMessageElements(message);
 
-        divMain.appendChild(divInfo);
         divMain.appendChild(messagesChannels);
-        chatContainer.appendChild(divMain);
+        elementName.chatContainer.appendChild(divMain);
     }
 }
 

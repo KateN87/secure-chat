@@ -1,6 +1,16 @@
-import { getMessages } from './script.js';
+import { getMessages, isLoggedIn } from './script.js';
 import { checkChannelAuth } from './auth.js';
-import { isLoggedIn } from './script.js';
+import { removeMessage } from './editRemove.js';
+
+/* import * as globalVar from './globalVar.js';
+
+const JWT_KEY = globalVar.JWT_KEY;
+
+let isLoggedIn = globalVar.isLoggedIn;
+
+let loggedInUser = globalVar.loggedInUser;
+
+let activeChannel = globalVar.activeChannel; */
 
 const channelsContainer = document.querySelector('#channelsContainer');
 
@@ -33,7 +43,7 @@ function createChannelElements(name) {
     channelsContainer.appendChild(messagesChannels);
 }
 
-function createInfoElements(loggedInUser, element) {
+function createInfoElements(name, loggedInUser, element) {
     const divInfo = document.createElement('div');
     const spanUserName = document.createElement('span');
     const spanDate = document.createElement('span');
@@ -57,6 +67,11 @@ function createInfoElements(loggedInUser, element) {
 
             iconEdit.className = 'fa-solid fa-pen-to-square';
             iconTrash.className = 'fa-solid fa-trash';
+
+            iconTrash.addEventListener('click', () => {
+                removeMessage(name, loggedInUser, element);
+            });
+
             spanIcons.classList.add('icons');
             spanIcons.appendChild(iconEdit);
             spanIcons.appendChild(iconTrash);
@@ -73,7 +88,12 @@ function createMessageElements(element) {
 
     messagesChannels.classList.add('messagesChannels');
     spanMessage.classList.add('message');
-    spanMessage.innerText = element.message;
+    if (!element.deleted) {
+        spanMessage.innerText = element.message;
+    } else {
+        spanMessage.innerHTML =
+            '<i id="removed">This message has been deleted</i>';
+    }
 
     messagesChannels.appendChild(spanMessage);
     return messagesChannels;

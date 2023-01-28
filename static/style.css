@@ -151,14 +151,22 @@ textarea {
 
 i {
     color: rgb(240, 168, 30);
-    -webkit-text-stroke: 1px beige;
     margin-right: 6px;
     cursor: pointer;
 }
 
-.message > i {
-    color: black;
+.messagesChannels > span > i {
+    -webkit-text-stroke: 1px rgb(147, 147, 147);
+}
+
+.removed {
+    font-style: italic;
     font-size: 18px;
+}
+
+.edited {
+    font-style: italic;
+    font-size: 12px;
 }
 
 /*EditContainer*/

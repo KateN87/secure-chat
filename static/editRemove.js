@@ -1,5 +1,6 @@
 import { checkAuth } from './auth.js';
 import { getMessages } from './script.js';
+import * as elementName from './getDOM.js';
 
 async function removeMessage(name, loggedInUser, element) {
     let deleteItem = {
@@ -32,6 +33,43 @@ async function removeMessage(name, loggedInUser, element) {
     }
 }
 
-async function editMessage(name, loggedInUser, element) {}
+async function editMessage(name, loggedInUser, element) {
+    let editedMessage = {
+        name: name.name,
+        message: elementName.inputEdit.value,
+        user: loggedInUser.userName,
+    };
+    console.log('FRONT editMessage', elementName.inputEdit.value);
+    if (checkAuth) {
+        try {
+            const response = await fetch('/api/private/' + element.id, {
+                method: 'PUT',
+                body: JSON.stringify(editedMessage),
+                headers: {
+                    'Content-type': 'application/json',
+                },
+            });
 
+            if (response.status === 200) {
+                getMessages(name);
+            } else {
+                console.log('Could not edit. Status: ', response.status);
+            }
+
+            return true;
+        } catch (error) {
+            console.log(
+                'Could not PUT data to the server. Error message: ' +
+                    error.message
+            );
+        }
+    } else {
+        console.log('You are not logged in');
+    }
+}
+
+/* const channelName = req.body.name;
+const newMessage = req.body.message;
+const user = req.body.user;
+const id = Number(req.params.id); */
 export { removeMessage, editMessage };

@@ -62,10 +62,7 @@
       "name": "Private",
       "messages": [
         {
-          "id": 1,
-          "message": "This is another message",
-          "userName": "Kate",
-          "timeEdited": "Sat Jan 28 2023 16:29:14"
+          "deleted": true
         },
         {
           "id": 2,
@@ -95,13 +92,22 @@
       "name": "Watussi",
       "messages": [
         {
-          "deleted": true
+          "id": 1,
+          "message": "Teeeeestar",
+          "userName": "Kate",
+          "timeEdited": "Sat Jan 28 2023 19:52:1"
         },
         {
-          "id": 1,
-          "message": "asdasd",
+          "id": 2,
+          "message": "på",
           "timeCreated": "Sat Jan 28 2023 15:7:0",
-          "userName": "Kate"
+          "userName": "Richard"
+        },
+        {
+          "id": 3,
+          "message": "dig",
+          "timeCreated": "Sat Jan 28 2023 15:7:0",
+          "userName": "Reuben"
         }
       ],
       "private": true

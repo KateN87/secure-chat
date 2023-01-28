@@ -19,12 +19,74 @@ let activeChannel = globalVar.activeChannel;
 checkForLoggedin();
 getChannelNames();
 
-async function changeUserName(name) {
-    loggedInUser = { userName: `${name}` };
-}
-
 elementName.btnSendMessage.addEventListener('click', () => {
     sendNewMessage(activeChannel);
+});
+elementName.btnShowLogin.addEventListener('click', () => {
+    elementName.userForm.classList.toggle('invisible');
+    elementName.btnLogin.classList.remove('invisible');
+    elementName.btnShowSignUp.classList.toggle('invisible');
+    elementName.errorLogin.classList.add('invisible');
+    if (elementName.userForm.classList.contains('invisible')) {
+        elementName.btnShowLogin.innerText = 'Log in';
+    } else {
+        elementName.inputPassword.value = '';
+        elementName.inputUserName.value = '';
+        elementName.btnShowLogin.innerText = 'Close';
+    }
+});
+
+elementName.btnShowSignUp.addEventListener('click', () => {
+    elementName.userForm.classList.toggle('invisible');
+    elementName.btnLogin.classList.add('invisible');
+    elementName.btnSignUp.classList.toggle('invisible');
+    elementName.btnShowLogin.classList.toggle('invisible');
+    elementName.errorSignUp.classList.add('invisible');
+    if (elementName.userForm.classList.contains('invisible')) {
+        elementName.btnShowSignUp.innerText = 'Sign up';
+    } else {
+        elementName.btnShowSignUp.innerText = 'Close';
+        elementName.inputPassword.value = '';
+        elementName.inputUserName.value = '';
+    }
+});
+
+elementName.btnLogin.addEventListener('click', async () => {
+    let userName = elementName.inputUserName.value;
+    let password = elementName.inputPassword.value;
+    let maybeLoggedIn = await loginUser(loggedInUser, userName, password);
+    if (maybeLoggedIn) {
+        isLoggedIn = true;
+        updateLoggedUI();
+    } else {
+        isLoggedIn = false;
+        elementName.errorLogin.classList.remove('invisible');
+    }
+});
+
+elementName.btnLogout.addEventListener('click', () => {
+    isLoggedIn = false;
+    loggedInUser = { userName: 'Guest' };
+    localStorage.removeItem(JWT_KEY);
+    updateLoggedUI();
+});
+
+elementName.btnSignUp.addEventListener('click', async () => {
+    let userName = inputUserName.value;
+    let password = inputPassword.value;
+    let maybeSignedUp = await signUpUser(loggedInUser, userName, password);
+    if (maybeSignedUp) {
+        checkForLoggedin();
+    } else {
+        elementName.inputPassword.value = '';
+        elementName.inputUserName.value = '';
+        elementName.errorSignUp.classList.remove('invisible');
+    }
+});
+
+elementName.btncloseEdit.addEventListener('click', () => {
+    elementName.inputEdit.value = '';
+    elementName.editContainer.classList.add('invisible');
 });
 
 async function sendNewMessage(channelName) {
@@ -100,67 +162,9 @@ function updateLoggedUI() {
     }
 }
 
-elementName.btnShowLogin.addEventListener('click', () => {
-    elementName.userForm.classList.toggle('invisible');
-    elementName.btnLogin.classList.remove('invisible');
-    elementName.btnShowSignUp.classList.toggle('invisible');
-    elementName.errorLogin.classList.add('invisible');
-    if (elementName.userForm.classList.contains('invisible')) {
-        elementName.btnShowLogin.innerText = 'Log in';
-    } else {
-        elementName.inputPassword.value = '';
-        elementName.inputUserName.value = '';
-        elementName.btnShowLogin.innerText = 'Close';
-    }
-});
-
-elementName.btnShowSignUp.addEventListener('click', () => {
-    elementName.userForm.classList.toggle('invisible');
-    elementName.btnLogin.classList.add('invisible');
-    elementName.btnSignUp.classList.toggle('invisible');
-    elementName.btnShowLogin.classList.toggle('invisible');
-    elementName.errorSignUp.classList.add('invisible');
-    if (elementName.userForm.classList.contains('invisible')) {
-        elementName.btnShowSignUp.innerText = 'Sign up';
-    } else {
-        elementName.btnShowSignUp.innerText = 'Close';
-        elementName.inputPassword.value = '';
-        elementName.inputUserName.value = '';
-    }
-});
-
-elementName.btnLogin.addEventListener('click', async () => {
-    let userName = elementName.inputUserName.value;
-    let password = elementName.inputPassword.value;
-    let maybeLoggedIn = await loginUser(loggedInUser, userName, password);
-    if (maybeLoggedIn) {
-        isLoggedIn = true;
-        updateLoggedUI();
-    } else {
-        isLoggedIn = false;
-        elementName.errorLogin.classList.remove('invisible');
-    }
-});
-
-elementName.btnLogout.addEventListener('click', () => {
-    isLoggedIn = false;
-    loggedInUser = { userName: 'Guest' };
-    localStorage.removeItem(JWT_KEY);
-    updateLoggedUI();
-});
-
-elementName.btnSignUp.addEventListener('click', async () => {
-    let userName = inputUserName.value;
-    let password = inputPassword.value;
-    let maybeSignedUp = await signUpUser(loggedInUser, userName, password);
-    if (maybeSignedUp) {
-        checkForLoggedin();
-    } else {
-        elementName.inputPassword.value = '';
-        elementName.inputUserName.value = '';
-        elementName.errorSignUp.classList.remove('invisible');
-    }
-});
+async function changeUserName(name) {
+    loggedInUser = { userName: `${name}` };
+}
 
 async function getChannelNames() {
     elementName.channelsContainer.innerHTML = '';

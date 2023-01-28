@@ -1,6 +1,7 @@
 import { getMessages, isLoggedIn } from './script.js';
 import { checkChannelAuth } from './auth.js';
-import { removeMessage } from './editRemove.js';
+import { removeMessage, editMessage } from './editRemove.js';
+import * as elementName from './getDOM.js';
 
 /* import * as globalVar from './globalVar.js';
 
@@ -68,6 +69,16 @@ function createInfoElements(name, loggedInUser, element) {
             iconEdit.className = 'fa-solid fa-pen-to-square';
             iconTrash.className = 'fa-solid fa-trash';
 
+            iconEdit.addEventListener('click', () => {
+                elementName.editContainer.classList.remove('invisible');
+                elementName.inputEdit.value = element.message;
+                elementName.btnsendEdit.addEventListener('click', () => {
+                    if (editMessage(name, loggedInUser, element)) {
+                        elementName.inputEdit.value = '';
+                        elementName.editContainer.classList.add('invisible');
+                    }
+                });
+            });
             iconTrash.addEventListener('click', () => {
                 removeMessage(name, loggedInUser, element);
             });
@@ -87,12 +98,19 @@ function createMessageElements(element) {
     const spanMessage = document.createElement('span');
 
     messagesChannels.classList.add('messagesChannels');
-    spanMessage.classList.add('message');
+    /* spanMessage.classList.add('message'); */
     if (!element.deleted) {
         spanMessage.innerText = element.message;
     } else {
-        spanMessage.innerHTML =
-            '<i id="removed">This message has been deleted</i>';
+        spanMessage.classList.add('removed');
+        spanMessage.innerHTML = 'This message has been deleted';
+    }
+
+    if (element.timeEdited) {
+        const spanEdited = document.createElement('span');
+        spanEdited.classList.add('edited');
+        spanEdited.innerText = `Edit: ${element.timeEdited}`;
+        messagesChannels.appendChild(spanEdited);
     }
 
     messagesChannels.appendChild(spanMessage);

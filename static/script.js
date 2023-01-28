@@ -63,7 +63,7 @@ async function sendNewMessage(channelName) {
         if (response.status === 200) {
             let channel = await response.json();
             console.log('This is channel', channel);
-            await getMessages(channel.name);
+            await getMessages(channel);
             return true;
         } else {
             return false;
@@ -203,6 +203,7 @@ async function getChannelNames() {
 }
 
 async function getMessages(name) {
+    console.log('FRONT getMessages: ', name);
     activeChannel = name.name;
     chatContainer.innerHTML = '';
     let messageArray = [];

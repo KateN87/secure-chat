@@ -27,21 +27,27 @@
             "messages": [
                 {
                     "id": 1,
-                    "message": "Cats are what they are",
-                    "timeCreated": "Thu Jan 26 2023 21:51:8",
+                    "message": "hallå där",
+                    "timeCreated": "Sat Jan 28 2023 9:46:0",
                     "userName": "Kate"
                 },
                 {
                     "id": 2,
-                    "message": "So true",
-                    "timeCreated": "Thu Jan 26 2023 21:51:8",
+                    "message": "hej hej",
+                    "timeCreated": "Sat Jan 28 2023 9:46:13",
                     "userName": "Richard"
                 },
                 {
                     "id": 3,
-                    "message": "Fooood",
-                    "timeCreated": "Thu Jan 26 2023 21:51:8",
-                    "userName": "Rut"
+                    "message": "hej hej",
+                    "timeCreated": "Sat Jan 28 2023 10:22:57",
+                    "userName": "Richard"
+                },
+                {
+                    "id": 4,
+                    "message": "hej hej",
+                    "timeCreated": "Sat Jan 28 2023 10:24:0",
+                    "userName": "Richard"
                 }
             ],
             "private": false
@@ -51,35 +57,39 @@
             "messages": [
                 {
                     "id": 1,
-                    "message": "Cats are what they are",
-                    "timeCreated": "Thu Jan 26 2023 21:51:8",
+                    "message": "hallå där",
+                    "timeCreated": "Sat Jan 28 2023 9:46:0",
                     "userName": "Kate"
+                },
+                {
+                    "id": 2,
+                    "message": "hej hej",
+                    "timeCreated": "Sat Jan 28 2023 9:46:13",
+                    "userName": "Richard"
+                },
+                {
+                    "id": 3,
+                    "message": "hej hej",
+                    "timeCreated": "Sat Jan 28 2023 10:22:57",
+                    "userName": "Richard"
+                },
+                {
+                    "id": 4,
+                    "message": "hej hej",
+                    "timeCreated": "Sat Jan 28 2023 10:24:0",
+                    "userName": "Richard"
                 }
             ],
             "private": "true"
         },
         {
             "name": "Watussi",
-            "messages": [
-                {
-                    "id": 1,
-                    "message": "Watussis are cool",
-                    "timeCreated": "2023-01-25T17:57:34.488Z",
-                    "userName": "Rut"
-                }
-            ],
+            "messages": [],
             "private": "true"
         },
         {
             "name": "Echidna",
-            "messages": [
-                {
-                    "id": 1,
-                    "message": "I know something special about echidnas",
-                    "timeCreated": "2023-01-25T17:57:34.488Z",
-                    "userName": "Kate"
-                }
-            ],
+            "messages": [],
             "private": "true"
         }
     ]

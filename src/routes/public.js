@@ -34,12 +34,18 @@ router.get('/channels/:name/messages', (req, res) => {
 router.post('/channels/:name', (req, res) => {
     const channelName = req.params.name;
     const { message, userName } = req.body;
-    const id = idCount++;
+    /* const id = channelName.messages.length + 1; */
+    console.log('channelName', channelName);
 
     const maybeChannel = db.data.channelData.find(
         (channel) => channelName === channel.name
     );
-    console.log(maybeChannel);
+    const id = maybeChannel.messages.length + 1;
+    console.log(
+        'BACK maybeChannel.messages.length: ',
+        maybeChannel.messages.length
+    );
+    console.log('BACK id: ', id);
     if (maybeChannel) {
         let newMessage = {
             id,
@@ -50,11 +56,21 @@ router.post('/channels/:name', (req, res) => {
 
         maybeChannel.messages.push(newMessage);
         db.write();
-        res.status('200').send(maybeChannel);
+        res.status(200).send(maybeChannel);
     } else {
         res.sendStatus(400);
     }
 });
+
+/*
+function validateMessage(maybeMessage) {
+	if( !maybeMessage.userAlias ) return false
+	if( !maybeMessage.message ) return false
+	// if( !maybeMessage.userAlias ) return false
+	// if( !maybeMessage.userAlias ) return false
+	return true
+}
+*/
 
 function createTimeStamp() {
     let now = new Date();

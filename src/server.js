@@ -19,5 +19,4 @@ app.use('/api/public/', publicRoutes);
 app.use('/api/private/', privateRoutes);
 app.use('/api/login/', loginRoutes);
 
-
 export { app };

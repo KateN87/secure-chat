@@ -7,7 +7,7 @@
 body {
     display: flex;
     flex-direction: column;
-    background-color: rgb(175, 199, 221);
+    background-color: rgb(116, 132, 146);
     align-items: center;
 }
 main {
@@ -48,17 +48,17 @@ header {
     padding: 5px;
 }
 
-header > span {
-    margin-right: 10px;
-    font-size: 25px;
-    font-weight: 900;
-    color: rgb(235, 205, 247);
-}
-
 h1 {
     color: rgb(240, 168, 30);
     margin: auto;
     font-size: 50px;
+}
+
+.name-output {
+    margin-right: 10px;
+    font-size: 25px;
+    font-weight: 900;
+    color: rgb(240, 168, 30);
 }
 
 /* FORMS FOR LOGIN/SIGNUP */
@@ -93,19 +93,21 @@ h1 {
 }
 
 #error-login,
-#error-signup {
+#error-signup,
+#error-channel {
     font-size: 15px;
     color: rgb(244, 7, 7);
 }
 
 /* CHAT/CHANNELS-containers */
-#readWrite {
+/* .readWrite {
     display: flex;
     flex-direction: column;
-}
+} */
 
 #chatContainer,
 #channelsContainer {
+    background-color: rgb(18, 61, 78);
     border: 3px solid rgb(18, 61, 78);
     display: flex;
     flex-direction: column;
@@ -115,10 +117,11 @@ h1 {
     overflow: auto;
 }
 
-#channelsContainer,
-#readWrite {
+.readWrite {
     width: 70%;
     max-width: 400px;
+    display: flex;
+    flex-direction: column;
 }
 
 #new-message {
@@ -134,7 +137,7 @@ textarea {
 .messagesChannels {
     display: flex;
     flex-direction: column;
-    border: 3px solid rgb(18, 61, 78);
+    background-color: beige;
     border-radius: 8px;
     margin-bottom: 15px;
     height: min-content;
@@ -147,6 +150,7 @@ textarea {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    color: beige;
 }
 
 i {
@@ -182,6 +186,44 @@ i {
     background-color: beige;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.createContainer {
+    display: inline-flex;
+    flex-direction: column;
+    align-self: center;
+    padding: 5px;
+    height: max-content;
+    width: 22em;
+    border: 3px solid rgb(18, 61, 78);
+    background-color: beige;
+    align-items: center;
+}
+
+.radioDiv {
+    display: inline-flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 5em;
+    padding: 5px;
+}
+
+input[type='checkbox' i] {
+    margin-bottom: 2px;
+}
+
+.createContainer > div > button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    width: 80px;
+    height: 30px;
+}
+
+.createChannelForm {
+    display: flex;
+    flex-direction: row;
 }
 
 .invisible {

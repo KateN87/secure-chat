@@ -118,12 +118,12 @@
       "private": true
     },
     {
-      "name": "NEEEEW",
+      "name": "NEw channel",
       "messages": [],
-      "private": true
+      "private": false
     },
     {
-      "name": "NEEEEWISH",
+      "name": "testing",
       "messages": [],
       "private": false
     }

@@ -46,23 +46,23 @@
         <main>
             <div class="readWrite">
                 <div id="channelsContainer"></div>
-                <section class="createContainer">
+                <section class="createContainer invisible">
                     <p id="error-channel" class="invisible">
                         Channel already exists
                     </p>
                     <form class="createChannelForm">
                         <div class="formDiv">
-                            <label>Channel name:</label>
+                            <label>NEW channel:</label>
                             <input id="inputChannelName" type="text" />
                         </div>
                         <label class="radioDiv">
                             Private
-                            <input type="checkbox" id="Private" value="true" />
+                            <input type="checkbox" id="Private" />
                         </label>
                     </form>
                     <div>
                         <button id="btnCreateChannel">Create</button>
-                        <button id="btnCloseChannel">Close</button>
+                        <!-- <button id="btnCloseChannel">Close</button> -->
                     </div>
                 </section>
             </div>

@@ -7,6 +7,7 @@ import { checkAuth } from './auth.js';
 import { signUpUser, loginUser } from './loginetc.js';
 import * as elementName from './getDOM.js';
 import * as globalVar from './globalVar.js';
+import { createChannel } from './editRemove.js';
 
 const JWT_KEY = globalVar.JWT_KEY;
 
@@ -68,6 +69,7 @@ elementName.btnLogout.addEventListener('click', () => {
     isLoggedIn = false;
     loggedInUser = { userName: 'Guest' };
     localStorage.removeItem(JWT_KEY);
+    getChannelNames();
     updateLoggedUI();
 });
 
@@ -87,6 +89,12 @@ elementName.btnSignUp.addEventListener('click', async () => {
 elementName.btncloseEdit.addEventListener('click', () => {
     elementName.inputEdit.value = '';
     elementName.editContainer.classList.add('invisible');
+});
+
+elementName.btnCreateChannel.addEventListener('click', () => {
+    let channelName = elementName.inputChannelName.value;
+    let status = elementName.checkBox.checked;
+    createChannel(channelName, status);
 });
 
 async function sendNewMessage(channelName) {
@@ -144,6 +152,8 @@ function updateLoggedUI() {
         elementName.btnShowLogin.classList.add('invisible');
         elementName.btnShowSignUp.classList.add('invisible');
         elementName.btnLogout.classList.remove('invisible');
+        elementName.createContainer.classList.remove('invisible');
+        getChannelNames();
     } else {
         for (const names of elementName.nameOutput) {
             names.innerText = 'Guest';
@@ -156,6 +166,7 @@ function updateLoggedUI() {
         elementName.userForm.classList.add('invisible');
         elementName.errorLogin.classList.add('invisible');
         elementName.errorSignUp.classList.add('invisible');
+        elementName.createContainer.classList.add('invisible');
 
         elementName.btnShowLogin.innerText = 'Log in';
         elementName.btnShowSignUp.innerText = 'Sign up';
@@ -235,4 +246,4 @@ async function getMessages(name) {
     }
 }
 
-export { getMessages, isLoggedIn, changeUserName, JWT_KEY };
+export { getMessages, isLoggedIn, changeUserName, JWT_KEY, getChannelNames };

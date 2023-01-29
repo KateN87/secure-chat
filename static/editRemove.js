@@ -1,5 +1,5 @@
 import { checkAuth } from './auth.js';
-import { getMessages } from './script.js';
+import { getMessages, getChannelNames } from './script.js';
 import * as elementName from './getDOM.js';
 
 async function removeMessage(name, loggedInUser, element) {
@@ -68,8 +68,39 @@ async function editMessage(name, loggedInUser, element) {
     }
 }
 
-/* const channelName = req.body.name;
-const newMessage = req.body.message;
-const user = req.body.user;
-const id = Number(req.params.id); */
-export { removeMessage, editMessage };
+async function createChannel(channelName, status) {
+    let newChannel = {
+        name: channelName,
+        message: elementName.inputEdit.value,
+        private: status,
+    };
+
+    if (checkAuth) {
+        try {
+            const response = await fetch('/api/private/', {
+                method: 'POST',
+                body: JSON.stringify(newChannel),
+                headers: {
+                    'Content-type': 'application/json',
+                },
+            });
+
+            if (response.status === 200) {
+                getChannelNames();
+            } else {
+                console.log('Could not edit. Status: ', response.status);
+            }
+
+            return true;
+        } catch (error) {
+            console.log(
+                'Could not PUT data to the server. Error message: ' +
+                    error.message
+            );
+        }
+    } else {
+        console.log('You are not logged in');
+    }
+}
+
+export { removeMessage, editMessage, createChannel };

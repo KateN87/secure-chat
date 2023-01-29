@@ -15,19 +15,18 @@ function validateSignUp(name, password) {
 }
 
 function validateNewChannel(name) {
+    console.log('BACK validateChannel name: ', name);
     if (name === '') {
         return false;
     }
 
     const maybeChannel = db.data.channelData.find(
-        (channel) => channel === channel.name
+        (channel) => channel.name === name
     );
-
-    if (maybeChannel) {
-        return false;
+    console.log('BACK vaildateChannel maybeChannel:', maybeChannel);
+    if (maybeChannel === undefined) {
+        return true;
     }
-
-    return true;
 }
 
 export { validateSignUp, validateNewChannel };

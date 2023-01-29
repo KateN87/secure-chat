@@ -107,7 +107,8 @@ router.post('/', (req, res) => {
     let status = req.body.private;
 
     /* const { name, public } = req.body; */
-    if (validateNewChannel(name)) {
+    let channelValidated = validateNewChannel(name);
+    if (channelValidated) {
         let newChannel = {
             name,
             messages: [],

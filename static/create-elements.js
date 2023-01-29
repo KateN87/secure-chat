@@ -33,7 +33,7 @@ function createChannelElements(name) {
 
     spanName.innerText = name.name;
 
-    if (name.private) {
+    if (name.private && !isLoggedIn) {
         const lockIcon = document.createElement('i');
         lockIcon.className = 'fa-solid fa-lock';
         spanChannel.appendChild(lockIcon);

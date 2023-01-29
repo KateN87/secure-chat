@@ -23,9 +23,9 @@ function validateNewChannel(name) {
     const maybeChannel = db.data.channelData.find(
         (channel) => channel.name === name
     );
-    console.log('BACK vaildateChannel maybeChannel:', maybeChannel);
-    if (maybeChannel === undefined) {
-        return true;
+
+    if (maybeChannel) {
+        return false;
     }
 }
 

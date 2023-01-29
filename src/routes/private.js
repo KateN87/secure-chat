@@ -1,69 +1,44 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
-import jwt from 'jsonwebtoken';
 import { db } from '../database.js';
 import { validateNewChannel } from '../validate.js';
 import { createTimeStamp } from './public.js';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    let token = req.body.token || req.query.token;
-
-    if (!token) {
-        let x = req.headers['authorization'];
-
-        if (x === undefined) {
-            res.sendStatus(401);
-            return;
-        }
-        token = x.substring(7);
-    }
-
-    if (token) {
-        let decoded;
-
-        try {
-            decoded = jwt.verify(token, process.env.SECRET);
-        } catch (error) {
-            res.sendStatus(401);
-            return;
-        }
-        res.status(200).send({ userName: decoded.userName });
-    } else {
-        res.sendStatus(401);
-    }
-});
-
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
     const channelName = req.body.name;
     const user = req.body.user;
     const id = Number(req.params.id);
 
-    /* const { userName } = req.body; */
     const maybeChannel = db.data.channelData.find(
         (channel) => channelName === channel.name
     );
     if (maybeChannel === undefined) {
         res.status(400).send('can not find channel');
+        return;
     }
+    console.log('Rad 55');
     const maybeMessage = maybeChannel.messages;
     if (maybeMessage === undefined) {
         res.status(400).send('can not find message');
+        return;
     }
+    console.log('Rad 60');
     const messageIndex = maybeMessage.findIndex((message) => id === message.id);
-    if (messageIndex !== -1) {
-        console.log('BACK user', user);
-        if (maybeMessage[messageIndex].userName === user) {
-            maybeMessage[messageIndex] = { deleted: true };
-            /* maybeMessage.splice(messageIndex, 1); */
-            db.write();
-            res.status(200).send(maybeChannel);
-            /* res.send('yesss'); */
-        }
-    } else {
+    if (messageIndex === -1) {
         res.status(400).send('Can not find id');
+        return;
+    }
+    if (maybeMessage[messageIndex].userName === user) {
+        console.log('if-sats:', maybeMessage[messageIndex].userName);
+        maybeMessage[messageIndex] = { deleted: true };
+        db.write();
+        res.status(200).send(maybeChannel);
+    } else {
+        res.sendStatus(401);
+        return;
     }
 });
 
@@ -102,11 +77,9 @@ router.put('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    /* Behöver name, messages och private */
     let name = req.body.name;
     let status = req.body.private;
 
-    /* const { name, public } = req.body; */
     let channelValidated = validateNewChannel(name);
     if (channelValidated) {
         let newChannel = {

@@ -10,7 +10,8 @@
     },
     {
       "userName": "Kate",
-      "password": "$2a$08$dVnUxRYOoiJaqLsHSglg8OnQcDrgUKchEGuxTlvK2NEnVg47LnuiO"
+      "password": "$2a$08$dVnUxRYOoiJaqLsHSglg8OnQcDrgUKchEGuxTlvK2NEnVg47LnuiO",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkthdGUiLCJpYXQiOjE2NzUwMTQ2ODIsImV4cCI6MTY3NTAxODI4Mn0.SEnmIVjh4_xDEPIf6Zdf8zo-j9iwrP0i3t5DZzqvDfs"
     },
     {
       "userName": "Rut",
@@ -18,7 +19,8 @@
     },
     {
       "userName": "Reuben",
-      "password": "$2a$08$dVnUxRYOoiJaqLsHSglg8OvNUTMTey.58RgeAfG9PTkaQINAp.ln6"
+      "password": "$2a$08$dVnUxRYOoiJaqLsHSglg8OvNUTMTey.58RgeAfG9PTkaQINAp.ln6",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IlJldWJlbiIsImlhdCI6MTY3NTAxNTkxNSwiZXhwIjoxNjc1MDE5NTE1fQ.i3KTLqP4EjdZTkOylwDg3W-0XJmeien0xqKPN4Qw33o"
     }
   ],
   "channelData": [
@@ -65,16 +67,10 @@
           "deleted": true
         },
         {
-          "id": 2,
-          "message": "asdasd",
-          "timeCreated": "Sat Jan 28 2023 15:7:0",
-          "userName": "Richard"
+          "deleted": true
         },
         {
-          "id": 3,
-          "message": "asdasd",
-          "timeCreated": "Sat Jan 28 2023 15:7:0",
-          "userName": "Reuben"
+          "deleted": true
         },
         {
           "id": 4,
@@ -124,6 +120,11 @@
     },
     {
       "name": "testing",
+      "messages": [],
+      "private": false
+    },
+    {
+      "name": "dfgdfg",
       "messages": [],
       "private": false
     }

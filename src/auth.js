@@ -19,7 +19,39 @@ function createToken(userName) {
     let user = { userName: userName };
     const token = jwt.sign(user, process.env.SECRET, { expiresIn: '1h' });
     user.token = token;
+
+    let match = db.data.userData.find((user) => user.userName === userName);
+
+    match.token = token;
+    db.write();
     return user;
 }
 
-export { createToken, authenticateUser };
+const checkAuth = (req, res, next) => {
+    let token = req.body.token || req.query.token;
+
+    if (!token) {
+        let x = req.headers['authorization'];
+
+        if (x === undefined) {
+            res.sendStatus(401);
+        }
+        token = x.substring(7);
+    }
+
+    if (token) {
+        jwt.verify(token, process.env.SECRET, (err, decodedToken) => {
+            if (err) {
+                console.log(err.message);
+                res.sendStatus(401);
+            } else {
+                console.log('decodedToken', decodedToken);
+                next();
+            }
+        });
+    } else {
+        res.sendStatus(401);
+    }
+};
+
+export { createToken, authenticateUser, checkAuth };

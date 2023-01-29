@@ -1,5 +1,4 @@
-import { JWT_KEY } from './script.js';
-import { changeUserName } from './script.js';
+import { JWT_KEY, changeUserName } from './script.js';
 
 async function signUpUser(loggedInUser, userName, password) {
     const user = {

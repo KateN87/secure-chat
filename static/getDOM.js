@@ -13,6 +13,7 @@ export const btnShowSignUp = document.querySelector('#btnshowSignUp');
 export const btnLogin = document.querySelector('#btnLogin');
 export const btnSignUp = document.querySelector('#btnSignUp');
 export const btnLogout = document.querySelector('#btnLogout');
+export const btnClose = document.querySelector('#btnClose');
 export const btnSendMessage = document.querySelector('#send-message');
 export const btnsendEdit = document.querySelector('#sendEdit');
 export const btncloseEdit = document.querySelector('#closeEdit');
@@ -24,3 +25,7 @@ export const inputPassword = document.querySelector('#inputPassword');
 export const inputEdit = document.querySelector('#inputEdit');
 export const inputChannelName = document.querySelector('#inputChannelName');
 export const checkBox = document.querySelector('#Private');
+
+{
+    /* <div class="namepassword-form"></div> */
+}

@@ -4,8 +4,17 @@ import express from 'express';
 import { db } from '../database.js';
 import { validateNewChannel } from '../validate.js';
 import { createTimeStamp } from './public.js';
+import jwt from 'jsonwebtoken';
 
 const router = express.Router();
+
+router.get('/', (req, res) => {
+    let token = req.headers['authorization'].substring(7);
+
+    let decoded = jwt.verify(token, process.env.SECRET);
+
+    res.status(200).send({ userName: decoded.userName });
+});
 
 router.delete('/:id', async (req, res) => {
     const channelName = req.body.name;

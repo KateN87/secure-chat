@@ -7,10 +7,10 @@ let idCount = 2;
 
 router.get('/channels', (req, res) => {
     let channelsArray = [];
-    db.data.channelData.forEach((elementName) => {
+    db.data.channelData.forEach((element) => {
         let eachChannel = {
-            name: elementName.name,
-            private: elementName.private,
+            name: element.name,
+            private: element.private,
         };
 
         channelsArray.push(eachChannel);
@@ -61,16 +61,6 @@ router.post('/channels/:name', (req, res) => {
         res.sendStatus(400);
     }
 });
-
-/*
-function validateMessage(maybeMessage) {
-	if( !maybeMessage.userAlias ) return false
-	if( !maybeMessage.message ) return false
-	// if( !maybeMessage.userAlias ) return false
-	// if( !maybeMessage.userAlias ) return false
-	return true
-}
-*/
 
 export function createTimeStamp() {
     let now = new Date();

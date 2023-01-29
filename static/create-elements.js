@@ -1,17 +1,7 @@
 import { getMessages, isLoggedIn } from './script.js';
 import { checkChannelAuth } from './auth.js';
 import { removeMessage, editMessage } from './editRemove.js';
-import * as elementName from './getDOM.js';
-
-/* import * as globalVar from './globalVar.js';
-
-const JWT_KEY = globalVar.JWT_KEY;
-
-let isLoggedIn = globalVar.isLoggedIn;
-
-let loggedInUser = globalVar.loggedInUser;
-
-let activeChannel = globalVar.activeChannel; */
+import * as elementN from './getDOM.js';
 
 const channelsContainer = document.querySelector('#channelsContainer');
 
@@ -94,11 +84,12 @@ function createInfoElements(name, loggedInUser, element) {
 }
 
 function createMessageElements(element) {
+    const divMain = document.createElement('div');
     const messagesChannels = document.createElement('section');
     const spanMessage = document.createElement('span');
 
     messagesChannels.classList.add('messagesChannels');
-    /* spanMessage.classList.add('message'); */
+
     if (!element.deleted) {
         spanMessage.innerText = element.message;
     } else {
@@ -114,6 +105,9 @@ function createMessageElements(element) {
     }
 
     messagesChannels.appendChild(spanMessage);
+    divMain.appendChild(messagesChannels);
+    elementN.chatContainer.appendChild(divMain);
+
     return messagesChannels;
 }
 

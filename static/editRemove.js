@@ -1,6 +1,6 @@
 import { checkAuth } from './auth.js';
 import { getMessages, getChannelNames } from './script.js';
-import * as elementName from './getDOM.js';
+import * as element from './getDOM.js';
 
 async function removeMessage(name, loggedInUser, element) {
     let deleteItem = {
@@ -36,10 +36,10 @@ async function removeMessage(name, loggedInUser, element) {
 async function editMessage(name, loggedInUser, element) {
     let editedMessage = {
         name: name.name,
-        message: elementName.inputEdit.value,
+        message: element.inputEdit.value,
         user: loggedInUser.userName,
     };
-    console.log('FRONT editMessage', elementName.inputEdit.value);
+    console.log('FRONT editMessage', element.inputEdit.value);
     if (checkAuth) {
         try {
             const response = await fetch('/api/private/' + element.id, {
@@ -71,7 +71,7 @@ async function editMessage(name, loggedInUser, element) {
 async function createChannel(channelName, status) {
     let newChannel = {
         name: channelName,
-        message: elementName.inputEdit.value,
+        message: element.inputEdit.value,
         private: status,
     };
 

@@ -11,7 +11,7 @@
     {
       "userName": "Kate",
       "password": "$2a$08$dVnUxRYOoiJaqLsHSglg8OnQcDrgUKchEGuxTlvK2NEnVg47LnuiO",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkthdGUiLCJpYXQiOjE2NzUwMTQ2ODIsImV4cCI6MTY3NTAxODI4Mn0.SEnmIVjh4_xDEPIf6Zdf8zo-j9iwrP0i3t5DZzqvDfs"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkthdGUiLCJpYXQiOjE2NzUwMjMwNzQsImV4cCI6MTY3NTAyNjY3NH0.2zLteULvFHOwitqsk5RABLys6nrAoAmrWL74UwpUu94"
     },
     {
       "userName": "Rut",
@@ -56,6 +56,12 @@
           "message": "hej hej",
           "timeCreated": "Sat Jan 28 2023 15:11:4",
           "userName": "Kate"
+        },
+        {
+          "id": 6,
+          "message": "Hej hej hej",
+          "timeCreated": "Sun Jan 29 2023 20:57:9",
+          "userName": "Guest"
         }
       ],
       "private": false
@@ -115,17 +121,38 @@
     },
     {
       "name": "NEw channel",
-      "messages": [],
+      "messages": [
+        {
+          "id": 1,
+          "message": "Hej hej hej",
+          "timeCreated": "Sun Jan 29 2023 21:6:8",
+          "userName": "Kate"
+        }
+      ],
       "private": false
     },
     {
       "name": "testing",
-      "messages": [],
+      "messages": [
+        {
+          "id": 1,
+          "message": "Hej hej hej",
+          "timeCreated": "Sun Jan 29 2023 21:6:10",
+          "userName": "Kate"
+        }
+      ],
       "private": false
     },
     {
       "name": "dfgdfg",
-      "messages": [],
+      "messages": [
+        {
+          "id": 1,
+          "message": "Hej hej hej",
+          "timeCreated": "Sun Jan 29 2023 21:6:13",
+          "userName": "Kate"
+        }
+      ],
       "private": false
     }
   ]

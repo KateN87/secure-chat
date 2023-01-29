@@ -1,4 +1,4 @@
-export const JWT_KEY = 'secureChat-jwt';
+/* export let JWT_KEY = 'secureChat-jwt'; */
 
 export let isLoggedIn = false;
 

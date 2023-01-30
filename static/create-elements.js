@@ -60,12 +60,12 @@ function createInfoElements(name, loggedInUser, element) {
             iconTrash.className = 'fa-solid fa-trash';
 
             iconEdit.addEventListener('click', () => {
-                elementName.editContainer.classList.remove('invisible');
-                elementName.inputEdit.value = element.message;
-                elementName.btnsendEdit.addEventListener('click', () => {
+                elementN.editContainer.classList.remove('invisible');
+                elementN.inputEdit.value = element.message;
+                elementN.btnsendEdit.addEventListener('click', () => {
                     if (editMessage(name, loggedInUser, element)) {
-                        elementName.inputEdit.value = '';
-                        elementName.editContainer.classList.add('invisible');
+                        elementN.inputEdit.value = '';
+                        elementN.editContainer.classList.add('invisible');
                     }
                 });
             });

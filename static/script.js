@@ -8,7 +8,7 @@ import * as element from './getDOM.js';
 import { createChannel } from './editRemove.js';
 import * as globalVar from './globalVar.js';
 
-let JWT_KEY = 'secureChat-jwt';
+let JWT_KEY = globalVar.JWT_KEY; 
 
 let isLoggedIn = globalVar.isLoggedIn;
 
@@ -21,30 +21,6 @@ getChannelNames();
 
 element.btnSendMessage.addEventListener('click', () => {
     sendNewMessage(activeChannel);
-});
-
-element.btnShowLogin.addEventListener('click', () => {
-    element.userForm.classList.toggle('invisible');
-    element.btnLogin.classList.remove('invisible');
-    element.btnShowSignUp.classList.toggle('invisible');
-    element.errorLogin.classList.add('invisible');
-    element.inputPassword.value = '';
-    element.inputUserName.value = '';
-});
-
-element.btnShowSignUp.addEventListener('click', () => {
-    element.userForm.classList.toggle('invisible');
-    element.btnLogin.classList.add('invisible');
-    element.btnSignUp.classList.toggle('invisible');
-    element.btnShowLogin.classList.toggle('invisible');
-    element.errorSignUp.classList.add('invisible');
-    if (element.userForm.classList.contains('invisible')) {
-        element.btnShowSignUp.innerText = 'Sign up';
-    } else {
-        element.btnShowSignUp.innerText = 'Close';
-        element.inputPassword.value = '';
-        element.inputUserName.value = '';
-    }
 });
 
 element.btnLogin.addEventListener('click', async () => {
@@ -62,7 +38,7 @@ element.btnLogin.addEventListener('click', async () => {
 
 element.btnLogout.addEventListener('click', () => {
     isLoggedIn = false;
-    loggedInUser = { userName: 'Guest' };
+    loggedInUser = { userName: '' };
     localStorage.removeItem(JWT_KEY);
     getChannelNames();
     updateLoggedUI();
@@ -104,13 +80,13 @@ async function checkForLoggedin() {
 }
 
 function updateLoggedUI() {
+    element.inputUserName.value = '';
+    element.inputPassword.value = '';
     if (isLoggedIn) {
         for (const names of element.nameOutput) {
             names.innerText = `${loggedInUser.userName}`;
         }
         element.userForm.classList.add('invisible');
-        /*         element.btnShowLogin.classList.add('invisible');
-        element.btnShowSignUp.classList.add('invisible'); */
         element.btnLogout.classList.remove('invisible');
         element.createContainer.classList.remove('invisible');
         getChannelNames();
@@ -121,15 +97,8 @@ function updateLoggedUI() {
         activeChannel = '';
         element.chatContainer.innerHTML = '';
         element.btnLogout.classList.add('invisible');
-        /* element.btnShowLogin.classList.remove('invisible');
-        element.btnShowSignUp.classList.remove('invisible');
-        element.userForm.classList.add('invisible');
-        element.errorLogin.classList.add('invisible');
-        element.errorSignUp.classList.add('invisible'); */
         element.createContainer.classList.add('invisible');
-
-        element.btnShowLogin.innerText = 'Log in';
-        element.btnShowSignUp.innerText = 'Sign up';
+        element.userForm.classList.remove("invisible")
     }
 }
 
@@ -222,7 +191,7 @@ async function getMessages(name) {
     }
 
     for (const message of messageArray) {
-        createMessageElements(message);
+        createMessageElements(name, message, loggedInUser);
     }
 }
 

@@ -32,9 +32,9 @@ async function signUpUser(loggedInUser, userName, password) {
     }
 }
 
-async function loginUser(name, sendName, password) {
+async function loginUser(name, userName, password) {
     const user = {
-        userName: sendName,
+        userName: userName,
         password: password,
     };
     const options = {

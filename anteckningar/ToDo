@@ -56,3 +56,4 @@ createNewChannel
 
 
 
+res.status(200).send(message)

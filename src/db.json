@@ -11,7 +11,7 @@
     {
       "userName": "Kate",
       "password": "$2a$08$dVnUxRYOoiJaqLsHSglg8OnQcDrgUKchEGuxTlvK2NEnVg47LnuiO",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkthdGUiLCJpYXQiOjE2NzUwMjMwNzQsImV4cCI6MTY3NTAyNjY3NH0.2zLteULvFHOwitqsk5RABLys6nrAoAmrWL74UwpUu94"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkthdGUiLCJpYXQiOjE2NzUwODUxNDEsImV4cCI6MTY3NTA4ODc0MX0.gHnXv0HVfKusRb1qrEQa2gNuicSuyf4AJbtiEdoKIIg"
     },
     {
       "userName": "Rut",
@@ -21,6 +21,16 @@
       "userName": "Reuben",
       "password": "$2a$08$dVnUxRYOoiJaqLsHSglg8OvNUTMTey.58RgeAfG9PTkaQINAp.ln6",
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IlJldWJlbiIsImlhdCI6MTY3NTAxNTkxNSwiZXhwIjoxNjc1MDE5NTE1fQ.i3KTLqP4EjdZTkOylwDg3W-0XJmeien0xqKPN4Qw33o"
+    },
+    {
+      "userName": "jdsfkjsdf",
+      "password": "$2a$08$2BkQlRCH2HqE6qFMItJ1m.R169HT3O4B/dBAEHLMg2FNanESRTde.",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Impkc2ZranNkZiIsImlhdCI6MTY3NTA3Njk3OSwiZXhwIjoxNjc1MDgwNTc5fQ.OKhFMDTKBMcTvAa4ujc82xpOfGrp3GT9QZaFMRZYXks"
+    },
+    {
+      "userName": "sdfgh",
+      "password": "$2a$08$2BkQlRCH2HqE6qFMItJ1m.eoUcTxcxNguKBh1AsniPcMVd77qx0my",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InNkZmdoIiwiaWF0IjoxNjc1MDc3MDk1LCJleHAiOjE2NzUwODA2OTV9.HUQBUn5keWK8HENBOF8nCQ9b8FoS6CKEekrHCAQ442Q"
     }
   ],
   "channelData": [
@@ -29,9 +39,9 @@
       "messages": [
         {
           "id": 1,
-          "message": "hej hej",
-          "timeCreated": "Sat Jan 28 2023 9:46:13",
-          "userName": "Kate"
+          "message": "hej hej sadasd",
+          "userName": "Kate",
+          "timeEdited": "Mon Jan 30 2023 14:20:25"
         },
         {
           "id": 2,
@@ -62,6 +72,18 @@
           "message": "Hej hej hej",
           "timeCreated": "Sun Jan 29 2023 20:57:9",
           "userName": "Guest"
+        },
+        {
+          "id": 7,
+          "message": "sdsdf",
+          "timeCreated": "Mon Jan 30 2023 12:7:21",
+          "userName": "Guest"
+        },
+        {
+          "id": 8,
+          "message": "dgdhsssssssfhjsdfjhsfdsd\nsdfhsdjfhsdkfj\nsdkfjbskjdfkjsdfh\nsjdkfbksdjfhksdjfh\nksdfhksdfhkfh\nskdjfhksjdfhsdf",
+          "timeCreated": "Mon Jan 30 2023 13:37:25",
+          "userName": "Kate"
         }
       ],
       "private": false
@@ -94,10 +116,7 @@
       "name": "Watussi",
       "messages": [
         {
-          "id": 1,
-          "message": "Teeeeestar",
-          "userName": "Kate",
-          "timeEdited": "Sat Jan 28 2023 19:52:1"
+          "deleted": true
         },
         {
           "id": 2,
@@ -110,6 +129,12 @@
           "message": "dig",
           "timeCreated": "Sat Jan 28 2023 15:7:0",
           "userName": "Reuben"
+        },
+        {
+          "deleted": true
+        },
+        {
+          "deleted": true
         }
       ],
       "private": true
@@ -118,42 +143,6 @@
       "name": "Echidna",
       "messages": [],
       "private": true
-    },
-    {
-      "name": "NEw channel",
-      "messages": [
-        {
-          "id": 1,
-          "message": "Hej hej hej",
-          "timeCreated": "Sun Jan 29 2023 21:6:8",
-          "userName": "Kate"
-        }
-      ],
-      "private": false
-    },
-    {
-      "name": "testing",
-      "messages": [
-        {
-          "id": 1,
-          "message": "Hej hej hej",
-          "timeCreated": "Sun Jan 29 2023 21:6:10",
-          "userName": "Kate"
-        }
-      ],
-      "private": false
-    },
-    {
-      "name": "dfgdfg",
-      "messages": [
-        {
-          "id": 1,
-          "message": "Hej hej hej",
-          "timeCreated": "Sun Jan 29 2023 21:6:13",
-          "userName": "Kate"
-        }
-      ],
-      "private": false
     }
   ]
 }

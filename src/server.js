@@ -13,6 +13,7 @@ const logger = (req, res, next) => {
     next();
 };
 
+
 app.use(express.json());
 app.use(logger);
 app.use(express.static(staticPath));

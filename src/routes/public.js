@@ -3,8 +3,6 @@ import { db } from '../database.js';
 
 const router = express.Router();
 
-let idCount = 2;
-
 router.get('/channels', (req, res) => {
     let channelsArray = [];
     db.data.channelData.forEach((element) => {
@@ -34,8 +32,6 @@ router.get('/channels/:name/messages', (req, res) => {
 router.post('/channels/:name', (req, res) => {
     const channelName = req.params.name;
     const { message, userName } = req.body;
-    /* const id = channelName.messages.length + 1; */
-    console.log('channelName', channelName);
 
     const maybeChannel = db.data.channelData.find(
         (channel) => channelName === channel.name

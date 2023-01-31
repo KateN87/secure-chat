@@ -1,20 +1,22 @@
-import { checkAuth } from './auth.js';
 import { getMessages, getChannelNames } from './script.js';
-import * as element from './getDOM.js';
+import * as elementS from './getDOM.js';
+
+let JWT_KEY = 'secureChat-jwt';
+const jwt = localStorage.getItem(JWT_KEY);
 
 async function removeMessage(name, loggedInUser, element) {
     let deleteItem = {
         name: name.name,
         user: loggedInUser.userName,
     };
-    if (checkAuth) {
         try {
             const response = await fetch('/api/private/' + element.id, {
                 method: 'DELETE',
                 body: JSON.stringify(deleteItem),
-                headers: {
-                    'Content-type': 'application/json',
-                },
+                headers:                 {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + jwt,
+                }
             });
 
             if (response.status === 200) {
@@ -28,26 +30,25 @@ async function removeMessage(name, loggedInUser, element) {
                     error.message
             );
         }
-    } else {
-        console.log('You are not logged in');
-    }
 }
 
 async function editMessage(name, loggedInUser, element) {
+
     let editedMessage = {
         name: name.name,
-        message: element.inputEdit.value,
+        message: elementS.inputEdit.value,
         user: loggedInUser.userName,
     };
-    console.log('FRONT editMessage', element.inputEdit.value);
-    if (checkAuth) {
+
         try {
             const response = await fetch('/api/private/' + element.id, {
                 method: 'PUT',
                 body: JSON.stringify(editedMessage),
-                headers: {
-                    'Content-type': 'application/json',
-                },
+                headers: 
+                {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + jwt,
+                }
             });
 
             if (response.status === 200) {
@@ -63,29 +64,29 @@ async function editMessage(name, loggedInUser, element) {
                     error.message
             );
         }
-    } else {
-        console.log('You are not logged in');
-    }
 }
 
 async function createChannel(channelName, status) {
+
     let newChannel = {
         name: channelName,
-        message: element.inputEdit.value,
+        message: elementS.inputEdit.value,
         private: status,
     };
+    console.log("FRONT createChannel channelName, status", channelName, status)
 
-    if (checkAuth) {
         try {
             const response = await fetch('/api/private/', {
                 method: 'POST',
                 body: JSON.stringify(newChannel),
                 headers: {
                     'Content-type': 'application/json',
+                    Authorization: 'Bearer ' + jwt,
                 },
             });
 
             if (response.status === 200) {
+                console.log("RESPONSE:STATUS",response.status)
                 getChannelNames();
             } else {
                 console.log('Could not edit. Status: ', response.status);
@@ -98,9 +99,6 @@ async function createChannel(channelName, status) {
                     error.message
             );
         }
-    } else {
-        console.log('You are not logged in');
-    }
-}
+    } 
 
 export { removeMessage, editMessage, createChannel };

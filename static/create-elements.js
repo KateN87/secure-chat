@@ -40,12 +40,13 @@ function createInfoElements(name, loggedInUser, element) {
     const spanDate = document.createElement('span');
 
     divInfo.classList.add('infoContainer');
-
     spanUserName.classList.add('userName');
-    spanUserName.innerText = element.userName;
-
     spanDate.classList.add('date');
-    spanDate.innerText = element.timeCreated;
+    
+    if(!element.deleted){
+        spanDate.innerText = element.timeCreated;
+        spanUserName.innerText = element.userName;
+    }
 
     divInfo.appendChild(spanUserName);
     divInfo.appendChild(spanDate);
@@ -83,13 +84,15 @@ function createInfoElements(name, loggedInUser, element) {
     return divInfo;
 }
 
-function createMessageElements(element) {
+function createMessageElements(name, element, loggedInUser) {
     const divMain = document.createElement('div');
     const messagesChannels = document.createElement('section');
     const spanMessage = document.createElement('span');
+    let divInfo = createInfoElements(name, loggedInUser, element)
 
     messagesChannels.classList.add('messagesChannels');
 
+    divMain.appendChild(divInfo)
     if (!element.deleted) {
         spanMessage.innerText = element.message;
     } else {

@@ -60,9 +60,7 @@ h1 {
     font-weight: 900;
     color: rgb(240, 168, 30);
 }
-#channelsContainer > .messagesChannels {
-    color: red;
-  }
+
 
 /* FORMS FOR LOGIN/SIGNUP */
 .user-form {
@@ -144,6 +142,11 @@ textarea {
     justify-content: space-around;
 }
 
+.selectedChannel {
+    background-color: rgb(240, 168, 30);
+    color: rgb(18, 61, 78);
+  }
+
 .infoContainer {
     display: flex;
     flex-direction: row;
@@ -158,6 +161,7 @@ i {
 }
 
 .messagesChannels > span > i {
+    color: rgb(31, 89, 112);
     -webkit-text-stroke: 1px rgb(147, 147, 147);
 }
 

@@ -6,9 +6,10 @@ import { state } from './globalVar.js';// globalVar from './globalVar.js';
 /* 
 let state.loggedInUser = globalVar.state.loggedInUser */
 const channelsContainer = document.querySelector('#channelsContainer');
+/* const channels = document.querySelectorAll('#channelsContainer.messagesChannels'); */
 
 function createChannelElements(name) {
-
+    
     const messagesChannels = document.createElement('section');
     const spanChannel = document.createElement('span');
     const spanName = document.createElement('span');
@@ -16,6 +17,12 @@ function createChannelElements(name) {
     messagesChannels.classList.add('messagesChannels');
 
     messagesChannels.addEventListener('click', async () => {
+        const channelBoxes = Array.from(channelsContainer.children)
+        for(const box of channelBoxes){
+            box.classList.remove("selectedChannel")
+        }
+        messagesChannels.classList.add("selectedChannel")
+        /* console.log("channelBoxes", channelBoxes) */
         let maybeAllowed = await checkChannelAuth(name);
         if (maybeAllowed) {
 
@@ -36,7 +43,14 @@ function createChannelElements(name) {
     spanChannel.appendChild(spanName);
     messagesChannels.appendChild(spanChannel);
     channelsContainer.appendChild(messagesChannels);
+    return
 }
+
+/* function getList(){
+    const channels = document.querySelectorAll('#channelsContainer.messagesChannels');
+    console.log(channels)
+
+} */
 
 function createInfoElements(name, /* state.loggedInUser, */ element) {
     const divInfo = document.createElement('div');

@@ -54,15 +54,15 @@ DONE: editMessage
 DONE: createNewChannel
 
 ERRORS:
-When first written wrong userName, and then press signup, errorLogin should be removed, and vice versa
+DONE: Visa i frontend vilken kanal som används
 
-Visa i frontend vilken kanal som används
+When first written wrong userName, and then press signup, errorLogin should be removed, and vice versa
 
 Endast visa send new message när en kanal är vald
 
 Notis om att logga in om man trycker på en låst kanal
 
-When user gets logged in, update channels-list so locked is removed
+Maybe DONE? : When user gets logged in, update channels-list so locked is removed
 
 Error when trying to add a new channel with no name
 

@@ -162,9 +162,10 @@ async function getChannelNames() {
         );
         return;
     }
-
+   
     for (const name of nameArray) {
         createChannelElements(name);
+
     }
 }
 

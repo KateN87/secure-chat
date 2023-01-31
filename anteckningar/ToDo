@@ -53,5 +53,19 @@ DONE: Fortsätta fixa så det går att skicka meddelande, fastnar på att kanaln
 DONE: editMessage
 DONE: createNewChannel
 
-When new user created, update channels-list so locked is removed
-Meddela användare vid fel, t.ex om det inte gick att skapa kanal el. liknande
+ERRORS:
+When first written wrong userName, and then press signup, errorLogin should be removed, and vice versa
+
+Visa i frontend vilken kanal som används
+
+Endast visa send new message när en kanal är vald
+
+Notis om att logga in om man trycker på en låst kanal
+
+When user gets logged in, update channels-list so locked is removed
+
+Error when trying to add a new channel with no name
+
+Error when server-problems?
+
+sett scroll-bar at bottom when new message is added (not at channel?)

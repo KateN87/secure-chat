@@ -1,8 +1,10 @@
-import { getMessages, isLoggedIn } from './script.js';
+import { getMessages } from './script.js';
 import { checkChannelAuth } from './auth.js';
 import { removeMessage, editMessage } from './editRemove.js';
 import * as elementN from './getDOM.js';
-
+import { state } from './globalVar.js';// globalVar from './globalVar.js';
+/* 
+let state.loggedInUser = globalVar.state.loggedInUser */
 const channelsContainer = document.querySelector('#channelsContainer');
 
 function createChannelElements(name) {
@@ -23,7 +25,7 @@ function createChannelElements(name) {
 
     spanName.innerText = name.name;
 
-    if (name.private && !isLoggedIn) {
+    if (name.private && !state.isLoggedIn) {
         const lockIcon = document.createElement('i');
         lockIcon.className = 'fa-solid fa-lock';
         spanChannel.appendChild(lockIcon);
@@ -34,7 +36,7 @@ function createChannelElements(name) {
     channelsContainer.appendChild(messagesChannels);
 }
 
-function createInfoElements(name, loggedInUser, element) {
+function createInfoElements(name, /* state.loggedInUser, */ element) {
     const divInfo = document.createElement('div');
     const spanUserName = document.createElement('span');
     const spanDate = document.createElement('span');
@@ -44,6 +46,11 @@ function createInfoElements(name, loggedInUser, element) {
     spanDate.classList.add('date');
     
     if(!element.deleted){
+        if(!element.timeCreated){
+            console.log("createInfoElements elment", element)
+
+        }
+        // console.log("createInfoElements element.timeCreated", element.timeCreated)
         spanDate.innerText = element.timeCreated;
         spanUserName.innerText = element.userName;
     }
@@ -51,8 +58,9 @@ function createInfoElements(name, loggedInUser, element) {
     divInfo.appendChild(spanUserName);
     divInfo.appendChild(spanDate);
 
-    if (isLoggedIn) {
-        if (element.userName === loggedInUser.userName) {
+    if (state.isLoggedIn) {
+/*         console.log("createInfoElements element.userName:", element.userName, "state.loggedInUser.userName", state.loggedInUser) */
+        if (element.userName === state.loggedInUser.userName) {
             const spanIcons = document.createElement('span');
             const iconEdit = document.createElement('i');
             const iconTrash = document.createElement('i');
@@ -64,14 +72,14 @@ function createInfoElements(name, loggedInUser, element) {
                 elementN.editContainer.classList.remove('invisible');
                 elementN.inputEdit.value = element.message;
                 elementN.btnsendEdit.addEventListener('click', () => {
-                    if (editMessage(name, loggedInUser, element)) {
+                    if (editMessage(name, state.loggedInUser, element)) {
                         elementN.inputEdit.value = '';
                         elementN.editContainer.classList.add('invisible');
                     }
                 });
             });
             iconTrash.addEventListener('click', () => {
-                removeMessage(name, loggedInUser, element);
+                removeMessage(name, state.loggedInUser, element);
             });
 
             spanIcons.classList.add('icons');
@@ -84,11 +92,11 @@ function createInfoElements(name, loggedInUser, element) {
     return divInfo;
 }
 
-function createMessageElements(name, element, loggedInUser) {
+function createMessageElements(name, element) {
     const divMain = document.createElement('div');
     const messagesChannels = document.createElement('section');
     const spanMessage = document.createElement('span');
-    let divInfo = createInfoElements(name, loggedInUser, element)
+    let divInfo = createInfoElements(name, element)
 
     messagesChannels.classList.add('messagesChannels');
 

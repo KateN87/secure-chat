@@ -75,7 +75,7 @@ router.put('/:id', (req, res) => {
         if (thisMessage.userName === user) {
             thisMessage.timeEdited = createTimeStamp();
             thisMessage.message = newMessage;
-            delete thisMessage.timeCreated;
+            /* delete thisMessage.timeCreated; */
 
             db.write();
             res.sendStatus(200);

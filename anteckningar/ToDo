@@ -2,7 +2,6 @@ FRÅGOR:
 Hur skickar jag med variabler mellan filer? Se min signUp och Log in
 Kan jag nå DOM-element från loginetc?
 är input speciellt? Ser värdet utan att specificera DOM
-Är det bättre att göra två olika inlogg formulär? Mer i HTML och DOM-variabler, men min i js-koden
 
 BACKEND
 -   I server.js:

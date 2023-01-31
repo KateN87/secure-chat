@@ -1,4 +1,5 @@
-import { JWT_KEY, changeUserName } from './script.js';
+import { state } from './globalVar.js';// globalVar from './globalVar.js';
+import { changeUserName } from './script.js';
 
 async function checkChannelAuth(name) {
     if (name.private) {
@@ -14,7 +15,7 @@ async function checkChannelAuth(name) {
 }
 
 async function checkAuth() {
-    const jwt = localStorage.getItem(JWT_KEY);
+    const jwt = localStorage.getItem(state.JWT_KEY);
 
     const options = {
         method: 'GET',

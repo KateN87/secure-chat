@@ -1,13 +1,13 @@
 import { getMessages, getChannelNames } from './script.js';
 import * as elementS from './getDOM.js';
+import { state } from './globalVar.js';// globalVar from './globalVar.js';
 
-let JWT_KEY = 'secureChat-jwt';
-const jwt = localStorage.getItem(JWT_KEY);
+const jwt = localStorage.getItem(state.JWT_KEY);
 
-async function removeMessage(name, loggedInUser, element) {
+async function removeMessage(name, element) {
     let deleteItem = {
         name: name.name,
-        user: loggedInUser.userName,
+        user: state.loggedInUser.userName,
     };
         try {
             const response = await fetch('/api/private/' + element.id, {
@@ -32,12 +32,12 @@ async function removeMessage(name, loggedInUser, element) {
         }
 }
 
-async function editMessage(name, loggedInUser, element) {
+async function editMessage(name, element) {
 
     let editedMessage = {
         name: name.name,
         message: elementS.inputEdit.value,
-        user: loggedInUser.userName,
+        user: state.loggedInUser.userName,
     };
 
         try {

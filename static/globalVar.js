@@ -1,7 +1,8 @@
-export let JWT_KEY = 'secureChat-jwt';
 
-export let isLoggedIn = false;
+export const state = {
+    JWT_KEY: 'secureChat-jwt',
+    isLoggedIn: false,
+    loggedInUser: {userName: ''},
+    activeChannel: ''
 
-export let loggedInUser = { userName: '' };
-
-export let activeChannel = '';
+}

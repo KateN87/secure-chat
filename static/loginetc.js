@@ -3,8 +3,8 @@ import { state } from './globalVar.js';// globalVar from './globalVar.js';
 
 async function signUpUser(userName, password) {
     const user = {
-        userName: userName,
-        password: password,
+        userName,
+        password,
     };
     const options = {
         method: 'POST',
@@ -19,7 +19,7 @@ async function signUpUser(userName, password) {
         if (response.status === 200) {
             state.loggedInUser = await response.json();
 
-            await loginUser();
+            await loginUser(userName, password);
 
             return true;
         } else {
@@ -33,10 +33,10 @@ async function signUpUser(userName, password) {
     }
 }
 
-async function loginUser(name, userName, password) {
+async function loginUser(userName, password) {
     const user = {
-        userName: userName,
-        password: password,
+        userName,
+        password,
     };
     const options = {
         method: 'POST',
@@ -49,11 +49,11 @@ async function loginUser(name, userName, password) {
     try {
         const response = await fetch('/api/login/', options);
         if (response.status === 200) {
-            name = await response.json();
+            const user = await response.json();
 
-            localStorage.setItem(state.JWT_KEY, name.token);
+            localStorage.setItem(state.JWT_KEY, user.token);
 
-            await changeUserName(name.userName);
+            await changeUserName(user.userName);
             return true;
         } else {
             console.log('Login failed : ' + response.status);

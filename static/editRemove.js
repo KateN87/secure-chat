@@ -73,7 +73,6 @@ async function createChannel(channelName, status) {
         message: elementS.inputEdit.value,
         private: status,
     };
-    console.log("FRONT createChannel channelName, status", channelName, status)
 
         try {
             const response = await fetch('/api/private/', {
@@ -86,7 +85,6 @@ async function createChannel(channelName, status) {
             });
 
             if (response.status === 200) {
-                console.log("RESPONSE:STATUS",response.status)
                 getChannelNames();
             } else {
                 console.log('Could not edit. Status: ', response.status);

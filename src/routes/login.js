@@ -1,5 +1,3 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
 import express from 'express';
 import { authenticateUser, createToken } from '../auth.js';
 import { validateSignUp } from '../validate.js';

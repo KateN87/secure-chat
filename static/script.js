@@ -6,27 +6,18 @@ import { checkAuth } from './auth.js';
 import { signUpUser, loginUser } from './loginetc.js';
 import * as element from './getDOM.js';
 import { createChannel } from './editRemove.js';
-import { state } from './globalVar.js';// globalVar from './globalVar.js';
+import { state } from './globalVar.js';
 
-// let state.JWT_KEY = globalVar.state.JWT_KEY; 
-
-// let state.isLoggedIn = globalVar.state.isLoggedIn;
-
-// let state.loggedInUser = globalVar.state.loggedInUser;
-
-// let state.activeChannel = globalVar.state.activeChannel;
 
 checkForLoggedin();
 getChannelNames();
 
-element.btnSendMessage.addEventListener('click', () => {
-    sendNewMessage(state.activeChannel);
-});
+element.btnSendMessage.addEventListener('click', sendNewMessage);
 
 element.btnLogin.addEventListener('click', async () => {
     let userName = element.inputUserName.value;
     let password = element.inputPassword.value;
-    let maybeLoggedIn = await loginUser(state.loggedInUser, userName, password);
+    let maybeLoggedIn = await loginUser(userName, password);
     if (maybeLoggedIn) {
         state.isLoggedIn = true;
         updateLoggedUI();
@@ -72,13 +63,14 @@ async function checkForLoggedin() {
     //Om true, uppdaterat state.loggedInUser
     //Om false, state.loggedInUser = guest
     let maybeLoggedIn = await checkAuth();
-/*     console.log("checkForLoggedin maybeLoggedIn, state.loggedInUser: ", maybeLoggedIn, state.loggedInUser) */
+
     if (maybeLoggedIn) {
         state.isLoggedIn = true;
         updateLoggedUI();
         return;
     }
     updateLoggedUI();
+
     state.loggedInUser = { userName: 'Guest' };
 }
 
@@ -131,6 +123,7 @@ async function sendNewMessage() {
             let channel = await response.json();
             console.log('This is channel', channel);
             await getMessages(channel);
+            element.inputMessage.value = ''
             return true;
         } else {
             return false;

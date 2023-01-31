@@ -8,13 +8,12 @@
     {
       "userName": "Kate",
       "password": "$2a$08$dVnUxRYOoiJaqLsHSglg8OnQcDrgUKchEGuxTlvK2NEnVg47LnuiO",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkthdGUiLCJpYXQiOjE2NzUxNTMxNzMsImV4cCI6MTY3NTE1Njc3M30.M5_2gozvJZnh4NyOHz0RdA3RRyY4nDaTL3MJ-HmC-dw"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkthdGUiLCJpYXQiOjE2NzUxNjEyMTAsImV4cCI6MTY3NTE2NDgxMH0.X14TnAuTUMVUvZLH3Dfhi-h2CIqUXtv4Dhe-K2mWtTw"
     },
     {
-      "userName": {
-        "userName": ""
-      },
-      "password": "$2a$08$4GvXaawOdeqLiy1pNGEKt.GmlqcjljmulNvIxEXc4EdPzU7YElODG"
+      "userName": "Matilda",
+      "password": "$2a$08$7Si1jbtPAu2cJVHU6ZhXg.BzttOdv.LlKq1a0qm96ELm0LB1T.7se",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Ik1hdGlsZGEiLCJpYXQiOjE2NzUxNjI5MDYsImV4cCI6MTY3NTE2NjUwNn0.1-Gv2Ad6m5klXilHWb2vDFTbBw6AmB0VRD6VRwFo5Fc"
     }
   ],
   "channelData": [
@@ -70,6 +69,42 @@
           "id": 1,
           "message": "This is a new message",
           "timeCreated": "Tue Jan 31 2023 11:11:18",
+          "userName": "Kate"
+        },
+        {
+          "id": 2,
+          "message": "Hej jag heter Matilda",
+          "timeCreated": "Tue Jan 31 2023 11:25:14",
+          "userName": "Matilda"
+        }
+      ],
+      "private": false
+    },
+    {
+      "name": "This is Matildas channel",
+      "messages": [
+        {
+          "id": 1,
+          "message": "Hej Matilda",
+          "timeCreated": "Tue Jan 31 2023 11:37:40",
+          "userName": "Kate"
+        },
+        {
+          "id": 2,
+          "message": "Hej Kate",
+          "timeCreated": "Tue Jan 31 2023 11:37:54",
+          "userName": "Matilda"
+        }
+      ],
+      "private": false
+    },
+    {
+      "name": "asd",
+      "messages": [
+        {
+          "id": 1,
+          "message": "asd",
+          "timeCreated": "Tue Jan 31 2023 11:33:43",
           "userName": "Kate"
         }
       ],

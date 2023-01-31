@@ -1,6 +1,7 @@
-import { JWT_KEY, changeUserName } from './script.js';
+import { changeUserName } from './script.js';
+import { state } from './globalVar.js';// globalVar from './globalVar.js';
 
-async function signUpUser(loggedInUser, userName, password) {
+async function signUpUser(userName, password) {
     const user = {
         userName: userName,
         password: password,
@@ -16,9 +17,9 @@ async function signUpUser(loggedInUser, userName, password) {
     try {
         const response = await fetch('/api/login/create', options);
         if (response.status === 200) {
-            loggedInUser = await response.json();
+            state.loggedInUser = await response.json();
 
-            await loginUser(loggedInUser, loggedInUser.userName, user.password);
+            await loginUser();
 
             return true;
         } else {
@@ -50,7 +51,7 @@ async function loginUser(name, userName, password) {
         if (response.status === 200) {
             name = await response.json();
 
-            localStorage.setItem(JWT_KEY, name.token);
+            localStorage.setItem(state.JWT_KEY, name.token);
 
             await changeUserName(name.userName);
             return true;

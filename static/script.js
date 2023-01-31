@@ -6,40 +6,40 @@ import { checkAuth } from './auth.js';
 import { signUpUser, loginUser } from './loginetc.js';
 import * as element from './getDOM.js';
 import { createChannel } from './editRemove.js';
-import * as globalVar from './globalVar.js';
+import { state } from './globalVar.js';// globalVar from './globalVar.js';
 
-let JWT_KEY = globalVar.JWT_KEY; 
+// let state.JWT_KEY = globalVar.state.JWT_KEY; 
 
-let isLoggedIn = globalVar.isLoggedIn;
+// let state.isLoggedIn = globalVar.state.isLoggedIn;
 
-let loggedInUser = globalVar.loggedInUser;
+// let state.loggedInUser = globalVar.state.loggedInUser;
 
-let activeChannel = globalVar.activeChannel;
+// let state.activeChannel = globalVar.state.activeChannel;
 
 checkForLoggedin();
 getChannelNames();
 
 element.btnSendMessage.addEventListener('click', () => {
-    sendNewMessage(activeChannel);
+    sendNewMessage(state.activeChannel);
 });
 
 element.btnLogin.addEventListener('click', async () => {
     let userName = element.inputUserName.value;
     let password = element.inputPassword.value;
-    let maybeLoggedIn = await loginUser(loggedInUser, userName, password);
+    let maybeLoggedIn = await loginUser(state.loggedInUser, userName, password);
     if (maybeLoggedIn) {
-        isLoggedIn = true;
+        state.isLoggedIn = true;
         updateLoggedUI();
     } else {
-        isLoggedIn = false;
+        state.isLoggedIn = false;
         element.errorLogin.classList.remove('invisible');
     }
 });
 
 element.btnLogout.addEventListener('click', () => {
-    isLoggedIn = false;
-    loggedInUser = { userName: '' };
-    localStorage.removeItem(JWT_KEY);
+    state.isLoggedIn = false;
+    state.loggedInUser = { userName: '' };
+    localStorage.removeItem(state.JWT_KEY);
     getChannelNames();
     updateLoggedUI();
 });
@@ -47,7 +47,7 @@ element.btnLogout.addEventListener('click', () => {
 element.btnSignUp.addEventListener('click', async () => {
     let userName = inputUserName.value;
     let password = inputPassword.value;
-    let maybeSignedUp = await signUpUser(loggedInUser, userName, password);
+    let maybeSignedUp = await signUpUser(userName, password);
     if (maybeSignedUp) {
         checkForLoggedin();
     } else {
@@ -69,32 +69,35 @@ element.btnCreateChannel.addEventListener('click', () => {
 });
 
 async function checkForLoggedin() {
+    //Om true, uppdaterat state.loggedInUser
+    //Om false, state.loggedInUser = guest
     let maybeLoggedIn = await checkAuth();
+/*     console.log("checkForLoggedin maybeLoggedIn, state.loggedInUser: ", maybeLoggedIn, state.loggedInUser) */
     if (maybeLoggedIn) {
-        isLoggedIn = true;
+        state.isLoggedIn = true;
         updateLoggedUI();
         return;
     }
     updateLoggedUI();
-    loggedInUser = { userName: 'Guest' };
+    state.loggedInUser = { userName: 'Guest' };
 }
 
 function updateLoggedUI() {
     element.inputUserName.value = '';
     element.inputPassword.value = '';
-    if (isLoggedIn) {
+    if (state.isLoggedIn) {
         for (const names of element.nameOutput) {
-            names.innerText = `${loggedInUser.userName}`;
+            names.innerText = `${state.loggedInUser.userName}`;
         }
         element.userForm.classList.add('invisible');
         element.btnLogout.classList.remove('invisible');
         element.createContainer.classList.remove('invisible');
-        getChannelNames();
+        /* getChannelNames(); */
     } else {
         for (const names of element.nameOutput) {
             names.innerText = 'Guest';
         }
-        activeChannel = '';
+        state.activeChannel = '';
         element.chatContainer.innerHTML = '';
         element.btnLogout.classList.add('invisible');
         element.createContainer.classList.add('invisible');
@@ -103,13 +106,13 @@ function updateLoggedUI() {
 }
 
 async function changeUserName(name) {
-    loggedInUser = { userName: `${name}` };
+    state.loggedInUser = { userName: `${name}` };
 }
 
-async function sendNewMessage(channelName) {
+async function sendNewMessage() {
     const newMessage = {
         message: element.inputMessage.value,
-        userName: loggedInUser.userName,
+        userName: state.loggedInUser.userName,
     };
     const options = {
         method: 'POST',
@@ -121,7 +124,7 @@ async function sendNewMessage(channelName) {
 
     try {
         const response = await fetch(
-            '/api/public/channels/' + `${channelName}`,
+            '/api/public/channels/' + `${state.activeChannel}`,
             options
         );
         if (response.status === 200) {
@@ -167,7 +170,7 @@ async function getChannelNames() {
 }
 
 async function getMessages(name) {
-    activeChannel = name.name;
+    state.activeChannel = name.name;
     element.chatContainer.innerHTML = '';
     let messageArray = [];
     try {
@@ -191,8 +194,8 @@ async function getMessages(name) {
     }
 
     for (const message of messageArray) {
-        createMessageElements(name, message, loggedInUser);
+        createMessageElements(name, message, state.loggedInUser);
     }
 }
 
-export { getMessages, isLoggedIn, changeUserName, JWT_KEY, getChannelNames };
+export { getMessages, changeUserName, getChannelNames };

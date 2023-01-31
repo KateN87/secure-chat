@@ -3,12 +3,13 @@ import * as elementS from './getDOM.js';
 import { state } from './globalVar.js';// globalVar from './globalVar.js';
 
 const jwt = localStorage.getItem(state.JWT_KEY);
-
+console.log("EditRemove", state.loggedInUser.userName)
 async function removeMessage(name, element) {
     let deleteItem = {
         name: name.name,
         user: state.loggedInUser.userName,
     };
+
         try {
             const response = await fetch('/api/private/' + element.id, {
                 method: 'DELETE',
@@ -33,8 +34,6 @@ async function removeMessage(name, element) {
 }
 
 async function editMessage(name, element) {
-    console.log("EditMessage element.id: ", element)
-    console.log("EditMessage element.id: ", element.id)
     let editedMessage = {
         name: name.name,
         message: elementS.inputEdit.value,

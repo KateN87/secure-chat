@@ -60,6 +60,9 @@ h1 {
     font-weight: 900;
     color: rgb(240, 168, 30);
 }
+#channelsContainer > .messagesChannels {
+    color: red;
+  }
 
 /* FORMS FOR LOGIN/SIGNUP */
 .user-form {

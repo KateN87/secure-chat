@@ -37,11 +37,7 @@ router.post('/channels/:name', (req, res) => {
         (channel) => channelName === channel.name
     );
     const id = maybeChannel.messages.length + 1;
-    console.log(
-        'BACK maybeChannel.messages.length: ',
-        maybeChannel.messages.length
-    );
-    console.log('BACK id: ', id);
+
     if (maybeChannel) {
         let newMessage = {
             id,

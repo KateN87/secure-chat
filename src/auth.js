@@ -45,7 +45,6 @@ const checkAuth = (req, res, next) => {
                 console.log(err.message);
                 res.sendStatus(401);
             } else {
-                console.log('decodedToken', decodedToken);
                 next();
             }
         });

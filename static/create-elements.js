@@ -8,6 +8,7 @@ let state.loggedInUser = globalVar.state.loggedInUser */
 const channelsContainer = document.querySelector('#channelsContainer');
 
 function createChannelElements(name) {
+
     const messagesChannels = document.createElement('section');
     const spanChannel = document.createElement('span');
     const spanName = document.createElement('span');
@@ -48,7 +49,7 @@ function createInfoElements(name, /* state.loggedInUser, */ element) {
     
     if(!element.deleted){
         if(!element.timeCreated){
-            console.log("createInfoElements elment", element)
+            
 
         }
         // console.log("createInfoElements element.timeCreated", element.timeCreated)

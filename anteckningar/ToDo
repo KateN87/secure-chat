@@ -68,4 +68,6 @@ Error when trying to add a new channel with no name
 
 Error when server-problems?
 
+Färg på felmeddelande i frontend
+
 sett scroll-bar at bottom when new message is added (not at channel?)

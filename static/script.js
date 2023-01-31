@@ -8,9 +8,7 @@ import * as element from './getDOM.js';
 import { createChannel } from './editRemove.js';
 import { state } from './globalVar.js';
 
-
-checkForLoggedin();
-getChannelNames();
+checkForLoggedin()
 
 element.btnSendMessage.addEventListener('click', sendNewMessage);
 
@@ -20,6 +18,7 @@ element.btnLogin.addEventListener('click', async () => {
     let maybeLoggedIn = await loginUser(userName, password);
     if (maybeLoggedIn) {
         state.isLoggedIn = true;
+        console.log("btnLogin", state.isLoggedIn)
         updateLoggedUI();
     } else {
         state.isLoggedIn = false;
@@ -31,7 +30,8 @@ element.btnLogout.addEventListener('click', () => {
     state.isLoggedIn = false;
     state.loggedInUser = { userName: '' };
     localStorage.removeItem(state.JWT_KEY);
-    getChannelNames();
+/*     console.log("GET channelNames 2")
+    getChannelNames(); */
     updateLoggedUI();
 });
 
@@ -66,15 +66,19 @@ async function checkForLoggedin() {
 
     if (maybeLoggedIn) {
         state.isLoggedIn = true;
-        updateLoggedUI();
-        return;
+
+    } else {
+
+        state.loggedInUser = { userName: 'Guest' };
     }
+    
     updateLoggedUI();
 
-    state.loggedInUser = { userName: 'Guest' };
+    
 }
 
 function updateLoggedUI() {
+    element.channelsContainer.innerHTML = '';
     element.inputUserName.value = '';
     element.inputPassword.value = '';
     if (state.isLoggedIn) {
@@ -84,8 +88,9 @@ function updateLoggedUI() {
         element.userForm.classList.add('invisible');
         element.btnLogout.classList.remove('invisible');
         element.createContainer.classList.remove('invisible');
-         getChannelNames();
+         
     } else {
+
         for (const names of element.nameOutput) {
             names.innerText = 'Guest';
         }
@@ -95,6 +100,7 @@ function updateLoggedUI() {
         element.createContainer.classList.add('invisible');
         element.userForm.classList.remove("invisible")
     }
+    getChannelNames();
 }
 
 async function changeUserName(name) {

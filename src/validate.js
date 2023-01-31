@@ -15,9 +15,9 @@ function validateSignUp(name, password) {
 }
 
 function validateNewChannel(name) {
-    console.log('BACK validateChannel name: ', name);
+    
     if (name === '') {
-        console.log('BACK validateChannel name === "":', name === '');
+        
         return false;
     }
 

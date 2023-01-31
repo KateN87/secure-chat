@@ -8,7 +8,12 @@
     {
       "userName": "Kate",
       "password": "$2a$08$dVnUxRYOoiJaqLsHSglg8OnQcDrgUKchEGuxTlvK2NEnVg47LnuiO",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkthdGUiLCJpYXQiOjE2NzUxNTMxNzMsImV4cCI6MTY3NTE1Njc3M30.M5_2gozvJZnh4NyOHz0RdA3RRyY4nDaTL3MJ-HmC-dw"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkthdGUiLCJpYXQiOjE2NzUxNjk2ODYsImV4cCI6MTY3NTE3MzI4Nn0.WV3sfakWm6EpoGQRsTachX6zqtmp5FD1Geds9K8Hg1A"
+    },
+    {
+      "userName": "Matilda",
+      "password": "$2a$08$HPLoLmYgJg7DBPMqvg7pxOMQ/0yIpu83b/Xr6bWPTDy4qS26VQw6K",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Ik1hdGlsZGEiLCJpYXQiOjE2NzUxNjk2OTUsImV4cCI6MTY3NTE3MzI5NX0.5GKO94DOzh2vi0lw4FsfUIpp5n4JKIX2DfJKFl5dLFI"
     }
   ],
   "channelData": [
@@ -26,6 +31,12 @@
           "message": "Meddelande två",
           "timeCreated": "Sat Jan 28 2023 9:46:13",
           "userName": "Richard"
+        },
+        {
+          "id": 3,
+          "message": "",
+          "timeCreated": "Tue Jan 31 2023 13:48:29",
+          "userName": "Guest"
         }
       ],
       "private": false

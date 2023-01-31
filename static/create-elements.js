@@ -17,6 +17,7 @@ function createChannelElements(name) {
     messagesChannels.addEventListener('click', async () => {
         let maybeAllowed = await checkChannelAuth(name);
         if (maybeAllowed) {
+
             getMessages(name);
         } else {
             console.log('Not allowed');
@@ -72,14 +73,14 @@ function createInfoElements(name, /* state.loggedInUser, */ element) {
                 elementN.editContainer.classList.remove('invisible');
                 elementN.inputEdit.value = element.message;
                 elementN.btnsendEdit.addEventListener('click', () => {
-                    if (editMessage(name, state.loggedInUser, element)) {
+                    if (editMessage(name, element)) {
                         elementN.inputEdit.value = '';
                         elementN.editContainer.classList.add('invisible');
                     }
                 });
             });
             iconTrash.addEventListener('click', () => {
-                removeMessage(name, state.loggedInUser, element);
+                removeMessage(name, element);
             });
 
             spanIcons.classList.add('icons');

@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     let token = req.headers['authorization'].substring(7);
 
     let decoded = jwt.verify(token, process.env.SECRET);
-
+     console.log(decoded)
     res.status(200).send({ userName: decoded.userName });
 });
 

@@ -84,7 +84,7 @@ function updateLoggedUI() {
         element.userForm.classList.add('invisible');
         element.btnLogout.classList.remove('invisible');
         element.createContainer.classList.remove('invisible');
-        /* getChannelNames(); */
+         getChannelNames();
     } else {
         for (const names of element.nameOutput) {
             names.innerText = 'Guest';
@@ -164,6 +164,7 @@ async function getChannelNames() {
 
 async function getMessages(name) {
     state.activeChannel = name.name;
+    console.log(state.activeChannel)
     element.chatContainer.innerHTML = '';
     let messageArray = [];
     try {

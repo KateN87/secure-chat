@@ -33,7 +33,8 @@ async function removeMessage(name, element) {
 }
 
 async function editMessage(name, element) {
-
+    console.log("EditMessage element.id: ", element)
+    console.log("EditMessage element.id: ", element.id)
     let editedMessage = {
         name: name.name,
         message: elementS.inputEdit.value,
@@ -52,6 +53,7 @@ async function editMessage(name, element) {
             });
 
             if (response.status === 200) {
+                
                 getMessages(name);
             } else {
                 console.log('Could not edit. Status: ', response.status);

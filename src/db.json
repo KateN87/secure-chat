@@ -8,12 +8,12 @@
     {
       "userName": "Kate",
       "password": "$2a$08$dVnUxRYOoiJaqLsHSglg8OnQcDrgUKchEGuxTlvK2NEnVg47LnuiO",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkthdGUiLCJpYXQiOjE2NzUxNjEyMTAsImV4cCI6MTY3NTE2NDgxMH0.X14TnAuTUMVUvZLH3Dfhi-h2CIqUXtv4Dhe-K2mWtTw"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkthdGUiLCJpYXQiOjE2NzUxNzA3NDksImV4cCI6MTY3NTE3NDM0OX0.zWEqaxNHvQjsX0zxjt868dDPcHtICI8iP96eDIvLjJw"
     },
     {
       "userName": "Matilda",
-      "password": "$2a$08$7Si1jbtPAu2cJVHU6ZhXg.BzttOdv.LlKq1a0qm96ELm0LB1T.7se",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Ik1hdGlsZGEiLCJpYXQiOjE2NzUxNjI5MDYsImV4cCI6MTY3NTE2NjUwNn0.1-Gv2Ad6m5klXilHWb2vDFTbBw6AmB0VRD6VRwFo5Fc"
+      "password": "$2a$08$HPLoLmYgJg7DBPMqvg7pxOMQ/0yIpu83b/Xr6bWPTDy4qS26VQw6K",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Ik1hdGlsZGEiLCJpYXQiOjE2NzUxNjk2OTUsImV4cCI6MTY3NTE3MzI5NX0.5GKO94DOzh2vi0lw4FsfUIpp5n4JKIX2DfJKFl5dLFI"
     }
   ],
   "channelData": [
@@ -31,6 +31,15 @@
           "message": "Meddelande två",
           "timeCreated": "Sat Jan 28 2023 9:46:13",
           "userName": "Richard"
+        },
+        {
+          "id": 3,
+          "message": "",
+          "timeCreated": "Tue Jan 31 2023 13:48:29",
+          "userName": "Guest"
+        },
+        {
+          "deleted": true
         }
       ],
       "private": false
@@ -40,6 +49,12 @@
       "messages": [
         {
           "deleted": true
+        },
+        {
+          "id": 2,
+          "message": "Test",
+          "timeCreated": "Tue Jan 31 2023 14:8:40",
+          "userName": "Kate"
         }
       ],
       "private": true
@@ -63,52 +78,29 @@
       "private": true
     },
     {
-      "name": "This is a new channel",
+      "name": "Locked",
       "messages": [
         {
           "id": 1,
-          "message": "This is a new message",
-          "timeCreated": "Tue Jan 31 2023 11:11:18",
-          "userName": "Kate"
-        },
-        {
-          "id": 2,
-          "message": "Hej jag heter Matilda",
-          "timeCreated": "Tue Jan 31 2023 11:25:14",
-          "userName": "Matilda"
+          "message": "Hejsan",
+          "timeCreated": "Tue Jan 31 2023 14:2:58",
+          "userName": "Kate",
+          "timeEdited": "Tue Jan 31 2023 14:23:53"
         }
       ],
       "private": false
     },
     {
-      "name": "This is Matildas channel",
+      "name": "Unlocked",
       "messages": [
         {
           "id": 1,
-          "message": "Hej Matilda",
-          "timeCreated": "Tue Jan 31 2023 11:37:40",
-          "userName": "Kate"
-        },
-        {
-          "id": 2,
-          "message": "Hej Kate",
-          "timeCreated": "Tue Jan 31 2023 11:37:54",
-          "userName": "Matilda"
-        }
-      ],
-      "private": false
-    },
-    {
-      "name": "asd",
-      "messages": [
-        {
-          "id": 1,
-          "message": "asd",
-          "timeCreated": "Tue Jan 31 2023 11:33:43",
+          "message": "Helloooo",
+          "timeCreated": "Tue Jan 31 2023 13:57:5",
           "userName": "Kate"
         }
       ],
-      "private": false
+      "private": true
     }
   ]
 }

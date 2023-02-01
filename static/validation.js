@@ -2,7 +2,7 @@ import { state } from './globalVar.js'; // globalVar from './globalVar.js';
 
 async function checkChannelAuth(name) {
     if (name.private) {
-        const isAuthorized = await checkAuth();
+        const isAuthorized = await authorization();
         if (isAuthorized) {
             return true;
         } else {
@@ -13,8 +13,12 @@ async function checkChannelAuth(name) {
     }
 }
 
-async function checkAuth() {
+async function authorization() {
     const jwt = localStorage.getItem(state.JWT_KEY);
+
+    if (jwt === null) {
+        return false;
+    }
 
     const options = {
         method: 'GET',
@@ -27,12 +31,10 @@ async function checkAuth() {
 
     if (response.status === 200) {
         let user = await response.json();
-        state.loggedInUser = { userName: `${user.userName}` };
-
-        return true;
+        return user;
     } else {
         return false;
     }
 }
 
-export { checkAuth, checkChannelAuth };
+export { checkChannelAuth, authorization };

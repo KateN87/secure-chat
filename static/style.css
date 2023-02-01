@@ -61,7 +61,6 @@ h1 {
     color: rgb(240, 168, 30);
 }
 
-
 /* FORMS FOR LOGIN/SIGNUP */
 .user-form {
     /* background-color: aliceblue; */
@@ -83,7 +82,7 @@ h1 {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    color: rgb(240, 168, 30)
+    color: rgb(240, 168, 30);
 }
 .namepassword-form > button {
     margin-top: 10px;
@@ -96,7 +95,7 @@ h1 {
 
 #error-login,
 #error-signup,
-#error-channel {
+.error-channel {
     font-size: 15px;
     color: rgb(244, 7, 7);
 }
@@ -120,7 +119,7 @@ h1 {
     flex-direction: column;
 }
 
-#new-message {
+.new-message {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -145,7 +144,7 @@ textarea {
 .selectedChannel {
     background-color: rgb(240, 168, 30);
     color: rgb(18, 61, 78);
-  }
+}
 
 .infoContainer {
     display: flex;

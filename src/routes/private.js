@@ -10,9 +10,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     let token = req.headers['authorization'].substring(7);
-
     let decoded = jwt.verify(token, process.env.SECRET);
-
     res.status(200).send({ userName: decoded.userName });
 });
 

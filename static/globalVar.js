@@ -3,6 +3,7 @@ const containers = {
     chatContainer: document.querySelector('#chatContainer'),
     editContainer: document.querySelector('.editContainer'),
     createContainer: document.querySelector('.createContainer'),
+    newMessageContainer: document.querySelector('.new-message'),
 };
 
 const forms = {
@@ -10,6 +11,7 @@ const forms = {
     nameOutput: document.querySelectorAll('.name-output'),
     errorLogin: document.querySelector('#error-login'),
     errorSignUp: document.querySelector('#error-signup'),
+    errorChannel: document.querySelector('.error-channel'),
 };
 
 const buttons = {

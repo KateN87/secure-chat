@@ -2,48 +2,19 @@
   "userData": [
     {
       "userName": "Richard",
-      "password": "$2a$08$aRsHYPVy9MFkBcbAIqlZz.gj5bqGsSVbIje/OMUCVFOaFBXGutn9m",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IlJpY2hhcmQiLCJpYXQiOjE2NzUxNTM4NDYsImV4cCI6MTY3NTE1NzQ0Nn0.MfTEzdYpYRMJr4VcR1mvJ9P-0uiG34qgNWNCWhApEs0"
+      "password": "$2a$08$aRsHYPVy9MFkBcbAIqlZz.gj5bqGsSVbIje/OMUCVFOaFBXGutn9m"
     },
     {
       "userName": "Kate",
-      "password": "$2a$08$dVnUxRYOoiJaqLsHSglg8OnQcDrgUKchEGuxTlvK2NEnVg47LnuiO",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkthdGUiLCJpYXQiOjE2NzUyNjcxNDksImV4cCI6MTY3NTI3MDc0OX0.ksIJ3QDc9cUCY9uTVXYUlE2hg7sPCVlgwYC14soH6jE"
+      "password": "$2a$08$dVnUxRYOoiJaqLsHSglg8OnQcDrgUKchEGuxTlvK2NEnVg47LnuiO"
     },
     {
-      "userName": "fghh",
-      "password": "$2a$08$bnbLyJSFqgFQiLqZVo/YUuJfl4lNmspih0enoDruCI0PxKiWJJA5i",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImZnaGgiLCJpYXQiOjE2NzUyNjg1MTksImV4cCI6MTY3NTI3MjExOX0.UzeoMzV0t0NpuEJ5QKBMEZ7xnVEiHViXgBQ-4fuO1ps"
+      "userName": "Matilda",
+      "password": "$2a$08$HPLoLmYgJg7DBPMqvg7pxOMQ/0yIpu83b/Xr6bWPTDy4qS26VQw6K"
     },
     {
-      "userName": "test",
-      "password": "$2a$08$bnbLyJSFqgFQiLqZVo/YUuJpNKENV5d0JyKTgt80lbdgxVOLsx/0e",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InRlc3QiLCJpYXQiOjE2NzUyNjg4MDEsImV4cCI6MTY3NTI3MjQwMX0.aAdH18KpIgdI-RUpym9kRmm5jdsdwDJrZv6uRNNWRYo"
-    },
-    {
-      "userName": "hej",
-      "password": "$2a$08$bnbLyJSFqgFQiLqZVo/YUuJpNKENV5d0JyKTgt80lbdgxVOLsx/0e",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImhlaiIsImlhdCI6MTY3NTI2ODg3NywiZXhwIjoxNjc1MjcyNDc3fQ.x_7Y5Qc2yLw_UaeikiWzhFxhayj8R1BgEJiANHZ5Fbs"
-    },
-    {
-      "userName": "tesdfsdf",
-      "password": "$2a$08$bnbLyJSFqgFQiLqZVo/YUuzrE5/Fsr8hlTTrvchnGULC8no0fQTpW",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InRlc2Rmc2RmIiwiaWF0IjoxNjc1MjY4OTM1LCJleHAiOjE2NzUyNzI1MzV9.NiuvwycRR60lLKs-rnvtuLjlmXneCYmPyL96Tf4ZOaw"
-    },
-    {
-      "userName": "aksjdh",
-      "password": "$2a$08$bnbLyJSFqgFQiLqZVo/YUuAxEXiAbi88uu4VAUGQ.UWj4RFPasUh.",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImFrc2pkaCIsImlhdCI6MTY3NTI2OTAyMywiZXhwIjoxNjc1MjcyNjIzfQ.0jFkfckDZPq9dgj1JjrZx3yBbMOEiiIErTuWhdBurfk"
-    },
-    {
-      "userName": "hejsd",
-      "password": "$2a$08$bnbLyJSFqgFQiLqZVo/YUuRJYEswkPy3KTKd5MwVx16s4vJVi0qQW",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImhlanNkIiwiaWF0IjoxNjc1MjY5MTA1LCJleHAiOjE2NzUyNzI3MDV9.tWMjPz_zwm0IcsHRuuoUuJKTj7uyxEdsCipA6RqIax8"
-    },
-    {
-      "userName": "dsfsdf",
-      "password": "$2a$08$/i4JXq9updTrLMM.8FClFOe8gsJdkfBF9JwJbsqQYGL5fnPS0cAUu",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImRzZnNkZiIsImlhdCI6MTY3NTI2OTk1NSwiZXhwIjoxNjc1MjczNTU1fQ.t27m_IEiaZI-1ea7TIQWrbee1x_8cpnRB6JRoZVEdDc"
+      "userName": "Katevgbhn",
+      "password": "$2a$08$1CcLIARc1xjG.F84jbjx/ea0wgIfhWAcOpFfdoff9VFMUgV1aN.SO"
     }
   ],
   "channelData": [
@@ -52,9 +23,10 @@
       "messages": [
         {
           "id": 1,
-          "message": "Meddelande ett",
+          "message": "",
           "userName": "Kate",
-          "timeCreated": "Tue Jan 31 2023 9:17:3"
+          "timeCreated": "Tue Jan 31 2023 9:17:3",
+          "timeEdited": "Wed Feb 01 2023 20:58:12"
         },
         {
           "id": 2,
@@ -67,12 +39,6 @@
           "message": "",
           "timeCreated": "Tue Jan 31 2023 13:48:29",
           "userName": "Guest"
-        },
-        {
-          "id": 4,
-          "message": "asd",
-          "timeCreated": "Wed Feb 01 2023 16:51:38",
-          "userName": "Kate"
         }
       ],
       "private": false
@@ -100,53 +66,18 @@
           "message": "Meddelande två",
           "timeCreated": "Sat Jan 28 2023 9:46:13",
           "userName": "Richard"
-        },
-        {
-          "id": 3,
-          "message": "test",
-          "timeCreated": "Wed Feb 01 2023 17:36:4",
-          "userName": "hejsd"
         }
       ],
       "private": true
     },
     {
-      "name": "asdasd",
-      "messages": [
-        {
-          "id": 1,
-          "message": "test",
-          "timeCreated": "Wed Feb 01 2023 17:36:9",
-          "userName": "hejsd"
-        }
-      ],
-      "private": false
-    },
-    {
-      "name": "zxzxc",
+      "name": "hej",
       "messages": [],
       "private": false
     },
     {
-      "name": "zx<zxc",
+      "name": "hejsan",
       "messages": [],
-      "private": false
-    },
-    {
-      "name": "awswsdrsdf",
-      "messages": [],
-      "private": false
-    },
-    {
-      "name": "asddsf",
-      "messages": [
-        {
-          "id": 1,
-          "message": "sdfsdfsdf",
-          "timeCreated": "Wed Feb 01 2023 18:3:2",
-          "userName": "dsfsdf"
-        }
-      ],
       "private": false
     }
   ]

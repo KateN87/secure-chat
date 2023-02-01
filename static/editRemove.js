@@ -1,9 +1,8 @@
 import { getMessages, getChannelNames } from './script.js';
 import { state, inputs } from './globalVar.js'; // globalVar from './globalVar.js';
 
-const jwt = localStorage.getItem(state.JWT_KEY);
-
 async function removeMessage(name, element) {
+    const jwt = localStorage.getItem(state.JWT_KEY);
     let deleteItem = {
         name: name.name,
         user: state.loggedInUser.userName,
@@ -33,13 +32,14 @@ async function removeMessage(name, element) {
 }
 
 async function editMessage(name, element) {
+    const jwt = localStorage.getItem(state.JWT_KEY);
+
     let editedMessage = {
         name: name.name,
         message: inputs.inputEdit.value,
         user: state.loggedInUser.userName,
     };
-    console.log('sendNewMessage() newMessage: ', newMessage);
-    console.log('sendNewMessage() state.activeChannel', state.activeChannel);
+    console.log('editedMessage: ', editedMessage);
 
     try {
         const response = await fetch('/api/private/' + element.id, {
@@ -51,12 +51,10 @@ async function editMessage(name, element) {
             },
         });
 
-        if (response.status === 200) {
-            getMessages(name);
-        } else {
+        if (response.status !== 200) {
             console.log('Could not edit. Status: ', response.status);
+            return false;
         }
-
         return true;
     } catch (error) {
         console.log(
@@ -66,6 +64,8 @@ async function editMessage(name, element) {
 }
 
 async function createChannel() {
+    const jwt = localStorage.getItem(state.JWT_KEY);
+
     let newChannel = {
         name: inputs.inputChannelName.value,
         private: inputs.checkBox.checked,
@@ -81,12 +81,11 @@ async function createChannel() {
         });
 
         if (response.status === 200) {
-            getChannelNames();
+            return true;
         } else {
             console.log('Could not edit. Status: ', response.status);
+            return false;
         }
-
-        return true;
     } catch (error) {
         console.log(
             'Could not PUT data to the server. Error message: ' + error.message

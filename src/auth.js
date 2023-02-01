@@ -19,18 +19,15 @@ function createToken(userName) {
     let user = { userName: userName };
     const token = jwt.sign(user, process.env.SECRET, { expiresIn: '1h' });
     user.token = token;
-
-    let match = db.data.userData.find((user) => user.userName === userName);
-
-    match.token = token;
-    db.write();
     return user;
 }
 
 const checkAuth = (req, res, next) => {
+    /* console.log('checkAuth() THIS IS RUNNING!'); */
     let token = req.body.token || req.query.token;
 
     if (!token) {
+        /* console.log('Token exists This shows'); */
         let x = req.headers['authorization'];
 
         if (x === undefined) {
@@ -40,15 +37,15 @@ const checkAuth = (req, res, next) => {
     }
 
     if (token) {
-        jwt.verify(token, process.env.SECRET, (err, decodedToken) => {
-            if (err) {
-                console.log('BACK checkAuth when decoding: ', err.message);
-                res.sendStatus(401);
-            } else {
-                next();
-            }
-        });
+        try {
+            jwt.verify(token, process.env.SECRET);
+        } catch (error) {
+            console.log('Catch! Felaktig token!cc');
+            res.sendStatus(401);
+        }
+        next();
     } else {
+        ('No token! This shows');
         res.sendStatus(401);
     }
 };

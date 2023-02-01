@@ -1,5 +1,5 @@
 import { getMessages } from './script.js';
-import { checkChannelAuth } from './auth.js';
+import { checkChannelAuth } from './validation.js';
 import { removeMessage, editMessage } from './editRemove.js';
 import { containers, forms, buttons, inputs, state } from './globalVar.js';
 const channelsContainer = document.querySelector('#channelsContainer');
@@ -20,6 +20,7 @@ function createChannelElements(name) {
         /* console.log("channelBoxes", channelBoxes) */
         let maybeAllowed = await checkChannelAuth(name);
         if (maybeAllowed) {
+            containers.newMessageContainer.classList.remove('invisible');
             getMessages(name);
         } else {
             console.log('Not allowed');
@@ -56,9 +57,6 @@ function createInfoElements(name, element) {
     spanDate.classList.add('date');
 
     if (!element.deleted) {
-        if (!element.timeCreated) {
-        }
-        // console.log("createInfoElements element.timeCreated", element.timeCreated)
         spanDate.innerText = element.timeCreated;
         spanUserName.innerText = element.userName;
     }
@@ -79,8 +77,10 @@ function createInfoElements(name, element) {
             iconEdit.addEventListener('click', () => {
                 containers.editContainer.classList.remove('invisible');
                 inputs.inputEdit.value = element.message;
-                buttons.btnsendEdit.addEventListener('click', () => {
+                buttons.btnsendEdit.addEventListener('click', async () => {
                     if (editMessage(name, element)) {
+                        console.log('iconEdit');
+                        getMessages(name);
                         inputs.inputEdit.value = '';
                         containers.editContainer.classList.add('invisible');
                     }

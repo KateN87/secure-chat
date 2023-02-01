@@ -2,7 +2,7 @@ import {
     createChannelElements,
     createMessageElements,
 } from './create-elements.js';
-import { checkAuth } from './auth.js';
+import { authorization } from './validation.js';
 import { signUpUser, loginUser } from './loginetc.js';
 import { createChannel } from './editRemove.js';
 import { containers, forms, buttons, inputs, state } from './globalVar.js';
@@ -16,7 +16,11 @@ buttons.btnLogin.addEventListener('click', async () => {
     if (!maybeLoggedIn) {
         forms.errorLogin.classList.remove('invisible');
     } else {
-        /* state.isLoggedIn = false; */
+        localStorage.setItem(state.JWT_KEY, maybeLoggedIn.token);
+        state.loggedInUser = { userName: `${maybeLoggedIn.userName}` };
+        state.isLoggedIn = true;
+        forms.errorLogin.classList.add('invisible');
+        updateLoggedUI();
     }
 });
 
@@ -35,6 +39,7 @@ buttons.btnSignUp.addEventListener('click', async () => {
         localStorage.setItem(state.JWT_KEY, maybeLoggedIn.token);
         state.loggedInUser = { userName: `${maybeLoggedIn.userName}` };
         state.isLoggedIn = true;
+        forms.errorSignUp.classList.add('invisible');
         updateLoggedUI();
         /*       checkForLoggedin(); */
     } else {
@@ -49,14 +54,21 @@ buttons.btncloseEdit.addEventListener('click', () => {
     containers.editContainer.classList.add('invisible');
 });
 
-buttons.btnCreateChannel.addEventListener('click', () => {
-    createChannel(status);
+buttons.btnCreateChannel.addEventListener('click', async () => {
+    if (await createChannel()) {
+        getChannelNames();
+        forms.errorChannel.classList.add('invisible');
+        inputs.inputChannelName.value = '';
+    } else {
+        forms.errorChannel.classList.remove('invisible');
+    }
 });
 
 async function checkForLoggedin() {
-    let maybeLoggedIn = await checkAuth();
+    let maybeLoggedIn = await authorization();
 
     if (maybeLoggedIn) {
+        state.loggedInUser = { userName: `${maybeLoggedIn.userName}` };
         state.isLoggedIn = true;
     } else {
         state.loggedInUser = { userName: 'Guest' };
@@ -84,6 +96,9 @@ function updateLoggedUI() {
         buttons.btnLogout.classList.add('invisible');
         containers.createContainer.classList.add('invisible');
         forms.userForm.classList.remove('invisible');
+        forms.errorSignUp.classList.add('invisible');
+        forms.errorLogin.classList.add('invisible');
+        containers.newMessageContainer.classList.add('invisible');
     }
     getChannelNames();
 }
@@ -109,7 +124,7 @@ async function sendNewMessage() {
         );
         if (response.status === 200) {
             let channel = await response.json();
-            console.log('This is channel', channel);
+            /* console.log('This is channel', channel); */
             await getMessages(channel);
             inputs.inputMessage.value = '';
             return true;
@@ -152,7 +167,7 @@ async function getChannelNames() {
 
 async function getMessages(name) {
     state.activeChannel = name.name;
-    console.log(state.activeChannel);
+    console.log('getMessages');
     containers.chatContainer.innerHTML = '';
     let messageArray = [];
     try {

@@ -1,11 +1,8 @@
 import { getMessages } from './script.js';
 import { checkChannelAuth } from './auth.js';
 import { removeMessage, editMessage } from './editRemove.js';
-import { containers, forms, buttons, inputs, state } from './globalVar.js'; // globalVar from './globalVar.js';
-/*
-let state.loggedInUser = globalVar.state.loggedInUser */
+import { containers, forms, buttons, inputs, state } from './globalVar.js';
 const channelsContainer = document.querySelector('#channelsContainer');
-/* const channels = document.querySelectorAll('#channelsContainer.messagesChannels'); */
 
 function createChannelElements(name) {
     const messagesChannels = document.createElement('section');
@@ -49,7 +46,7 @@ function createChannelElements(name) {
 
 } */
 
-function createInfoElements(name, /* state.loggedInUser, */ element) {
+function createInfoElements(name, element) {
     const divInfo = document.createElement('div');
     const spanUserName = document.createElement('span');
     const spanDate = document.createElement('span');

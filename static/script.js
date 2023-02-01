@@ -12,16 +12,11 @@ checkForLoggedin();
 buttons.btnSendMessage.addEventListener('click', sendNewMessage);
 
 buttons.btnLogin.addEventListener('click', async () => {
-    let userName = inputs.inputUserName.value;
-    let password = inputs.inputPassword.value;
-    let maybeLoggedIn = await loginUser(userName, password);
-    if (maybeLoggedIn) {
-        state.isLoggedIn = true;
-        console.log('btnLogin', state.isLoggedIn);
-        updateLoggedUI();
-    } else {
-        state.isLoggedIn = false;
+    let maybeLoggedIn = await loginUser();
+    if (!maybeLoggedIn) {
         forms.errorLogin.classList.remove('invisible');
+    } else {
+        /* state.isLoggedIn = false; */
     }
 });
 
@@ -29,21 +24,23 @@ buttons.btnLogout.addEventListener('click', () => {
     state.isLoggedIn = false;
     state.loggedInUser = { userName: '' };
     localStorage.removeItem(state.JWT_KEY);
-    /*     console.log("GET channelNames 2")
-    getChannelNames(); */
     updateLoggedUI();
 });
 
 buttons.btnSignUp.addEventListener('click', async () => {
-    let userName = inputUserName.value;
-    let password = inputPassword.value;
-    let maybeSignedUp = await signUpUser(userName, password);
+    let maybeSignedUp = await signUpUser();
+
     if (maybeSignedUp) {
-        checkForLoggedin();
+        let maybeLoggedIn = await loginUser();
+        localStorage.setItem(state.JWT_KEY, maybeLoggedIn.token);
+        state.loggedInUser = { userName: `${maybeLoggedIn.userName}` };
+        state.isLoggedIn = true;
+        updateLoggedUI();
+        /*       checkForLoggedin(); */
     } else {
         inputs.inputPassword.value = '';
         inputs.inputUserName.value = '';
-        inputs.errorSignUp.classList.remove('invisible');
+        forms.errorSignUp.classList.remove('invisible');
     }
 });
 
@@ -53,14 +50,10 @@ buttons.btncloseEdit.addEventListener('click', () => {
 });
 
 buttons.btnCreateChannel.addEventListener('click', () => {
-    let channelName = inputs.inputChannelName.value;
-    let status = inputs.checkBox.checked;
-    createChannel(channelName, status);
+    createChannel(status);
 });
 
 async function checkForLoggedin() {
-    //Om true, uppdaterat state.loggedInUser
-    //Om false, state.loggedInUser = guest
     let maybeLoggedIn = await checkAuth();
 
     if (maybeLoggedIn) {
@@ -68,7 +61,6 @@ async function checkForLoggedin() {
     } else {
         state.loggedInUser = { userName: 'Guest' };
     }
-
     updateLoggedUI();
 }
 
@@ -76,6 +68,7 @@ function updateLoggedUI() {
     containers.channelsContainer.innerHTML = '';
     inputs.inputUserName.value = '';
     inputs.inputPassword.value = '';
+    containers.chatContainer.innerHTML = '';
     if (state.isLoggedIn) {
         for (const names of forms.nameOutput) {
             names.innerText = `${state.loggedInUser.userName}`;
@@ -88,7 +81,6 @@ function updateLoggedUI() {
             names.innerText = 'Guest';
         }
         state.activeChannel = '';
-        containers.chatContainer.innerHTML = '';
         buttons.btnLogout.classList.add('invisible');
         containers.createContainer.classList.add('invisible');
         forms.userForm.classList.remove('invisible');
@@ -96,15 +88,12 @@ function updateLoggedUI() {
     getChannelNames();
 }
 
-async function changeUserName(name) {
-    state.loggedInUser = { userName: `${name}` };
-}
-
 async function sendNewMessage() {
     const newMessage = {
         message: inputs.inputMessage.value,
         userName: state.loggedInUser.userName,
     };
+
     const options = {
         method: 'POST',
         body: JSON.stringify(newMessage),
@@ -191,4 +180,4 @@ async function getMessages(name) {
     }
 }
 
-export { getMessages, changeUserName, getChannelNames };
+export { getMessages, getChannelNames };

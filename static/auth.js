@@ -1,5 +1,4 @@
 import { state } from './globalVar.js'; // globalVar from './globalVar.js';
-import { changeUserName } from './script.js';
 
 async function checkChannelAuth(name) {
     if (name.private) {
@@ -24,12 +23,11 @@ async function checkAuth() {
             Authorization: 'Bearer ' + jwt,
         },
     };
-
     const response = await fetch('/api/private/', options);
 
     if (response.status === 200) {
         let user = await response.json();
-        changeUserName(user.userName);
+        state.loggedInUser = { userName: `${user.userName}` };
 
         return true;
     } else {

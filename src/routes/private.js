@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     let token = req.headers['authorization'].substring(7);
 
     let decoded = jwt.verify(token, process.env.SECRET);
-    
+
     res.status(200).send({ userName: decoded.userName });
 });
 
@@ -28,20 +28,19 @@ router.delete('/:id', async (req, res) => {
         res.status(400).send('can not find channel');
         return;
     }
-    
+
     const maybeMessage = maybeChannel.messages;
     if (maybeMessage === undefined) {
         res.status(400).send('can not find message');
         return;
     }
-    
+
     const messageIndex = maybeMessage.findIndex((message) => id === message.id);
     if (messageIndex === -1) {
         res.status(400).send('Can not find id');
         return;
     }
     if (maybeMessage[messageIndex].userName === user) {
-        
         maybeMessage[messageIndex] = { deleted: true };
         db.write();
         res.status(200).send(maybeChannel);
@@ -96,7 +95,6 @@ router.post('/', (req, res) => {
             messages: [],
             private: status,
         };
-
         db.data.channelData.push(newChannel);
         db.write();
         res.status(200).send(newChannel);

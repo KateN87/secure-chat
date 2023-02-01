@@ -1,10 +1,9 @@
-import { changeUserName } from './script.js';
-import { state } from './globalVar.js';// globalVar from './globalVar.js';
+import { state, inputs } from './globalVar.js'; // globalVar from './globalVar.js';
 
-async function signUpUser(userName, password) {
+async function signUpUser() {
     const user = {
-        userName,
-        password,
+        userName: inputUserName.value,
+        password: inputPassword.value,
     };
     const options = {
         method: 'POST',
@@ -18,9 +17,6 @@ async function signUpUser(userName, password) {
         const response = await fetch('/api/login/create', options);
         if (response.status === 200) {
             state.loggedInUser = await response.json();
-
-            await loginUser(userName, password);
-
             return true;
         } else {
             return false;
@@ -33,10 +29,10 @@ async function signUpUser(userName, password) {
     }
 }
 
-async function loginUser(userName, password) {
+async function loginUser() {
     const user = {
-        userName,
-        password,
+        userName: inputs.inputUserName.value,
+        password: inputs.inputPassword.value,
     };
     const options = {
         method: 'POST',
@@ -50,11 +46,7 @@ async function loginUser(userName, password) {
         const response = await fetch('/api/login/', options);
         if (response.status === 200) {
             const user = await response.json();
-
-            localStorage.setItem(state.JWT_KEY, user.token);
-
-            await changeUserName(user.userName);
-            return true;
+            return user;
         } else {
             console.log('Login failed : ' + response.status);
             return false;

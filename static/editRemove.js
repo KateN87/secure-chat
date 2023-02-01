@@ -2,7 +2,7 @@ import { getMessages, getChannelNames } from './script.js';
 import { state, inputs } from './globalVar.js'; // globalVar from './globalVar.js';
 
 const jwt = localStorage.getItem(state.JWT_KEY);
-console.log('EditRemove', state.loggedInUser.userName);
+
 async function removeMessage(name, element) {
     let deleteItem = {
         name: name.name,
@@ -35,9 +35,11 @@ async function removeMessage(name, element) {
 async function editMessage(name, element) {
     let editedMessage = {
         name: name.name,
-        message: inputEdit.inputEdit.value,
+        message: inputs.inputEdit.value,
         user: state.loggedInUser.userName,
     };
+    console.log('sendNewMessage() newMessage: ', newMessage);
+    console.log('sendNewMessage() state.activeChannel', state.activeChannel);
 
     try {
         const response = await fetch('/api/private/' + element.id, {
@@ -63,13 +65,11 @@ async function editMessage(name, element) {
     }
 }
 
-async function createChannel(channelName, status) {
+async function createChannel() {
     let newChannel = {
-        name: channelName,
-        message: inputs.inputEdit.value,
-        private: status,
+        name: inputs.inputChannelName.value,
+        private: inputs.checkBox.checked,
     };
-
     try {
         const response = await fetch('/api/private/', {
             method: 'POST',

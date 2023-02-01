@@ -1,15 +1,13 @@
 import { getMessages } from './script.js';
 import { checkChannelAuth } from './auth.js';
 import { removeMessage, editMessage } from './editRemove.js';
-import * as elementN from './getDOM.js';
-import { state } from './globalVar.js';// globalVar from './globalVar.js';
-/* 
+import { containers, forms, buttons, inputs, state } from './globalVar.js'; // globalVar from './globalVar.js';
+/*
 let state.loggedInUser = globalVar.state.loggedInUser */
 const channelsContainer = document.querySelector('#channelsContainer');
 /* const channels = document.querySelectorAll('#channelsContainer.messagesChannels'); */
 
 function createChannelElements(name) {
-    
     const messagesChannels = document.createElement('section');
     const spanChannel = document.createElement('span');
     const spanName = document.createElement('span');
@@ -17,15 +15,14 @@ function createChannelElements(name) {
     messagesChannels.classList.add('messagesChannels');
 
     messagesChannels.addEventListener('click', async () => {
-        const channelBoxes = Array.from(channelsContainer.children)
-        for(const box of channelBoxes){
-            box.classList.remove("selectedChannel")
+        const channelBoxes = Array.from(channelsContainer.children);
+        for (const box of channelBoxes) {
+            box.classList.remove('selectedChannel');
         }
-        messagesChannels.classList.add("selectedChannel")
+        messagesChannels.classList.add('selectedChannel');
         /* console.log("channelBoxes", channelBoxes) */
         let maybeAllowed = await checkChannelAuth(name);
         if (maybeAllowed) {
-
             getMessages(name);
         } else {
             console.log('Not allowed');
@@ -43,7 +40,7 @@ function createChannelElements(name) {
     spanChannel.appendChild(spanName);
     messagesChannels.appendChild(spanChannel);
     channelsContainer.appendChild(messagesChannels);
-    return
+    return;
 }
 
 /* function getList(){
@@ -60,11 +57,9 @@ function createInfoElements(name, /* state.loggedInUser, */ element) {
     divInfo.classList.add('infoContainer');
     spanUserName.classList.add('userName');
     spanDate.classList.add('date');
-    
-    if(!element.deleted){
-        if(!element.timeCreated){
-            
 
+    if (!element.deleted) {
+        if (!element.timeCreated) {
         }
         // console.log("createInfoElements element.timeCreated", element.timeCreated)
         spanDate.innerText = element.timeCreated;
@@ -75,7 +70,7 @@ function createInfoElements(name, /* state.loggedInUser, */ element) {
     divInfo.appendChild(spanDate);
 
     if (state.isLoggedIn) {
-/*         console.log("createInfoElements element.userName:", element.userName, "state.loggedInUser.userName", state.loggedInUser) */
+        /*         console.log("createInfoElements element.userName:", element.userName, "state.loggedInUser.userName", state.loggedInUser) */
         if (element.userName === state.loggedInUser.userName) {
             const spanIcons = document.createElement('span');
             const iconEdit = document.createElement('i');
@@ -85,12 +80,12 @@ function createInfoElements(name, /* state.loggedInUser, */ element) {
             iconTrash.className = 'fa-solid fa-trash';
 
             iconEdit.addEventListener('click', () => {
-                elementN.editContainer.classList.remove('invisible');
-                elementN.inputEdit.value = element.message;
-                elementN.btnsendEdit.addEventListener('click', () => {
+                containers.editContainer.classList.remove('invisible');
+                inputs.inputEdit.value = element.message;
+                buttons.btnsendEdit.addEventListener('click', () => {
                     if (editMessage(name, element)) {
-                        elementN.inputEdit.value = '';
-                        elementN.editContainer.classList.add('invisible');
+                        inputs.inputEdit.value = '';
+                        containers.editContainer.classList.add('invisible');
                     }
                 });
             });
@@ -112,11 +107,11 @@ function createMessageElements(name, element) {
     const divMain = document.createElement('div');
     const messagesChannels = document.createElement('section');
     const spanMessage = document.createElement('span');
-    let divInfo = createInfoElements(name, element)
+    let divInfo = createInfoElements(name, element);
 
     messagesChannels.classList.add('messagesChannels');
 
-    divMain.appendChild(divInfo)
+    divMain.appendChild(divInfo);
     if (!element.deleted) {
         spanMessage.innerText = element.message;
     } else {
@@ -133,7 +128,7 @@ function createMessageElements(name, element) {
 
     messagesChannels.appendChild(spanMessage);
     divMain.appendChild(messagesChannels);
-    elementN.chatContainer.appendChild(divMain);
+    containers.chatContainer.appendChild(divMain);
 
     return messagesChannels;
 }

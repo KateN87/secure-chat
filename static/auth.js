@@ -1,4 +1,4 @@
-import { state } from './globalVar.js';// globalVar from './globalVar.js';
+import { state } from './globalVar.js'; // globalVar from './globalVar.js';
 import { changeUserName } from './script.js';
 
 async function checkChannelAuth(name) {

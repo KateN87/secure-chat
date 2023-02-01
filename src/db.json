@@ -8,7 +8,7 @@
     {
       "userName": "Kate",
       "password": "$2a$08$dVnUxRYOoiJaqLsHSglg8OnQcDrgUKchEGuxTlvK2NEnVg47LnuiO",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkthdGUiLCJpYXQiOjE2NzUxNzU2NjMsImV4cCI6MTY3NTE3OTI2M30.-FS4hWgHzK-9uoSK0sSN81xigol1yK5j8QINQ9UqtlQ"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkthdGUiLCJpYXQiOjE2NzUyNTY0OTMsImV4cCI6MTY3NTI2MDA5M30.8bM_NBV9iZDlZFnGmpDSX8xs7VCWVBM2DClPrw3n5_g"
     },
     {
       "userName": "Matilda",
@@ -66,6 +66,16 @@
           "userName": "Richard"
         }
       ],
+      "private": true
+    },
+    {
+      "name": "Testar",
+      "messages": [],
+      "private": false
+    },
+    {
+      "name": "Testar private",
+      "messages": [],
       "private": true
     }
   ]

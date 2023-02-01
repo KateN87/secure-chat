@@ -42,7 +42,7 @@ const checkAuth = (req, res, next) => {
     if (token) {
         jwt.verify(token, process.env.SECRET, (err, decodedToken) => {
             if (err) {
-                console.log(err.message);
+                console.log('BACK checkAuth when decoding: ', err.message);
                 res.sendStatus(401);
             } else {
                 next();

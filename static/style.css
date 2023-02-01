@@ -7,7 +7,7 @@
 body {
     display: flex;
     flex-direction: column;
-    background-color: rgb(116, 132, 146);
+    background-color: rgb(93, 99, 105);
     align-items: center;
 }
 main {
@@ -16,7 +16,7 @@ main {
     justify-content: center;
 }
 button {
-    background-color: rgb(31, 89, 112);
+    background-color: rgb(9, 69, 92);
     color: rgb(240, 168, 30);
     font-size: 20px;
     width: 100px;
@@ -29,7 +29,7 @@ button {
 }
 
 button:hover {
-    background-color: rgba(31, 89, 112, 0.491);
+    background-color: rgba(31, 89, 112, 0.964);
 }
 
 button:active {
@@ -41,7 +41,7 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: rgb(18, 61, 78);
+    background-color:  rgb(3, 41, 56);
     height: 14vh;
     min-height: 90px;
     width: 100%;
@@ -49,7 +49,7 @@ header {
 }
 
 h1 {
-    color: rgb(240, 168, 30);
+    color: rgb(210, 137, 0);
     margin: auto;
     font-size: 50px;
 }
@@ -58,7 +58,7 @@ h1 {
     margin-right: 10px;
     font-size: 25px;
     font-weight: 900;
-    color: rgb(240, 168, 30);
+    color: rgb(210, 137, 0);
 }
 
 /* FORMS FOR LOGIN/SIGNUP */
@@ -82,7 +82,7 @@ h1 {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    color: rgb(240, 168, 30);
+    color: rgb(210, 137, 0);
 }
 .namepassword-form > button {
     margin-top: 10px;
@@ -97,13 +97,13 @@ h1 {
 #error-signup,
 .error-channel {
     font-size: 15px;
-    color: rgb(244, 7, 7);
+    font-weight: bold;
+    color: rgb(165, 33, 33);
 }
 
 #chatContainer,
 #channelsContainer {
-    background-color: rgb(18, 61, 78);
-    border: 3px solid rgb(18, 61, 78);
+    background-color: rgb(3, 41, 56);
     display: flex;
     flex-direction: column;
     height: 50vh;
@@ -126,13 +126,13 @@ h1 {
 }
 
 textarea {
-    border: 3px solid rgb(18, 61, 78);
+    border: 3px solid  rgb(3, 41, 56);
 }
 
 .messagesChannels {
     display: flex;
     flex-direction: column;
-    background-color: beige;
+    background-color: rgb(235, 215, 177);
     border-radius: 8px;
     margin-bottom: 15px;
     height: min-content;
@@ -142,7 +142,7 @@ textarea {
 }
 
 .selectedChannel {
-    background-color: rgb(240, 168, 30);
+    background-color: rgb(210, 137, 0);
     color: rgb(18, 61, 78);
 }
 
@@ -150,11 +150,11 @@ textarea {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    color: beige;
+    color: rgb(235, 215, 177);
 }
 
 i {
-    color: rgb(240, 168, 30);
+    color: rgb(210, 137, 0);
     margin-right: 6px;
     cursor: pointer;
 }
@@ -183,8 +183,8 @@ i {
     padding: 10px;
     height: 40vh;
     width: max-content;
-    border: 3px solid rgb(18, 61, 78);
-    background-color: beige;
+    border: 3px solid  rgb(3, 41, 56);
+    background-color: rgb(235, 215, 177);
     justify-content: space-evenly;
     align-items: center;
 }
@@ -196,8 +196,8 @@ i {
     padding: 5px;
     height: max-content;
     width: 22em;
-    border: 3px solid rgb(18, 61, 78);
-    background-color: beige;
+    border: 3px solid  rgb(3, 41, 56);
+    background-color: rgb(235, 215, 177);
     align-items: center;
 }
 

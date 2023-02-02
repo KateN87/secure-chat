@@ -112,6 +112,10 @@ h1 {
     padding: 15px;
     overflow: auto;
 }
+#chatContainer {
+    display: flex;
+    flex-direction: column-reverse;
+}
 
 .readWrite {
     width: 70%;

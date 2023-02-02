@@ -15,19 +15,24 @@
     ],
     "channelData": [
         {
+            "name": "hellu",
+            "messages": [],
+            "private": false
+        },
+        {
             "name": "Public (normal)",
             "messages": [
-                {
-                    "id": 1,
-                    "message": "Meddelande ett",
-                    "userName": "Kate",
-                    "timeCreated": "Tue Jan 31 2023 9:17:3"
-                },
                 {
                     "id": 2,
                     "message": "Meddelande två",
                     "timeCreated": "Sat Jan 28 2023 9:46:13",
                     "userName": "Richard"
+                },
+                {
+                    "id": 1,
+                    "message": "Meddelande ett",
+                    "userName": "Kate",
+                    "timeCreated": "Tue Jan 31 2023 9:17:3"
                 }
             ],
             "private": false
@@ -45,16 +50,16 @@
             "name": "Watussi (edited)",
             "messages": [
                 {
-                    "id": 1,
-                    "message": "Meddelande ett",
-                    "userName": "Kate",
-                    "timeCreated": "Tue Jan 31 2023 9:17:3"
-                },
-                {
                     "id": 2,
                     "message": "Meddelande två",
                     "timeCreated": "Sat Jan 28 2023 9:46:13",
                     "userName": "Richard"
+                },
+                {
+                    "id": 1,
+                    "message": "Meddelande ett",
+                    "userName": "Kate",
+                    "timeCreated": "Tue Jan 31 2023 9:17:3"
                 }
             ],
             "private": true

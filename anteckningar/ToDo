@@ -56,15 +56,17 @@ ERRORS:
 DONE: Visa i frontend vilken kanal som används
 DONE: When user gets logged in, update channels-list so locked is removed
 
-When first written wrong userName, and then press signup, errorLogin should be removed, and vice versa
+
 
 DONE: Endast visa send new message när en kanal är vald
 
 DONE: Färg på felmeddelande i frontend
 DONE: Notis om att logga in om man trycker på en låst kanal
+DONE: sett scroll-bar at bottom when new message is added
 
 Show Error when trying to add a new channel with no name
 
 Show Error when server-problems?
+When first written wrong userName, and then press signup, errorLogin should be removed, and vice versa (Kolla denna)
 
-sett scroll-bar at bottom when new message is added (not at channel?)
+

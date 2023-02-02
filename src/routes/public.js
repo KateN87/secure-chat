@@ -46,7 +46,7 @@ router.post('/channels/:name', (req, res) => {
             userName,
         };
 
-        maybeChannel.messages.push(newMessage);
+        maybeChannel.messages.unshift(newMessage);
         db.write();
         res.status(200).send(maybeChannel);
     } else {

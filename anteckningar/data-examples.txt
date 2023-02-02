@@ -10,7 +10,7 @@ const user = [
     }
 ]
 
-const channels = [{
+const channels: [{
      name: "name"
      messages: [{
         id: 1,

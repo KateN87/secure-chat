@@ -60,12 +60,12 @@ When first written wrong userName, and then press signup, errorLogin should be r
 
 DONE: Endast visa send new message när en kanal är vald
 
+DONE: Färg på felmeddelande i frontend
+
 Notis om att logga in om man trycker på en låst kanal
 
 Show Error when trying to add a new channel with no name
 
 Show Error when server-problems?
-
-Färg på felmeddelande i frontend
 
 sett scroll-bar at bottom when new message is added (not at channel?)

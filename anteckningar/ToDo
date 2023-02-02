@@ -1,6 +1,4 @@
 FRÅGOR:
-Hur skickar jag med variabler mellan filer? Se min signUp och Log in
-Kan jag nå DOM-element från loginetc?
 är input speciellt? Ser värdet utan att specificera DOM
 
 BACKEND
@@ -60,7 +58,7 @@ DONE: When user gets logged in, update channels-list so locked is removed
 
 When first written wrong userName, and then press signup, errorLogin should be removed, and vice versa
 
-Endast visa send new message när en kanal är vald
+DONE: Endast visa send new message när en kanal är vald
 
 Notis om att logga in om man trycker på en låst kanal
 

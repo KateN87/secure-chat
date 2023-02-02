@@ -38,6 +38,7 @@ buttons.btnSignUp.addEventListener('click', async () => {
         let maybeLoggedIn = await loginUser();
         localStorage.setItem(state.JWT_KEY, maybeLoggedIn.token);
         state.loggedInUser = { userName: `${maybeLoggedIn.userName}` };
+        console.log("Signup userName", maybeLoggedIn.userName)
         state.isLoggedIn = true;
         forms.errorSignUp.classList.add('invisible');
         updateLoggedUI();
@@ -119,7 +120,7 @@ async function sendNewMessage() {
 
     try {
         const response = await fetch(
-            '/api/public/channels/' + `${state.activeChannel}`,
+            '/api/public/channels/' + `${state.activeChannel.name}`,
             options
         );
         if (response.status === 200) {
@@ -166,7 +167,7 @@ async function getChannelNames() {
 }
 
 async function getMessages(name) {
-    state.activeChannel = name.name;
+    state.activeChannel = name;
     console.log('getMessages');
     containers.chatContainer.innerHTML = '';
     let messageArray = [];

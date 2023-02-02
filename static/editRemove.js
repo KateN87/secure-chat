@@ -31,18 +31,18 @@ async function removeMessage(name, element) {
     }
 }
 
-async function editMessage(name, element) {
+async function editMessage(channelName, messageObject) {
     const jwt = localStorage.getItem(state.JWT_KEY);
-
+    console.log("editMessage channelName", channelName)
     let editedMessage = {
-        name: name.name,
+        name: channelName.name,
         message: inputs.inputEdit.value,
         user: state.loggedInUser.userName,
     };
     console.log('editedMessage: ', editedMessage);
 
     try {
-        const response = await fetch('/api/private/' + element.id, {
+        const response = await fetch('/api/private/' + messageObject.id, {
             method: 'PUT',
             body: JSON.stringify(editedMessage),
             headers: {

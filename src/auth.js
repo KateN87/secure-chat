@@ -32,6 +32,7 @@ const checkAuth = (req, res, next) => {
 
         if (x === undefined) {
             res.sendStatus(401);
+            return
         }
         token = x.substring(7);
     }
@@ -40,8 +41,9 @@ const checkAuth = (req, res, next) => {
         try {
             jwt.verify(token, process.env.SECRET);
         } catch (error) {
-            console.log('Catch! Felaktig token!cc');
+            console.log('Catch! Felaktig token!');
             res.sendStatus(401);
+            return;
         }
         next();
     } else {

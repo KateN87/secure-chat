@@ -61,8 +61,7 @@ When first written wrong userName, and then press signup, errorLogin should be r
 DONE: Endast visa send new message när en kanal är vald
 
 DONE: Färg på felmeddelande i frontend
-
-Notis om att logga in om man trycker på en låst kanal
+DONE: Notis om att logga in om man trycker på en låst kanal
 
 Show Error when trying to add a new channel with no name
 

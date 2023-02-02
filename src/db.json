@@ -11,6 +11,10 @@
     {
       "userName": "Matilda",
       "password": "$2a$08$HPLoLmYgJg7DBPMqvg7pxOMQ/0yIpu83b/Xr6bWPTDy4qS26VQw6K"
+    },
+    {
+      "userName": "new user",
+      "password": "$2a$08$OTsqd.enDAyYg28EtWXVc.cyP3gFkkcf53tJ9cw.Im6cyMqbm1yum"
     }
   ],
   "channelData": [
@@ -28,6 +32,12 @@
           "message": "Meddelande två",
           "timeCreated": "Sat Jan 28 2023 9:46:13",
           "userName": "Richard"
+        },
+        {
+          "id": 3,
+          "message": "Hej",
+          "timeCreated": "Thu Feb 02 2023 18:6:34",
+          "userName": "Guest"
         }
       ],
       "private": false
@@ -58,6 +68,20 @@
         }
       ],
       "private": true
+    },
+    {
+      "name": "new",
+      "messages": [
+        {
+          "deleted": true
+        }
+      ],
+      "private": true
+    },
+    {
+      "name": "Hellooo",
+      "messages": [],
+      "private": false
     }
   ]
 }

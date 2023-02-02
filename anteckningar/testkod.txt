@@ -1,0 +1,23 @@
+    messagesChannels.addEventListener('click', async () => {
+        const channelBoxes = Array.from(channelsContainer.children);
+
+
+        for (const box of channelBoxes) {
+            box.classList.remove('selectedChannel');
+        }
+
+
+        messagesChannels.classList.add('selectedChannel');
+        /* console.log("channelBoxes", channelBoxes) */
+
+        let maybeAllowed = await checkChannelAuth(channelName);
+        if (maybeAllowed) {
+            containers.newMessageContainer.classList.remove('invisible');
+
+            getMessages(channelName);
+        } else {
+            /* messagesChannels.innerHTML =
+                '<p id="tooltip-text> Please login </p>"'; */
+            console.log('Not allowed');
+        }
+    });

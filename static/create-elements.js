@@ -3,32 +3,42 @@ import { checkChannelAuth } from './validation.js';
 import { removeMessage, editMessage } from './editRemove.js';
 import { containers, forms, buttons, inputs, state } from './globalVar.js';
 const channelsContainer = document.querySelector('#channelsContainer');
-let messageTest = {}
+let messageTest = {};
 
-function createChannelElements(channelName) {
+async function createChannelElements(channelName) {
     const messagesChannels = document.createElement('section');
     const spanChannel = document.createElement('span');
     const spanName = document.createElement('span');
 
-
     messagesChannels.classList.add('messagesChannels');
+    let maybeAllowed = await checkChannelAuth(channelName);
 
-    messagesChannels.addEventListener('click', async () => {
-        const channelBoxes = Array.from(channelsContainer.children);
-        for (const box of channelBoxes) {
-            box.classList.remove('selectedChannel');
-        }
-        messagesChannels.classList.add('selectedChannel');
-        /* console.log("channelBoxes", channelBoxes) */
-        let maybeAllowed = await checkChannelAuth(channelName);
-        if (maybeAllowed) {
+    if (maybeAllowed) {
+        messagesChannels.addEventListener('click', async () => {
+            const channelBoxes = Array.from(channelsContainer.children);
+
+            for (const box of channelBoxes) {
+                box.classList.remove('selectedChannel');
+            }
+            messagesChannels.classList.add('selectedChannel');
             containers.newMessageContainer.classList.remove('invisible');
-            /* console.log('create-elements 24') */
+
             getMessages(channelName);
-        } else {
-            console.log('Not allowed');
-        }
-    });
+        });
+    } else {
+        let tooltip = document.createElement('span');
+        tooltip.innerHTML =
+            '<p id="tooltip-text">Log in to see this channel</p>';
+        messagesChannels.appendChild(tooltip);
+        tooltip.style.display = 'none';
+
+        messagesChannels.addEventListener('mouseover', () => {
+            tooltip.style.display = 'block';
+        });
+        messagesChannels.addEventListener('mouseleave', () => {
+            tooltip.style.display = 'none';
+        });
+    }
 
     spanName.innerText = channelName.name;
 
@@ -44,7 +54,7 @@ function createChannelElements(channelName) {
     return;
 }
 
- function createInfoElements(channelName, messageObject) {
+function createInfoElements(channelName, messageObject) {
     const divInfo = document.createElement('div');
     const spanUserName = document.createElement('span');
     const spanDate = document.createElement('span');
@@ -62,7 +72,6 @@ function createChannelElements(channelName) {
     divInfo.appendChild(spanDate);
 
     if (state.isLoggedIn) {
-
         if (messageObject.userName === state.loggedInUser.userName) {
             const spanIcons = document.createElement('span');
             const iconEdit = document.createElement('i');
@@ -73,10 +82,8 @@ function createChannelElements(channelName) {
 
             iconEdit.addEventListener('click', () => {
                 containers.editContainer.classList.remove('invisible');
-                selectedMessage = messageObject
+                selectedMessage = messageObject;
                 inputs.inputEdit.value = selectedMessage.message;
-                
-
             });
             iconTrash.addEventListener('click', () => {
                 removeMessage(channelName, messageObject);
@@ -91,21 +98,19 @@ function createChannelElements(channelName) {
 
     return divInfo;
 }
-let selectedMessage = null
+let selectedMessage = null;
 
 buttons.btnsendEdit.addEventListener('click', async () => {
-
-    console.log("btnsendEdit activechannel", state.activeChannel)
-    console.log("btnsendEdit messageTest", selectedMessage)
-    let editPromise = await editMessage(state.activeChannel, selectedMessage)
-    console.log("activeChannel", state.activeChannel)
-    if ( editPromise ) {
+    console.log('btnsendEdit activechannel', state.activeChannel);
+    console.log('btnsendEdit messageTest', selectedMessage);
+    let editPromise = await editMessage(state.activeChannel, selectedMessage);
+    console.log('activeChannel', state.activeChannel);
+    if (editPromise) {
         getMessages(state.activeChannel);
         inputs.inputEdit.value = '';
         containers.editContainer.classList.add('invisible');
     }
 });
-
 
 function createMessageElements(channelName, messageObject) {
     const divMain = document.createElement('div');
@@ -133,8 +138,6 @@ function createMessageElements(channelName, messageObject) {
     messagesChannels.appendChild(spanMessage);
     divMain.appendChild(messagesChannels);
     containers.chatContainer.appendChild(divMain);
-
-
 }
 
 export { createChannelElements, createInfoElements, createMessageElements };

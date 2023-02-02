@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
     margin: 0;
+    user-select: none;
 }
 
 /* EVERYTHING IN BODY */
@@ -41,8 +42,8 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color:  rgb(3, 41, 56);
-    height: 14vh;
+    background-color: rgb(3, 41, 56);
+    height: max-content;
     min-height: 90px;
     width: 100%;
     padding: 5px;
@@ -126,7 +127,7 @@ h1 {
 }
 
 textarea {
-    border: 3px solid  rgb(3, 41, 56);
+    border: 3px solid rgb(3, 41, 56);
 }
 
 .messagesChannels {
@@ -139,8 +140,11 @@ textarea {
     padding: 8px 1em 8px 1em;
     font-size: 25px;
     justify-content: space-around;
+    position: relative;
 }
-
+#channelsContainer > .messagesChannels {
+    cursor: pointer;
+}
 .selectedChannel {
     background-color: rgb(210, 137, 0);
     color: rgb(18, 61, 78);
@@ -183,7 +187,7 @@ i {
     padding: 10px;
     height: 40vh;
     width: max-content;
-    border: 3px solid  rgb(3, 41, 56);
+    border: 3px solid rgb(3, 41, 56);
     background-color: rgb(235, 215, 177);
     justify-content: space-evenly;
     align-items: center;
@@ -196,7 +200,7 @@ i {
     padding: 5px;
     height: max-content;
     width: 22em;
-    border: 3px solid  rgb(3, 41, 56);
+    border: 3px solid rgb(3, 41, 56);
     background-color: rgb(235, 215, 177);
     align-items: center;
 }
@@ -226,6 +230,30 @@ input[type='checkbox' i] {
     display: flex;
     flex-direction: row;
 }
+
+#tooltip-text {
+    /* display: none; */
+    position: absolute;
+    align-self: center;
+    text-align: center;
+    z-index: 1;
+    background: rgb(3, 41, 56);
+    padding: 4px;
+    width: 80%;
+    font-size: 20px;
+    color: rgb(210, 137, 0);
+    border-radius: 20px;
+    animation: fadeIn 0.6s;
+}
+
+/* .tooltip-container {
+    position: relative;
+    display: flex;
+    place-content: center;
+    background-color: blue;
+} */
+
+/* .tooltip-container:hover */
 
 .invisible {
     display: none;

@@ -95,7 +95,7 @@ router.post('/', (req, res) => {
         };
         db.data.channelData.push(newChannel);
         db.write();
-        res.status(200).send(newChannel);
+        res.status(200).unshift(newChannel);
     } else {
         res.sendStatus(400);
     }

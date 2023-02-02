@@ -3,13 +3,13 @@ import { checkChannelAuth } from './validation.js';
 import { removeMessage, editMessage } from './editRemove.js';
 import { containers, forms, buttons, inputs, state } from './globalVar.js';
 const channelsContainer = document.querySelector('#channelsContainer');
+let messageTest = {}
 
 function createChannelElements(channelName) {
     const messagesChannels = document.createElement('section');
     const spanChannel = document.createElement('span');
     const spanName = document.createElement('span');
 
-   
 
     messagesChannels.classList.add('messagesChannels');
 
@@ -32,7 +32,7 @@ function createChannelElements(channelName) {
 
     spanName.innerText = channelName.name;
 
-    if (name.private && !state.isLoggedIn) {
+    if (channelName.private && !state.isLoggedIn) {
         const lockIcon = document.createElement('i');
         lockIcon.className = 'fa-solid fa-lock';
         spanChannel.appendChild(lockIcon);
@@ -62,7 +62,7 @@ function createChannelElements(channelName) {
     divInfo.appendChild(spanDate);
 
     if (state.isLoggedIn) {
-        /*         console.log("createInfoElements element.userName:", element.userName, "state.loggedInUser.userName", state.loggedInUser) */
+
         if (messageObject.userName === state.loggedInUser.userName) {
             const spanIcons = document.createElement('span');
             const iconEdit = document.createElement('i');
@@ -73,18 +73,10 @@ function createChannelElements(channelName) {
 
             iconEdit.addEventListener('click', () => {
                 containers.editContainer.classList.remove('invisible');
+                selectedMessage = messageObject
+                inputs.inputEdit.value = selectedMessage.message;
                 
-/*  buttons.btnsendEdit.addEventListener('click', async () => {
-                    let editPromise = await editMessage(name, element)
-                    console.log('After edit messageg: ', editPromise)
-                    if ( editPromise ) {
-                        // console.log('CreateInfoElements: iconEdit', editMessage);
-                        console.log('create-elements 78')
-                        getMessages(name);
-                        inputs.inputEdit.value = '';
-                        containers.editContainer.classList.add('invisible');
-                    }
-                });  */
+
             });
             iconTrash.addEventListener('click', () => {
                 removeMessage(channelName, messageObject);
@@ -99,14 +91,16 @@ function createChannelElements(channelName) {
 
     return divInfo;
 }
+let selectedMessage = null
 
-buttons.btnsendEdit.addEventListener('click', async (e) => {
-    inputs.inputEdit.value = element.message;
-    let editPromise = await editMessage(channelName, messageObject)
+buttons.btnsendEdit.addEventListener('click', async () => {
 
+    console.log("btnsendEdit activechannel", state.activeChannel)
+    console.log("btnsendEdit messageTest", selectedMessage)
+    let editPromise = await editMessage(state.activeChannel, selectedMessage)
+    console.log("activeChannel", state.activeChannel)
     if ( editPromise ) {
-
-        getMessages(channelName);
+        getMessages(state.activeChannel);
         inputs.inputEdit.value = '';
         containers.editContainer.classList.add('invisible');
     }
@@ -119,7 +113,6 @@ function createMessageElements(channelName, messageObject) {
     const spanMessage = document.createElement('span');
     let divInfo = createInfoElements(channelName, messageObject);
 
-    console.log("CreateMessageElements")
     messagesChannels.classList.add('messagesChannels');
 
     divMain.appendChild(divInfo);
@@ -140,7 +133,7 @@ function createMessageElements(channelName, messageObject) {
     messagesChannels.appendChild(spanMessage);
     divMain.appendChild(messagesChannels);
     containers.chatContainer.appendChild(divMain);
-    console.log("CreateMessageElements2")
+
 
 }
 

@@ -38,7 +38,7 @@ buttons.btnSignUp.addEventListener('click', async () => {
         let maybeLoggedIn = await loginUser();
         localStorage.setItem(state.JWT_KEY, maybeLoggedIn.token);
         state.loggedInUser = { userName: `${maybeLoggedIn.userName}` };
-        console.log("Signup userName", maybeLoggedIn.userName)
+        console.log('Signup userName', maybeLoggedIn.userName);
         state.isLoggedIn = true;
         forms.errorSignUp.classList.add('invisible');
         updateLoggedUI();

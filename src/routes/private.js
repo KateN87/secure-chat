@@ -93,9 +93,9 @@ router.post('/', (req, res) => {
             messages: [],
             private: status,
         };
-        db.data.channelData.push(newChannel);
+        db.data.channelData.unshift(newChannel);
         db.write();
-        res.status(200).unshift(newChannel);
+        res.status(200).send(newChannel);
     } else {
         res.sendStatus(400);
     }

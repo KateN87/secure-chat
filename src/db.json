@@ -11,10 +11,6 @@
     {
       "userName": "Matilda",
       "password": "$2a$08$HPLoLmYgJg7DBPMqvg7pxOMQ/0yIpu83b/Xr6bWPTDy4qS26VQw6K"
-    },
-    {
-      "userName": "David",
-      "password": "$2a$08$4M89dbC81Wi/C7R6sg2ALOoHR.uc5fbO.v/KZy7MvR2aCIFfbzbfO"
     }
   ],
   "channelData": [
@@ -32,15 +28,6 @@
           "message": "Meddelande två",
           "timeCreated": "Sat Jan 28 2023 9:46:13",
           "userName": "Richard"
-        },
-        {
-          "id": 3,
-          "message": "",
-          "timeCreated": "Tue Jan 31 2023 13:48:29",
-          "userName": "Guest"
-        },
-        {
-          "deleted": true
         }
       ],
       "private": false
@@ -68,22 +55,6 @@
           "message": "Meddelande två",
           "timeCreated": "Sat Jan 28 2023 9:46:13",
           "userName": "Richard"
-        }
-      ],
-      "private": true
-    },
-    {
-      "name": "Davids kanal",
-      "messages": [
-        {
-          "deleted": true
-        },
-        {
-          "id": 2,
-          "message": "Oj då hejsan",
-          "timeCreated": "Thu Feb 02 2023 15:19:51",
-          "userName": "David",
-          "timeEdited": "Thu Feb 02 2023 15:19:59"
         }
       ],
       "private": true

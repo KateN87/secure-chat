@@ -13,7 +13,7 @@ buttons.btnSendMessage.addEventListener('click', sendNewMessage);
 forms.submitForms.forEach((form) =>
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        console.log(e.submitter.id);
+
         if (form.checkValidity() === false) {
             form.reportValidity();
             return;
@@ -157,7 +157,6 @@ async function getChannelNames() {
 }
 
 async function getMessages() {
-    console.log('getMessages');
     containers.chatContainer.innerHTML = '';
     let messageArray = [];
     try {

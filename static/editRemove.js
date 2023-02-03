@@ -40,7 +40,6 @@ async function editMessage(messageObject) {
         message: inputs.inputEdit.value,
         user: state.loggedInUser.userName,
     };
-    console.log('editedMessage: ', editedMessage);
 
     try {
         const response = await fetch('/api/private/' + messageObject.id, {
@@ -71,7 +70,6 @@ async function createChannel() {
         name: inputs.inputChannelName.value,
         private: inputs.checkBox.checked,
     };
-    console.log('createChannel', newChannel);
     try {
         const response = await fetch('/api/private/', {
             method: 'POST',

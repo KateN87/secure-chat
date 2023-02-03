@@ -55,7 +55,6 @@ async function trySignUp() {
         state.isLoggedIn = true;
         forms.errorSignUp.classList.add('invisible');
         updateLoggedUI();
-        checkForLoggedin();
     } else {
         inputs.inputPassword.value = '';
         inputs.inputUserName.value = '';

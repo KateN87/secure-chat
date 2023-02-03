@@ -23,16 +23,14 @@ function createToken(userName) {
 }
 
 const checkAuth = (req, res, next) => {
-    /* console.log('checkAuth() THIS IS RUNNING!'); */
     let token = req.body.token || req.query.token;
 
     if (!token) {
-        /* console.log('Token exists This shows'); */
         let x = req.headers['authorization'];
 
         if (x === undefined) {
             res.sendStatus(401);
-            return
+            return;
         }
         token = x.substring(7);
     }

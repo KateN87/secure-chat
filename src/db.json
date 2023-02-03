@@ -7,25 +7,18 @@
         {
             "userName": "Kate",
             "password": "$2a$08$dVnUxRYOoiJaqLsHSglg8OnQcDrgUKchEGuxTlvK2NEnVg47LnuiO"
-        },
-        {
-            "userName": "Matilda",
-            "password": "$2a$08$HPLoLmYgJg7DBPMqvg7pxOMQ/0yIpu83b/Xr6bWPTDy4qS26VQw6K"
         }
     ],
     "channelData": [
         {
-            "name": "Public (normal)",
+            "name": "Welcome-channel",
             "messages": [
                 {
-                    "id": 2,
-                    "message": "Meddelande två",
-                    "timeCreated": "Sat Jan 28 2023 9:46:13",
-                    "userName": "Richard"
+                    "deleted": true
                 },
                 {
                     "id": 1,
-                    "message": "Meddelande ett",
+                    "message": "Welcome to the Secure chat! \n Choose a channel and start connecting with others, but if you want to create channels, edit/delete your messages and have a unique user name you'll have to sign up first. \n Have fun!",
                     "userName": "Kate",
                     "timeCreated": "Tue Jan 31 2023 9:17:3"
                 }
@@ -33,7 +26,7 @@
             "private": false
         },
         {
-            "name": "Private (deleted)",
+            "name": "Spiders",
             "messages": [
                 {
                     "deleted": true
@@ -42,19 +35,16 @@
             "private": true
         },
         {
-            "name": "Watussi (edited)",
+            "name": "Watussi",
             "messages": [
                 {
                     "id": 2,
-                    "message": "Meddelande två",
+                    "message": "What is a Watussi?",
                     "timeCreated": "Sat Jan 28 2023 9:46:13",
                     "userName": "Richard"
                 },
                 {
-                    "id": 1,
-                    "message": "Meddelande ett",
-                    "userName": "Kate",
-                    "timeCreated": "Tue Jan 31 2023 9:17:3"
+                    "deleted": true
                 }
             ],
             "private": true

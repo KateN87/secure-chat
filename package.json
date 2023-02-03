@@ -1,13 +1,12 @@
 {
     "name": "secure-chat",
     "version": "1.0.0",
-    "description": "",
+    "description": "A secure-chat, fullstack webbapp",
     "main": "index.js",
     "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node src/index.js ",
-        "nodemon": "nodemon src/index.js"
+        "start": "node src/index.js "
     },
     "keywords": [],
     "author": "Kate",
@@ -18,7 +17,6 @@
         "express": "^4.18.2",
         "jsonwebtoken": "^9.0.0",
         "lowdb": "^5.0.5",
-        "nodemon": "^2.0.20",
         "readline-sync": "^1.4.10"
     }
 }

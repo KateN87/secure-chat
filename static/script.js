@@ -32,7 +32,7 @@ forms.submitForms.forEach((form) =>
 
 buttons.btnLogout.addEventListener('click', () => {
     state.isLoggedIn = false;
-    state.loggedInUser = { userName: '' };
+    state.loggedInUser = { userName: 'Guest' };
     localStorage.removeItem(state.JWT_KEY);
     updateLoggedUI();
 });

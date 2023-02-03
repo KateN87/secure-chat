@@ -6,67 +6,52 @@ BACKEND
 -   I server.js:
     DONE: importera det som behövs
     DONE: declarera app = express()
-
-DONE: skapa middleware express.json(), logger, staticPath
-
-DONE: exportera app
+    DONE: skapa middleware express.json(), logger, staticPath
+    DONE: exportera app
 
 -   I .env-filen:
     DONE: Gör port och secret i .env-filen
 
 -   I index.js:
     DONE: importera det som behövs - kom ihåg dotenv
-
-DONE: dotenv.config()
-
-DONE: declarera port
-
-DONE: gör app.listen (starta servern)
+    DONE: dotenv.config()
+    DONE: declarera port
+    DONE: gör app.listen (starta servern)
 
 -   I routes/public.js:
     DONE: importera data från database.js
-
-DONE: declarera router express.Router()
-
-DONE: GET-anrop som skickar tillbaka channel-objekt
-
-DONE: GET-anrop :channel-name som skickar tillbaka allt i det objektet - utan validering
-
-DONE: GET-anrop som bara skickar tillbaka alla channel-names i en lista
-
-DONE: POST-anrop som skapar en ny message i en specifik channel - utan validering
+    DONE: declarera router express.Router()
+    DONE: GET-anrop som skickar tillbaka channel-objekt
+    DONE: GET-anrop :channel-name som skickar tillbaka allt i det objektet - utan validering
+    DONE: GET-anrop som bara skickar tillbaka alla channel-names i en lista
+    DONE: POST-anrop som skapar en ny message i en specifik channel - utan validering
 
 -   i db.json:
     DONE: Göra om datan så isEdited och isDeleted endast läggs till när de är relevant
     DONE: skapa databas
 
 FRONTEND
-DONE: Skapa så alla channel-names skrivs ut i vänstra section en lista
-DONE: Lägga till hänglås på låsta
-DONE: skapa så alla meddelanden i en channel skrivs ut i högra diven
-DONE: fixa i createMessageElements() så iconerna endast skapas på de meddelanden där user stämmer överens med inloggad
-DONE: fixa checkfortoken-biten när man laddar om sidan
-DONE: Login: kunna logga in
-DONE: Login: laddar om sidan, komma ihåg
-DONE: Fortsätta fixa så det går att skicka meddelande, fastnar på att kanalnamnet inte stämmer
-DONE: editMessage
-DONE: createNewChannel
+    DONE: Skapa så alla channel-names skrivs ut i vänstra section en lista
+    DONE: Lägga till hänglås på låsta
+    DONE: skapa så alla meddelanden i en channel skrivs ut i högra diven
+    DONE: fixa i createMessageElements() så iconerna endast skapas på de meddelanden där user stämmer överens med inloggad
+    DONE: fixa checkfortoken-biten när man laddar om sidan
+    DONE: Login: kunna logga in
+    DONE: Login: laddar om sidan, komma ihåg
+    DONE: Fortsätta fixa så det går att skicka meddelande, fastnar på att kanalnamnet inte stämmer
+    DONE: editMessage
+    DONE: createNewChannel
 
 ERRORS:
-DONE: Visa i frontend vilken kanal som används
-DONE: When user gets logged in, update channels-list so locked is removed
+    DONE: Visa i frontend vilken kanal som används
+    DONE: When user gets logged in, update channels-list so locked is removed
+    DONE: Endast visa send new message när en kanal är vald
+    DONE: Färg på felmeddelande i frontend
+    DONE: Notis om att logga in om man trycker på en låst kanal
+    DONE: sett scroll-bar at bottom when new message is added
+    DONE: Show Error when trying to add a new channel with no name
+    DONE: When first written wrong userName, and then press signup, errorLogin should be removed, and vice versa (Kolla denna)
+    DONE: Show Error when server-problems
 
-
-
-DONE: Endast visa send new message när en kanal är vald
-
-DONE: Färg på felmeddelande i frontend
-DONE: Notis om att logga in om man trycker på en låst kanal
-DONE: sett scroll-bar at bottom when new message is added
-
-Show Error when trying to add a new channel with no name
-
-Show Error when server-problems?
-When first written wrong userName, and then press signup, errorLogin should be removed, and vice versa (Kolla denna)
 
 

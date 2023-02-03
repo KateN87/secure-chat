@@ -2,27 +2,33 @@ import {
     createChannelElements,
     createMessageElements,
 } from './create-elements.js';
-import { authorization } from './validation.js';
-import { signUpUser, loginUser } from './loginetc.js';
+import { authorization, showWrong } from './validation.js';
+import { tryLogin, trySignUp } from './loginetc.js';
 import { createChannel } from './editRemove.js';
 import { containers, forms, buttons, inputs, state } from './globalVar.js';
 
 checkForLoggedin();
-
 buttons.btnSendMessage.addEventListener('click', sendNewMessage);
 
-buttons.btnLogin.addEventListener('click', async () => {
-    let maybeLoggedIn = await loginUser();
-    if (!maybeLoggedIn) {
-        forms.errorLogin.classList.remove('invisible');
-    } else {
-        localStorage.setItem(state.JWT_KEY, maybeLoggedIn.token);
-        state.loggedInUser = { userName: `${maybeLoggedIn.userName}` };
-        state.isLoggedIn = true;
-        forms.errorLogin.classList.add('invisible');
-        updateLoggedUI();
-    }
-});
+forms.submitForms.forEach((form) =>
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        console.log(e.submitter.id);
+        if (form.checkValidity() === false) {
+            form.reportValidity();
+            return;
+        }
+        if (e.submitter.id === 'btnLogin') {
+            tryLogin();
+        }
+        if (e.submitter.id === 'btnSignUp') {
+            trySignUp();
+        }
+        if (e.submitter.id === 'btnCreateChannel') {
+            tryNewChannel();
+        }
+    })
+);
 
 buttons.btnLogout.addEventListener('click', () => {
     state.isLoggedIn = false;
@@ -31,31 +37,12 @@ buttons.btnLogout.addEventListener('click', () => {
     updateLoggedUI();
 });
 
-buttons.btnSignUp.addEventListener('click', async () => {
-    let maybeSignedUp = await signUpUser();
-
-    if (maybeSignedUp) {
-        let maybeLoggedIn = await loginUser();
-        localStorage.setItem(state.JWT_KEY, maybeLoggedIn.token);
-        state.loggedInUser = { userName: `${maybeLoggedIn.userName}` };
-        console.log('Signup userName', maybeLoggedIn.userName);
-        state.isLoggedIn = true;
-        forms.errorSignUp.classList.add('invisible');
-        updateLoggedUI();
-        /*       checkForLoggedin(); */
-    } else {
-        inputs.inputPassword.value = '';
-        inputs.inputUserName.value = '';
-        forms.errorSignUp.classList.remove('invisible');
-    }
-});
-
 buttons.btncloseEdit.addEventListener('click', () => {
     inputs.inputEdit.value = '';
     containers.editContainer.classList.add('invisible');
 });
 
-buttons.btnCreateChannel.addEventListener('click', async () => {
+async function tryNewChannel() {
     if (await createChannel()) {
         getChannelNames();
         forms.errorChannel.classList.add('invisible');
@@ -63,7 +50,7 @@ buttons.btnCreateChannel.addEventListener('click', async () => {
     } else {
         forms.errorChannel.classList.remove('invisible');
     }
-});
+}
 
 async function checkForLoggedin() {
     let maybeLoggedIn = await authorization();
@@ -124,15 +111,16 @@ async function sendNewMessage() {
             options
         );
         if (response.status === 200) {
-            let channel = await response.json();
+            /* let channel = await response.json(); */
             /* console.log('This is channel', channel); */
-            await getMessages(channel);
+            await getMessages();
             inputs.inputMessage.value = '';
             return true;
         } else {
             return false;
         }
     } catch (error) {
+        showWrong();
         console.log(
             'Could not POST to server. Error Message: ' + error.message
         );
@@ -147,6 +135,7 @@ async function getChannelNames() {
         const response = await fetch('/api/public/channels');
         nameArray = await response.json();
         if (response.status !== 200) {
+            showWrong();
             console.log(
                 'Could not connect to server. Status: ' + response.status
             );
@@ -154,6 +143,7 @@ async function getChannelNames() {
             return;
         }
     } catch (error) {
+        showWrong();
         console.log(
             'Could not GET data from the server. Error message: ' +
                 error.message
@@ -161,19 +151,18 @@ async function getChannelNames() {
         return;
     }
 
-    for (const name of nameArray) {
-        createChannelElements(name);
+    for (const channelName of nameArray) {
+        createChannelElements(channelName);
     }
 }
 
-async function getMessages(name) {
-    state.activeChannel = name;
+async function getMessages() {
     console.log('getMessages');
     containers.chatContainer.innerHTML = '';
     let messageArray = [];
     try {
         const response = await fetch(
-            `/api/public/channels/${name.name}/messages`
+            `/api/public/channels/${state.activeChannel.name}/messages`
         );
         messageArray = await response.json();
         if (response.status !== 200) {
@@ -184,6 +173,7 @@ async function getMessages(name) {
             return;
         }
     } catch (error) {
+        showWrong();
         console.log(
             'Could not GET data from the server. Error message: ' +
                 error.message
@@ -192,8 +182,8 @@ async function getMessages(name) {
     }
 
     for (const message of messageArray) {
-        createMessageElements(name, message, state.loggedInUser);
+        createMessageElements(message);
     }
 }
 
-export { getMessages, getChannelNames };
+export { getMessages, getChannelNames, updateLoggedUI, checkForLoggedin };

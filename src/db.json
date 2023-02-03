@@ -15,11 +15,6 @@
     ],
     "channelData": [
         {
-            "name": "hellu",
-            "messages": [],
-            "private": false
-        },
-        {
             "name": "Public (normal)",
             "messages": [
                 {

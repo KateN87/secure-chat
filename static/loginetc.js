@@ -1,31 +1,17 @@
-import { state, inputs } from './globalVar.js'; // globalVar from './globalVar.js';
+import { state, inputs, forms } from './globalVar.js';
+import { updateLoggedUI, checkForLoggedin } from './script.js';
+import { showWrong } from './validation.js';
 
-async function signUpUser() {
-    const user = {
-        userName: inputUserName.value,
-        password: inputPassword.value,
-    };
-    const options = {
-        method: 'POST',
-        body: JSON.stringify(user),
-        headers: {
-            'Content-type': 'application/json',
-        },
-    };
-
-    try {
-        const response = await fetch('/api/login/create', options);
-        if (response.status === 200) {
-            state.loggedInUser = await response.json();
-            return true;
-        } else {
-            return false;
-        }
-    } catch (error) {
-        console.log(
-            'Could not POST to server. Error Message: ' + error.message
-        );
-        return;
+async function tryLogin() {
+    let maybeLoggedIn = await loginUser();
+    if (!maybeLoggedIn) {
+        forms.errorLogin.classList.remove('invisible');
+    } else {
+        localStorage.setItem(state.JWT_KEY, maybeLoggedIn.token);
+        state.loggedInUser = { userName: `${maybeLoggedIn.userName}` };
+        state.isLoggedIn = true;
+        forms.errorLogin.classList.add('invisible');
+        updateLoggedUI();
     }
 }
 
@@ -52,6 +38,7 @@ async function loginUser() {
             return false;
         }
     } catch (error) {
+        showWrong();
         console.log(
             'Could not POST to server. Error Messagge: ' + error.message
         );
@@ -59,4 +46,51 @@ async function loginUser() {
     }
 }
 
-export { signUpUser, loginUser };
+async function trySignUp() {
+    let maybeSignedUp = await signUpUser();
+    if (maybeSignedUp) {
+        let maybeLoggedIn = await loginUser();
+        localStorage.setItem(state.JWT_KEY, maybeLoggedIn.token);
+        state.loggedInUser = { userName: `${maybeLoggedIn.userName}` };
+        state.isLoggedIn = true;
+        forms.errorSignUp.classList.add('invisible');
+        updateLoggedUI();
+        checkForLoggedin();
+    } else {
+        inputs.inputPassword.value = '';
+        inputs.inputUserName.value = '';
+        forms.errorSignUp.classList.remove('invisible');
+    }
+}
+
+async function signUpUser() {
+    const user = {
+        userName: inputUserName.value,
+        password: inputPassword.value,
+    };
+    const options = {
+        method: 'POST',
+        body: JSON.stringify(user),
+        headers: {
+            'Content-type': 'application/json',
+        },
+    };
+
+    try {
+        const response = await fetch('/api/login/create', options);
+        if (response.status === 200) {
+            state.loggedInUser = await response.json();
+            return true;
+        } else {
+            return false;
+        }
+    } catch (error) {
+        showWrong();
+        console.log(
+            'Could not POST to server. Error Message: ' + error.message
+        );
+        return;
+    }
+}
+
+export { signUpUser, loginUser, tryLogin, trySignUp };

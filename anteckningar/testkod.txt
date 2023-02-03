@@ -21,3 +21,23 @@
             console.log('Not allowed');
         }
     });
+
+
+    /* buttons.btnLogin.addEventListener('click', async (event) => {
+    let uName = inputs.inputUserName.value;
+    let uPassword = inputs.inputPassword.value;
+    if (uName === '' || uPassword === '') {
+        return;
+    }
+    let maybeLoggedIn = await loginUser();
+    if (!maybeLoggedIn) {
+        forms.errorLogin.classList.remove('invisible');
+        event.preventDefault();
+    } else {
+        localStorage.setItem(state.JWT_KEY, maybeLoggedIn.token);
+        state.loggedInUser = { userName: `${maybeLoggedIn.userName}` };
+        state.isLoggedIn = true;
+        forms.errorLogin.classList.add('invisible');
+        updateLoggedUI();
+    }
+}); */

@@ -19,18 +19,18 @@
             <span class="name-output"></span>
             <button id="btnLogout" class="invisible">Log out</button>
 
-            <section class="user-form">
-                <div class="namepassword-form">
-                    <form class="formDiv">
+            <form class="loginCreate-Form namePassword-form">
+                <div class="namePass-div">
+                    <div class="form-div">
                         <label>Username:</label>
-                        <input id="inputUserName" type="text" />
-                    </form>
-                    <form class="formDiv">
+                        <input id="inputUserName" type="text" required />
+                    </div>
+                    <div class="form-div">
                         <label>Password:</label>
-                        <input id="inputPassword" type="password" />
-                    </form>
-                    <button id="btnLogin">Log in</button>
-                    <button id="btnSignUp">Sign up</button>
+                        <input id="inputPassword" type="password" required />
+                    </div>
+                    <input type="submit" id="btnLogin" value="Log in" />
+                    <input type="submit" id="btnSignUp" value="Sign up" />
                 </div>
                 <p id="error-login" class="invisible">
                     Wrong username or password
@@ -38,7 +38,7 @@
                 <p id="error-signup" class="invisible">
                     User name already taken
                 </p>
-            </section>
+            </form>
         </header>
 
         <main>
@@ -48,19 +48,29 @@
                     <p class="error-channel invisible">
                         Channel already exists
                     </p>
-                    <form class="createChannelForm">
-                        <div class="formDiv">
-                            <label>NEW channel:</label>
-                            <input id="inputChannelName" type="text" />
+                    <form class="loginCreate-Form createChannelForm">
+                        <div class="createValues">
+                            <div class="form-div">
+                                <label>NEW channel:</label>
+                                <input
+                                    id="inputChannelName"
+                                    type="text"
+                                    required
+                                />
+                            </div>
+                            <label class="radioDiv">
+                                Private
+                                <input type="checkbox" id="Private" />
+                            </label>
                         </div>
-                        <label class="radioDiv">
-                            Private
-                            <input type="checkbox" id="Private" />
-                        </label>
+                        <div>
+                            <input
+                                type="submit"
+                                id="btnCreateChannel"
+                                value="Create"
+                            />
+                        </div>
                     </form>
-                    <div>
-                        <button id="btnCreateChannel">Create</button>
-                    </div>
                 </section>
             </div>
 
@@ -91,6 +101,13 @@
                     <button id="sendEdit">Send</button>
                     <button id="closeEdit">Close</button>
                 </div>
+            </div>
+            <div id="oops-container" class="invisible">
+                <p>
+                    Ooops!
+                    <br />
+                    Something went wrong, please try again later!
+                </p>
             </div>
         </main>
     </body>

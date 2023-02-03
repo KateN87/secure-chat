@@ -17,20 +17,6 @@ router.post('/', (req, res) => {
     }
 });
 
-/* app.post('/login', (req, res) => {
-    //
-
-    const { name, password } = req.body; //Plockar ut anv login-info
-    if (authenticateUser(name, password)) {
-        //Kollar om användaren
-        const userToken = createToken(name);
-        res.status(200).send(userToken);
-    } else {
-        res.sendStatus(401);
-        return;
-    }
-}); */
-
 router.post('/create', (req, res) => {
     const { userName, password } = req.body;
     if (validateSignUp(userName, password)) {

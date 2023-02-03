@@ -7,7 +7,8 @@ const containers = {
 };
 
 const forms = {
-    userForm: document.querySelector('.user-form'),
+    submitForms: document.querySelectorAll('.loginCreate-Form '),
+    userForm: document.querySelector('.namePassword-form'),
     nameOutput: document.querySelectorAll('.name-output'),
     errorLogin: document.querySelector('#error-login'),
     errorSignUp: document.querySelector('#error-signup'),

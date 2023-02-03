@@ -1,15 +1,16 @@
-import { getMessages, getChannelNames } from './script.js';
-import { state, inputs } from './globalVar.js'; // globalVar from './globalVar.js';
+import { getMessages } from './script.js';
+import { state, inputs } from './globalVar.js';
+import { showWrong } from './validation.js';
 
-async function removeMessage(name, element) {
+async function removeMessage(messageObject) {
     const jwt = localStorage.getItem(state.JWT_KEY);
     let deleteItem = {
-        name: name.name,
+        name: state.activeChannel.name,
         user: state.loggedInUser.userName,
     };
 
     try {
-        const response = await fetch('/api/private/' + element.id, {
+        const response = await fetch('/api/private/' + messageObject.id, {
             method: 'DELETE',
             body: JSON.stringify(deleteItem),
             headers: {
@@ -19,7 +20,7 @@ async function removeMessage(name, element) {
         });
 
         if (response.status === 200) {
-            getMessages(name);
+            getMessages();
         } else {
             console.log('Could not remove. Status: ', response.status);
         }
@@ -31,11 +32,11 @@ async function removeMessage(name, element) {
     }
 }
 
-async function editMessage(channelName, messageObject) {
+async function editMessage(messageObject) {
     const jwt = localStorage.getItem(state.JWT_KEY);
-    console.log("editMessage channelName", channelName)
+
     let editedMessage = {
-        name: channelName.name,
+        name: state.activeChannel.name,
         message: inputs.inputEdit.value,
         user: state.loggedInUser.userName,
     };
@@ -70,6 +71,7 @@ async function createChannel() {
         name: inputs.inputChannelName.value,
         private: inputs.checkBox.checked,
     };
+    console.log('createChannel', newChannel);
     try {
         const response = await fetch('/api/private/', {
             method: 'POST',
@@ -87,6 +89,7 @@ async function createChannel() {
             return false;
         }
     } catch (error) {
+        showWrong();
         console.log(
             'Could not PUT data to the server. Error message: ' + error.message
         );

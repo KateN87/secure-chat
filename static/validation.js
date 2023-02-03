@@ -37,4 +37,12 @@ async function authorization() {
     }
 }
 
-export { checkChannelAuth, authorization };
+function showWrong() {
+    let oopsContainer = document.querySelector('#oops-container');
+    oopsContainer.style.display = 'block';
+    setTimeout(function () {
+        oopsContainer.style.display = 'none';
+    }, 3000);
+}
+
+export { checkChannelAuth, authorization, showWrong };

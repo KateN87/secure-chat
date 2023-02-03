@@ -16,7 +16,8 @@ main {
     width: 90%;
     justify-content: center;
 }
-button {
+button,
+input[type='submit'] {
     background-color: rgb(9, 69, 92);
     color: rgb(240, 168, 30);
     font-size: 20px;
@@ -29,11 +30,13 @@ button {
     margin: 2px;
 }
 
-button:hover {
+button:hover,
+input[type='submit']:hover {
     background-color: rgba(31, 89, 112, 0.964);
 }
 
-button:active {
+button:active,
+input[type='submit']:active {
     color: rgba(235, 205, 247, 0.32);
 }
 
@@ -62,34 +65,42 @@ h1 {
     color: rgb(210, 137, 0);
 }
 
-/* FORMS FOR LOGIN/SIGNUP */
-.user-form {
-    /* background-color: aliceblue; */
-    padding: 2px;
+#oops-container {
+    position: absolute;
+    align-self: center;
+    background-color: aliceblue;
+    color: rgb(3, 41, 56);
     font-size: 20px;
-    min-width: 11em;
-    height: 70px;
-    right: 20px;
+    font-weight: bold;
+    padding: 20px;
+    border: 8px solid rgb(210, 137, 0);
     border-radius: 8px;
 }
-.formDiv,
-.user-form {
+
+/* FORMS FOR LOGIN/SIGNUP */
+
+.namePassword-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    color: rgb(210, 137, 0);
+}
+.namePass-div > input[type='submit'] {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+.namePass-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.form-div {
     display: flex;
     flex-direction: column;
 }
 
-.namepassword-form {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    color: rgb(210, 137, 0);
-}
-.namepassword-form > button {
-    margin-top: 10px;
-    margin-bottom: 0px;
-}
-.formDiv > input {
+.form-div > input {
     height: 25px;
     border-radius: 5px;
 }
@@ -232,11 +243,14 @@ input[type='checkbox' i] {
 
 .createChannelForm {
     display: flex;
+    flex-direction: column;
+    color: black;
+}
+.createValues {
+    display: flex;
     flex-direction: row;
 }
-
 #tooltip-text {
-    /* display: none; */
     position: absolute;
     align-self: center;
     text-align: center;
@@ -247,17 +261,7 @@ input[type='checkbox' i] {
     font-size: 20px;
     color: rgb(210, 137, 0);
     border-radius: 20px;
-    animation: fadeIn 0.6s;
 }
-
-/* .tooltip-container {
-    position: relative;
-    display: flex;
-    place-content: center;
-    background-color: blue;
-} */
-
-/* .tooltip-container:hover */
 
 .invisible {
     display: none;
